@@ -14,8 +14,8 @@ export type Props = {
 
 const CarouselImage = ({ movie }: Props) => {
   return (
-    <Link href={"/"} className={"group"}>
-      <div className="relative overflow-hidden transition-transform group-hover:-translate-y-2 group-hover:scale-105">
+    <Link href={"/"} className={"group/image-card"}>
+      <div className="relative transition-transform group-hover/image-card:-translate-y-2 group-hover/image-card:scale-105">
         <Image
           src={movie.postImg}
           height={750}
@@ -24,10 +24,11 @@ const CarouselImage = ({ movie }: Props) => {
           className="w-52"
         />
 
-        <span
+        <div
           className="
-            bt-overlay absolute bottom-0 left-0 right-0 translate-y-full bg-black
-            px-3 pt-10 pb-3 transition-transform group-hover:translate-y-0 
+            bt-overlay absolute bottom-0 left-0 right-0 origin-bottom 
+            bg-black px-3 pt-10 pb-3 opacity-0 transition-all 
+            group-hover/image-card:opacity-100 
         "
         >
           <span className="text-lg font-semibold leading-tight">
@@ -38,7 +39,7 @@ const CarouselImage = ({ movie }: Props) => {
             {movie.avgRatings.toFixed(1)} <AiFillStar className="mr-2" />{" "}
             {movie.totalRatings} Votes
           </span>
-        </span>
+        </div>
       </div>
     </Link>
   );

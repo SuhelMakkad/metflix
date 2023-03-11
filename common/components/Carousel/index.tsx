@@ -1,5 +1,7 @@
 import CarouselImage from "./CarouselImage";
 
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+
 export type Props = {
   movies: {
     postImg: string;
@@ -11,13 +13,45 @@ export type Props = {
 
 const ImageCarousel = ({ movies }: Props) => {
   return (
-    <ul className="scroll-hidden flex flex-none gap-4 overflow-x-auto">
-      {movies.map((movie) => (
-        <li key={movie.postImg} className={"shrink-0"}>
-          <CarouselImage movie={movie} />
-        </li>
-      ))}
-    </ul>
+    <div className="group/carousel relative -mx-8 mt-[50vh] overflow-hidden">
+      <button
+        className="
+          absolute top-1/2 left-8 z-10 grid h-16 w-16 origin-left -translate-y-1/2 -translate-x-32
+          place-content-center rounded-full bg-black/50 p-4 text-4xl opacity-0
+          transition-all duration-300 ease-in focus-within:block hover:bg-black/80
+          focus-visible:translate-x-0 focus-visible:opacity-100
+          group-focus-within/carousel:translate-x-0 group-focus-within/carousel:opacity-100
+          group-hover/carousel:translate-x-0 group-hover/carousel:opacity-100
+          group-focus-visible/carousel:translate-x-0 group-focus-visible/carousel:opacity-100
+      "
+      >
+        <MdArrowBackIos className="translate-x-1.5" />
+      </button>
+
+      <button
+        className="
+        absolute top-1/2 right-8 z-10 grid h-16 w-16 origin-right -translate-y-1/2 translate-x-32
+        place-content-center rounded-full bg-black/50 p-4 text-4xl opacity-0
+        transition-all duration-300 ease-in focus-within:block hover:bg-black/80
+        focus-visible:translate-x-0 focus-visible:opacity-100
+        group-focus-within/carousel:translate-x-0 group-focus-within/carousel:opacity-100
+        group-hover/carousel:translate-x-0 group-hover/carousel:opacity-100
+        group-focus-visible/carousel:translate-x-0 group-focus-visible/carousel:opacity-100
+      "
+      >
+        <MdArrowForwardIos />
+      </button>
+
+      <ul className="scroll-hidden flex flex-none gap-4 overflow-x-auto overflow-y-auto">
+        <li className="-mr-4 h-1 min-w-[2rem]" />
+        {movies.map((movie) => (
+          <li key={movie.postImg} className={"shrink-0"}>
+            <CarouselImage movie={movie} />
+          </li>
+        ))}
+        <li className="-ml-4 h-1 min-w-[2rem]" />
+      </ul>
+    </div>
   );
 };
 
