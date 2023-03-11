@@ -1,6 +1,6 @@
 import { getTrendingMovies } from "@/api/tmbd";
 import BannerImage from "@/components/BannerImage";
-import Image from "next/image";
+import BannerSection from "@/components/BannerSection";
 
 export default async function Home() {
   const res = await getTrendingMovies();
@@ -11,20 +11,14 @@ export default async function Home() {
 
   const { results: movies } = res;
 
-  function randomIntFromInterval(min, max) {
+  function randomIntFromInterval(min: number, max: number) {
     // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
   const rndInt = randomIntFromInterval(1, 10);
   return (
-    <section>
-      <header></header>
-      <div>
-        <BannerImage
-          src={`https://image.tmdb.org/t/p/original/${movies[rndInt].backdrop_path}`}
-          alt={`Image for movie ${movies[rndInt].original_title}`}
-        />
-      </div>
+    <>
+      <BannerSection movie={movies[rndInt]} />
       {/* <ul>
         {movies.map((movie) => (
           <li key={movie.id}>
@@ -45,6 +39,6 @@ export default async function Home() {
           </li>
         ))}
       </ul> */}
-    </section>
+    </>
   );
 }

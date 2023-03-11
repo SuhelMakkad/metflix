@@ -7,6 +7,15 @@
 }
 
 @layer utilities {
+  .tb-overlay {
+    background-color: transparent;
+    background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.7) 10%,
+      transparent
+    );
+  }
+
   .bt-overlay {
     background-color: transparent;
     background-image: linear-gradient(
@@ -28,11 +37,14 @@
     width: 100%;
   }
 
-  .tb-overlay {
-    background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.7) 10%,
-      transparent
-    );
+  .lr-overlay {
+    background: linear-gradient(77deg, rgba(0, 0, 0, 0.6), transparent 85%);
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    right: 26.09%;
+    top: 0;
+    transition: opacity 0.5s;
   }
 }
