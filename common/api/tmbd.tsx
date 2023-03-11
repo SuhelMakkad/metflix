@@ -50,7 +50,7 @@ export const getDiscoverMovies = async () => {
 };
 
 export const getTrendingMovies = async () => {
-  const reqUrl = "/trending/all/day";
+  const reqUrl = "/trending/movie/day";
 
   const res = await axios.get(reqUrl).catch(console.error);
 

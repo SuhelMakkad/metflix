@@ -45,21 +45,19 @@ const NavLinks = () => {
       <ul
         className={`
           absolute left-1/2 h-full -translate-x-1/2 translate-y-1 flex-col items-center
-          whitespace-nowrap border-t-4 border-stone-200 bg-black/50 
+          whitespace-nowrap border-t-4 border-stone-200  
           text-stone-300 md:relative md:left-auto 
           md:flex md:translate-y-0 md:translate-x-0 md:flex-row md:gap-4
-          md:border-none md:bg-transparent md:px-0 md:py-0 ${
-            isListOpen ? "flex" : "hidden"
-          }
+          md:border-none md:px-0 md:py-0 ${isListOpen ? "flex" : "hidden"}
         `}
       >
         {navItems.map((navItem) => (
           <li
             key={navItem.href}
             className={`
-              w-full py-2 px-10 text-center 
-              transition-colors hover:bg-white/5
-              md:p-0 md:hover:bg-transparent ${
+              w-full bg-black/80 py-2 px-10 
+              text-center transition-colors
+              hover:bg-black md:bg-transparent md:p-0 md:hover:bg-transparent ${
                 currentPath === navItem.href
                   ? "text-white"
                   : "md:hover:text-stone-400"
