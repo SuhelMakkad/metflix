@@ -1,5 +1,6 @@
 import { getTrendingMovies } from "@/api/tmbd";
 import BannerSection from "@/components/BannerSection";
+import ImageCarousel from "@/components/Carousel";
 
 export default async function Home() {
   const res = await getTrendingMovies();
@@ -18,6 +19,16 @@ export default async function Home() {
   return (
     <>
       <BannerSection movie={movies[rndInt]} />
+
+      <ImageCarousel
+        movies={movies.map((movie) => ({
+          postImg: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          title: movie.title ?? movie.original_title,
+          avgRatings: movie.vote_average,
+          totalRatings: movie.vote_count,
+        }))}
+      />
+
       {/* <ul>
         {movies.map((movie) => (
           <li key={movie.id}>

@@ -7,6 +7,14 @@
 }
 
 @layer utilities {
+  .scroll-hidden {
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scroll-hidden::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
   .tb-overlay {
     background-color: transparent;
     background-image: linear-gradient(
@@ -17,6 +25,15 @@
   }
 
   .bt-overlay {
+    background-color: transparent;
+    background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.7) 10%,
+      transparent
+    );
+  }
+
+  .bt-overlay-lg {
     background-color: transparent;
     background-image: linear-gradient(
       180deg,
