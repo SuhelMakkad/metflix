@@ -36,7 +36,7 @@ const CarouselImage = ({ movie }: Props) => {
           <br />
           <span className="flex items-center gap-1 text-sm">
             {movie.avgRatings.toFixed(1)} <AiFillStar className="mr-2" />{" "}
-            {movie.totalRatings} votes
+            {movie.totalRatings} Votes
           </span>
         </span>
       </div>
