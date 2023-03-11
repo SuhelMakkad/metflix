@@ -18,7 +18,7 @@ const ImageCarousel = ({ movies }: Props) => {
         className="
           absolute top-1/2 left-8 z-10 grid h-16 w-16 origin-left -translate-y-1/2 -translate-x-32
           place-content-center rounded-full bg-black/50 p-4 text-4xl opacity-0
-          transition-all duration-300 ease-in focus-within:block hover:bg-black/80
+          transition-all duration-300 focus-within:block hover:bg-black/80
           focus-visible:translate-x-0 focus-visible:opacity-100
           group-focus-within/carousel:translate-x-0 group-focus-within/carousel:opacity-100
           group-hover/carousel:translate-x-0 group-hover/carousel:opacity-100
@@ -32,7 +32,7 @@ const ImageCarousel = ({ movies }: Props) => {
         className="
         absolute top-1/2 right-8 z-10 grid h-16 w-16 origin-right -translate-y-1/2 translate-x-32
         place-content-center rounded-full bg-black/50 p-4 text-4xl opacity-0
-        transition-all duration-300 ease-in focus-within:block hover:bg-black/80
+        transition-all duration-300 focus-within:block hover:bg-black/80
         focus-visible:translate-x-0 focus-visible:opacity-100
         group-focus-within/carousel:translate-x-0 group-focus-within/carousel:opacity-100
         group-hover/carousel:translate-x-0 group-hover/carousel:opacity-100
