@@ -15,18 +15,16 @@ const BannerSection = ({ movie }: Props) => {
         <p className="text-stone-200">{movie.overview}</p>
       </header>
 
-      <div className="relative">
-        <Image
-          src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-          alt={`Image for movie ${movie.original_title}`}
-          className="w-full object-cover"
-          height={1152}
-          width={2048}
-          property={"true"}
-        />
-        <div className="bt-overlay absolute"></div>
-      </div>
+      <Image
+        src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+        alt={`Image for movie ${movie.original_title}`}
+        className="w-full object-cover"
+        height={1152}
+        width={2048}
+        property={"true"}
+      />
       <div className="lr-overlay absolute max-w-2xl "></div>
+      <div className="bt-overlay absolute"></div>
     </section>
   );
 };

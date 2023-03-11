@@ -18,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`text-slate-100 antialiased ${openSans.className}`}>
+      <body
+        className={`bg-black text-slate-100 antialiased ${openSans.className}`}
+      >
         <Navbar />
 
         <main className="px-8">{children}</main>

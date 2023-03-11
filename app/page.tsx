@@ -1,5 +1,4 @@
 import { getTrendingMovies } from "@/api/tmbd";
-import BannerImage from "@/components/BannerImage";
 import BannerSection from "@/components/BannerSection";
 
 export default async function Home() {
