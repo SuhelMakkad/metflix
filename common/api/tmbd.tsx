@@ -1,18 +1,20 @@
-import axios from "axios";
+import defaultAxios from "axios";
 import { env } from "process";
 import { MoviesRes } from "./types";
 
-export const baseUrl = "https://api.themoviedb.org/3";
+export const baseURL = "https://api.themoviedb.org/3";
+
+const axios = defaultAxios.create({
+  baseURL,
+  params: {
+    api_key: env.TMBD_API_KEY,
+  },
+});
 
 export const getRequestToken = async () => {
-  const reqUrl = `${baseUrl}/authentication/token/new`;
-  const config = {
-    params: {
-      api_key: env.TMBD_API_KEY,
-    },
-  };
+  const reqUrl = "/authentication/token/new";
 
-  const res = await axios.get(reqUrl, config).catch(console.error);
+  const res = await axios.get(reqUrl).catch(console.error);
 
   if (!res || !res.data.success) return;
 
@@ -30,18 +32,27 @@ export const getRequestToken = async () => {
   return tokenData;
 };
 
-export const getMovies = async () => {
-  const reqUrl = `${baseUrl}/discover/movie`;
+export const getDiscoverMovies = async () => {
+  const reqUrl = "/discover/movie";
 
   const sortBy = "popularity.desc";
   const config = {
     params: {
-      api_key: env.TMBD_API_KEY,
       sort_by: sortBy,
     },
   };
 
   const res = await axios.get(reqUrl, config).catch(console.error);
+
+  if (!res || !res.data) return;
+
+  return res.data as MoviesRes;
+};
+
+export const getTrendingMovies = async () => {
+  const reqUrl = "/trending/all/day";
+
+  const res = await axios.get(reqUrl).catch(console.error);
 
   if (!res || !res.data) return;
 

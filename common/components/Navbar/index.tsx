@@ -4,7 +4,7 @@ import NavLinks from "./NavLinks";
 
 const Navbar = () => {
   return (
-    <nav className="flex w-full items-center gap-4 py-4 px-8">
+    <nav className="tb-overlay isolate z-10 flex w-full items-center gap-4 py-4 px-8">
       <Link
         href={"/"}
         className="mr-5 text-2xl font-semibold uppercase text-red-600"
