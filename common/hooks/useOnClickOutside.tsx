@@ -10,8 +10,6 @@ export default function useOutsideClick(
   refs: Array<RefObject<HTMLElement> | undefined>,
   handler?: () => void
 ) {
-  console.log("called");
-
   useEffect(() => {
     function handleClickOutside(event: any) {
       if (!handler) return;
