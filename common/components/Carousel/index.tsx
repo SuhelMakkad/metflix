@@ -41,7 +41,7 @@ const ImageCarousel = ({ movies }: Props) => {
   };
 
   return (
-    <div className="group/carousel relative -mx-8 mt-[50vh] overflow-hidden">
+    <div className="group/carousel relative -mx-8 mt-[60vh] overflow-hidden">
       <button
         onClick={scrollLeft}
         className="
@@ -52,7 +52,7 @@ const ImageCarousel = ({ movies }: Props) => {
           group-focus-within/carousel:translate-x-0 group-focus-within/carousel:opacity-100
           group-hover/carousel:translate-x-0 group-hover/carousel:opacity-100
           group-focus-visible/carousel:translate-x-0 group-focus-visible/carousel:opacity-100
-      "
+        "
       >
         <MdArrowBackIos className="translate-x-1.5" />
       </button>
@@ -67,14 +67,14 @@ const ImageCarousel = ({ movies }: Props) => {
           group-focus-within/carousel:translate-x-0 group-focus-within/carousel:opacity-100
           group-hover/carousel:translate-x-0 group-hover/carousel:opacity-100
           group-focus-visible/carousel:translate-x-0 group-focus-visible/carousel:opacity-100
-      "
+        "
       >
         <MdArrowForwardIos />
       </button>
 
       <ul
         ref={listRef}
-        className="scroll-hidden flex flex-none gap-4 overflow-x-auto overflow-y-auto scroll-smooth"
+        className="scroll-hidden flex flex-none gap-8 overflow-x-auto overflow-y-auto scroll-smooth"
       >
         <li className="-mr-4 h-1 min-w-[2rem]" />
         {movies.map((movie) => (
