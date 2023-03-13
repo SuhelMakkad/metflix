@@ -33,8 +33,8 @@ const Footer = () => {
       href: "mailto:makkadsuhel11@gmail.com",
     },
     {
-      label: "Privacy",
-      href: "/",
+      label: "Privacy Policy",
+      href: "/privacy-policy",
     },
     {
       label: "Terms of Use",
@@ -87,6 +87,7 @@ const Footer = () => {
         {links.map((link) => (
           <li key={link.label}>
             <Link
+              target={"_blank"}
               href={link.href}
               className="underline-offset-1 hover:underline"
             >
