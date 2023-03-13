@@ -1,5 +1,8 @@
-import Navbar from "@/components/Navbar";
 import { Open_Sans } from "next/font/google";
+
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
 import "@/css/globals.css";
 
 const openSans = Open_Sans({
@@ -24,6 +27,8 @@ export default function RootLayout({
         <Navbar />
 
         <main className="px-8">{children}</main>
+
+        <Footer />
       </body>
     </html>
   );
