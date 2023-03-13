@@ -7,7 +7,7 @@ export type Props = {
 
 const BannerSection = ({ movie }: Props) => {
   return (
-    <section className="relative -mx-8 h-screen max-h-[47vw] overflow-hidden px-8">
+    <section className="relative -mx-8 h-screen max-h-[40rem] overflow-hidden px-8 lg:max-h-[42rem] xl:max-h-[50rem] 2xl:max-h-[62rem]">
       <header className="absolute bottom-1/3 z-10 max-w-2xl">
         <h2 className="mb-2 text-3xl font-bold drop-shadow-[0_25px_25px_rgb(0,0,0)] md:text-4xl md:drop-shadow-none lg:text-5xl xl:text-6xl">
           {movie.original_title ?? movie.title}
