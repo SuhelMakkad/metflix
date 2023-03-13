@@ -7,7 +7,7 @@ export const baseURL = "https://api.themoviedb.org/3";
 const axios = defaultAxios.create({
   baseURL,
   params: {
-    api_key: env.TMBD_API_KEY,
+    api_key: "f9624807ee031745992426cc6332af62",
   },
 });
 

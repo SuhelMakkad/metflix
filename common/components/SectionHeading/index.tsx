@@ -1,9 +1,32 @@
+import Link from "next/link";
+
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+
 export type Props = {
-  heading: string;
+  children: React.ReactNode;
+  href?: string;
 };
 
-const SectionHeading = ({ children }: { children: React.ReactNode }) => {
-  return <h3 className="mb-5 text-2xl font-semibold">{children}</h3>;
+const SectionHeading = ({ href, children }: Props) => {
+  return (
+    <div className="group/heading mb-5 flex items-center gap-4">
+      <h3 className="text-2xl font-semibold">{children}</h3>
+
+      {href && (
+        <Link
+          href={href}
+          className="
+            flex origin-left -translate-x-4 items-center 
+            text-sm font-semibold text-[#54b9c5] opacity-0
+            transition-all duration-500
+            group-hover/heading:translate-x-0 group-hover/heading:opacity-100
+          "
+        >
+          Expand All <MdOutlineKeyboardArrowRight className="text-lg" />
+        </Link>
+      )}
+    </div>
+  );
 };
 
 export default SectionHeading;
