@@ -1,6 +1,5 @@
 import defaultAxios from "axios";
-import { env } from "process";
-import { MoviesRes } from "./types";
+import { MoviesRes, TVShowsRes } from "./types";
 
 export const baseURL = "https://api.themoviedb.org/3";
 
@@ -76,5 +75,5 @@ export const getTopRatedTVShows = async () => {
 
   if (!res || !res.data) return;
 
-  return res.data as MoviesRes;
+  return res.data as TVShowsRes;
 };
