@@ -1,6 +1,7 @@
 import { getTrendingMovies } from "@/api/tmbd";
 import BannerSection from "@/components/BannerSection";
 import ImageCarousel from "@/components/Carousel";
+import SectionHeading from "@/components/SectionHeading";
 
 export default async function Home() {
   const res = await getTrendingMovies();
@@ -11,44 +12,58 @@ export default async function Home() {
 
   const { results: movies } = res;
 
-  function randomIntFromInterval(min: number, max: number) {
-    // min and max included
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-  const rndInt = randomIntFromInterval(1, 10);
+  const rndInt = Math.floor(Math.random() * 10 + 1);
+
   return (
     <>
       <BannerSection movie={movies[rndInt]} />
 
-      <ImageCarousel
-        movies={movies.map((movie) => ({
-          postImg: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-          title: movie.title ?? movie.original_title,
-          avgRatings: movie.vote_average,
-          totalRatings: movie.vote_count,
-        }))}
-      />
+      <div className="flex flex-col gap-8">
+        <section>
+          <header>
+            <SectionHeading> Trending Now</SectionHeading>
+          </header>
 
-      {/* <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>
-            <p>{movie.original_title}</p>
-            <p>{movie.overview}</p>
-            <Image
-              src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-              alt={movie.title}
-              width={500}
-              height={281}
-            />
-            <Image
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              alt={movie.title}
-              width={100}
-              height={250}
-            />
-          </li>
-        ))}
-      </ul> */}
+          <ImageCarousel
+            movies={movies.map((movie) => ({
+              postImg: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+              title: movie.title ?? movie.original_title,
+              avgRatings: movie.vote_average,
+              totalRatings: movie.vote_count,
+            }))}
+          />
+        </section>
+
+        <section>
+          <header>
+            <SectionHeading> Trending Now</SectionHeading>
+          </header>
+
+          <ImageCarousel
+            movies={movies.map((movie) => ({
+              postImg: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+              title: movie.title ?? movie.original_title,
+              avgRatings: movie.vote_average,
+              totalRatings: movie.vote_count,
+            }))}
+          />
+        </section>
+
+        <section>
+          <header>
+            <SectionHeading> Trending Now</SectionHeading>
+          </header>
+
+          <ImageCarousel
+            movies={movies.map((movie) => ({
+              postImg: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+              title: movie.title ?? movie.original_title,
+              avgRatings: movie.vote_average,
+              totalRatings: movie.vote_count,
+            }))}
+          />
+        </section>
+      </div>
     </>
   );
 }

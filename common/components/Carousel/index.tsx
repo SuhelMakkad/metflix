@@ -74,15 +74,17 @@ const ImageCarousel = ({ movies }: Props) => {
 
       <ul
         ref={listRef}
-        className="scroll-hidden flex flex-none gap-8 overflow-x-auto overflow-y-auto scroll-smooth"
+        className="scroll-hidden flex flex-none gap-8 overflow-x-auto overflow-y-hidden scroll-smooth"
       >
-        <li className="-mr-4 h-1 min-w-[2rem]" />
+        <li className="-mr-8 h-1 w-[2rem] shrink-0" />
+
         {movies.map((movie) => (
           <li key={movie.postImg} className={"shrink-0"}>
             <CarouselImage movie={movie} />
           </li>
         ))}
-        <li className="-ml-4 h-1 min-w-[2rem]" />
+
+        <li className="-mr-8 h-1 w-[2rem] shrink-0" />
       </ul>
     </div>
   );
