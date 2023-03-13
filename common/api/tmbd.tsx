@@ -58,3 +58,23 @@ export const getTrendingMovies = async () => {
 
   return res.data as MoviesRes;
 };
+
+export const getTopRatedMovies = async () => {
+  const reqUrl = "/movie/top_rated";
+
+  const res = await axios.get(reqUrl).catch(console.error);
+
+  if (!res || !res.data) return;
+
+  return res.data as MoviesRes;
+};
+
+export const getTopRatedTVShows = async () => {
+  const reqUrl = "/tv/top_rated";
+
+  const res = await axios.get(reqUrl).catch(console.error);
+
+  if (!res || !res.data) return;
+
+  return res.data as MoviesRes;
+};

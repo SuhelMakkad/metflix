@@ -1,8 +1,9 @@
 import { getTrendingMovies } from "@/api/tmbd";
+
 import BannerSection from "@/components/BannerSection";
-import ImageCarousel from "@/components/Carousel";
 import TrendingNowMovies from "@/components/Movies/TrendingNow";
-import SectionHeading from "@/components/SectionHeading";
+import TopRatedMovies from "@/components/Movies/TopRatedMovies";
+import TopRatedTVShows from "@/components/Movies/TopRatedTVShows";
 
 export default async function Home() {
   const res = await getTrendingMovies();
@@ -22,35 +23,9 @@ export default async function Home() {
       <div className="flex flex-col gap-8">
         <TrendingNowMovies />
 
-        <section>
-          <header>
-            <SectionHeading> Trending Now</SectionHeading>
-          </header>
+        <TopRatedMovies />
 
-          <ImageCarousel
-            movies={movies.map((movie) => ({
-              postImg: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-              title: movie.title ?? movie.original_title,
-              avgRatings: movie.vote_average,
-              totalRatings: movie.vote_count,
-            }))}
-          />
-        </section>
-
-        <section>
-          <header>
-            <SectionHeading> Trending Now</SectionHeading>
-          </header>
-
-          <ImageCarousel
-            movies={movies.map((movie) => ({
-              postImg: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-              title: movie.title ?? movie.original_title,
-              avgRatings: movie.vote_average,
-              totalRatings: movie.vote_count,
-            }))}
-          />
-        </section>
+        <TopRatedTVShows />
       </div>
     </>
   );
