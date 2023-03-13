@@ -26,10 +26,10 @@ const CarouselImage = ({ movie }: Props) => {
 
         <div
           className="
-            bt-overlay absolute bottom-0 left-0 right-0 origin-bottom 
+            bt-overlay-lg absolute bottom-0 left-0 right-0 origin-bottom 
             bg-black px-3 pt-10 pb-3 opacity-0 
             transition-all group-hover/image-card:opacity-100
-        "
+          "
         >
           <span className="text-lg font-semibold leading-tight">
             {movie.title}
@@ -37,7 +37,7 @@ const CarouselImage = ({ movie }: Props) => {
           <br />
           <span className="flex items-center gap-1 text-sm text-stone-200">
             {movie.avgRatings.toFixed(1)} <AiFillStar className="mr-2" />{" "}
-            {movie.totalRatings} Votes
+            {movie.totalRatings.toLocaleString()} Votes
           </span>
         </div>
       </div>
