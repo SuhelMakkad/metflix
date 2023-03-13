@@ -21,7 +21,7 @@ const CarouselImage = ({ movie }: Props) => {
           height={750}
           width={500}
           alt={`Poster Image for ${movie.title}`}
-          className="w-52"
+          className="w-40 md:w-44 lg:w-48 2xl:w-56"
         />
 
         <div
