@@ -52,7 +52,7 @@ const ImageCarousel = ({ items }: Props) => {
           md:gap-6 2xl:gap-8
         "
       >
-        <li className="-mr-8 h-1 w-[2rem] shrink-0" />
+        <li className="-mr-5 h-1 w-[2rem] shrink-0" />
 
         {items.map((movie) => (
           <li key={movie.postImg} className={"shrink-0"}>
@@ -60,7 +60,7 @@ const ImageCarousel = ({ items }: Props) => {
           </li>
         ))}
 
-        <li className="-mr-8 h-1 w-[2rem] shrink-0" />
+        <li className="-mr-5 h-1 w-[2rem] shrink-0" />
       </ul>
     </div>
   );
