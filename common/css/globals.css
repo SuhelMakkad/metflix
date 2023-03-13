@@ -6,6 +6,10 @@
   color-scheme: dark;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 @layer utilities {
   .scroll-hidden {
     -ms-overflow-style: none; /* Internet Explorer 10+ */
