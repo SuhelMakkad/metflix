@@ -27,7 +27,7 @@ const BannerSection = ({ movie }: Props) => {
       <Image
         src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
         alt={`Image for movie ${movie.original_title}`}
-        className="-z-50 w-full object-cover"
+        className="-z-50 min-h-[30rem] w-full object-cover"
         height={1152}
         width={2048}
         property={"true"}

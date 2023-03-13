@@ -74,7 +74,7 @@ const ImageCarousel = ({ movies }: Props) => {
 
       <ul
         ref={listRef}
-        className="scroll-hidden flex flex-none gap-8 overflow-x-auto overflow-y-hidden scroll-smooth"
+        className="scroll-hidden flex flex-none gap-6 overflow-x-auto overflow-y-hidden scroll-smooth md:gap-8"
       >
         <li className="-mr-8 h-1 w-[2rem] shrink-0" />
 
