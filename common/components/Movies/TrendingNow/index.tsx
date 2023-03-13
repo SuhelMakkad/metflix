@@ -32,7 +32,7 @@ const TrendingNowMovies = () => {
       </header>
 
       <ImageCarousel
-        movies={movies.map((movie) => ({
+        items={movies.map((movie) => ({
           postImg: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
           title: movie.title ?? movie.original_title,
           avgRatings: movie.vote_average,

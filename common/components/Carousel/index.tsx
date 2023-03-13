@@ -6,7 +6,7 @@ import CarouselImage from "./CarouselImage";
 import NavButton from "./NavButton";
 
 export type Props = {
-  movies: {
+  items: {
     postImg: string;
     title: string;
     avgRatings: number;
@@ -14,7 +14,7 @@ export type Props = {
   }[];
 };
 
-const ImageCarousel = ({ movies }: Props) => {
+const ImageCarousel = ({ items }: Props) => {
   const listRef = useRef<HTMLUListElement>(null);
 
   const scrollLeft = () => {
@@ -54,7 +54,7 @@ const ImageCarousel = ({ movies }: Props) => {
       >
         <li className="-mr-8 h-1 w-[2rem] shrink-0" />
 
-        {movies.map((movie) => (
+        {items.map((movie) => (
           <li key={movie.postImg} className={"shrink-0"}>
             <CarouselImage movie={movie} />
           </li>

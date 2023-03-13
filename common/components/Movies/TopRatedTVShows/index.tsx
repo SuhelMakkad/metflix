@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 
-import { Movies } from "@/api/types";
+import { TVShows } from "@/api/types";
 import { getTopRatedTVShows } from "@/api/tmbd";
 
 import SectionHeading from "@/components/SectionHeading";
 import ImageCarousel from "@/components/Carousel";
 
 const TopRatedTVShows = () => {
-  const [movies, setMovies] = useState<Movies>([]);
+  const [movies, setMovies] = useState<TVShows>([]);
 
   useEffect(() => {
     const getMovies = async () => {
@@ -32,9 +32,9 @@ const TopRatedTVShows = () => {
       </header>
 
       <ImageCarousel
-        movies={movies.map((movie) => ({
+        items={movies.map((movie) => ({
           postImg: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-          title: movie.title ?? movie.original_title,
+          title: movie.name ?? movie.original_name,
           avgRatings: movie.vote_average,
           totalRatings: movie.vote_count,
         }))}
