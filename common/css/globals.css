@@ -47,21 +47,9 @@
     background-position: 0 top;
     background-repeat: repeat-x;
     background-size: 100% 100%;
-    bottom: -1px;
-    height: 14.7vw;
-    opacity: 1;
-    top: auto;
-    width: 100%;
   }
 
   .lr-overlay {
     background: linear-gradient(77deg, rgba(0, 0, 0, 0.6), transparent 85%);
-    bottom: 0;
-    left: 0;
-    opacity: 1;
-    position: absolute;
-    right: 26.09%;
-    top: 0;
-    transition: opacity 0.5s;
   }
 }

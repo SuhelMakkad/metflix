@@ -41,7 +41,7 @@ const ImageCarousel = ({ movies }: Props) => {
   };
 
   return (
-    <div className="group/carousel relative -mx-8 mt-[60vh] overflow-hidden">
+    <div className="group/carousel relative -mx-8 overflow-hidden">
       <button
         onClick={scrollLeft}
         className="
