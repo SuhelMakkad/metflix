@@ -19,12 +19,13 @@ const SectionHeading = ({ href, children }: Props) => {
           href={href}
           className="
             flex origin-left -translate-x-4 items-center 
-            text-sm font-semibold text-[#54b9c5] opacity-0
-            transition-all duration-500
-            group-hover/heading:translate-x-0 group-hover/heading:opacity-100
+            text-xs font-semibold text-[#54b9c5] opacity-0 transition-all
+            duration-500 group-hover/heading:translate-x-0
+            group-hover/heading:opacity-100 md:text-sm
           "
         >
-          Expand All <MdOutlineKeyboardArrowRight className="text-lg" />
+          Expand All{" "}
+          <MdOutlineKeyboardArrowRight className="text-base md:text-lg" />
         </Link>
       )}
     </div>
