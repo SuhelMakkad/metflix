@@ -18,10 +18,11 @@ const SectionHeading = ({ href, children }: Props) => {
         <Link
           href={href}
           className="
-            flex origin-left -translate-x-4 items-center 
-            text-xs font-semibold text-[#54b9c5] opacity-0 transition-all
-            duration-500 group-hover/heading:translate-x-0
-            group-hover/heading:opacity-100 md:text-sm
+            flex origin-left 
+            -translate-x-4 items-center text-xs font-semibold text-[#54b9c5] 
+            opacity-0 transition-all duration-500 focus-within:translate-x-0 focus-within:opacity-100 
+            group-hover/heading:translate-x-0 group-hover/heading:opacity-100 
+            md:text-sm
           "
         >
           Expand All{" "}

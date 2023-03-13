@@ -45,6 +45,7 @@ const ImageCarousel = ({ items }: Props) => {
       <NavButton onClick={scrollRight} direction="right" />
 
       <ul
+        onDrag={console.log}
         ref={listRef}
         className="
           scroll-hidden flex flex-none gap-5
