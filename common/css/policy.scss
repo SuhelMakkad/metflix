@@ -1,0 +1,43 @@
+.wrapper {
+  margin-top: 5rem;
+
+  & * {
+    @apply text-stone-300;
+  }
+
+  & strong {
+    @apply font-semibold;
+  }
+
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & strong {
+    @apply text-stone-50;
+  }
+
+  & h1 {
+    @apply my-3 text-2xl font-semibold;
+  }
+
+  & h2 {
+    @apply my-2 text-xl font-semibold;
+  }
+
+  & h3 {
+    @apply my-2 text-xl font-medium;
+  }
+
+  & p {
+    @apply my-2;
+  }
+
+  & ul {
+    @apply list-disc pl-8;
+  }
+
+  & a {
+    @apply underline underline-offset-2;
+  }
+}

@@ -38,7 +38,7 @@ const Footer = () => {
     },
     {
       label: "Terms of Use",
-      href: "/",
+      href: "/terms-of-use",
     },
     {
       label: "Legal Notice",
