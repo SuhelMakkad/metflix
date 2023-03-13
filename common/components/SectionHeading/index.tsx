@@ -10,7 +10,9 @@ export type Props = {
 const SectionHeading = ({ href, children }: Props) => {
   return (
     <div className="group/heading mb-5 flex items-center gap-4">
-      <h3 className="text-2xl font-semibold">{children}</h3>
+      <h3 className="text-lg font-semibold md:text-xl lg:text-2xl">
+        {children}
+      </h3>
 
       {href && (
         <Link
