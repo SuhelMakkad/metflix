@@ -20,7 +20,7 @@ export default async function Home() {
     <>
       <BannerSection movie={movies[rndInt]} />
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-[3vw]">
         <TrendingNowMovies />
 
         <TopRatedMovies />

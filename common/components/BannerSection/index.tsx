@@ -7,7 +7,7 @@ export type Props = {
 
 const BannerSection = ({ movie }: Props) => {
   return (
-    <section className="relative -mx-8 overflow-hidden">
+    <section className="relative -mx-8 max-h-[85vh] overflow-hidden">
       <div className="absolute inset-0 px-8">
         <header className="absolute bottom-1/3 z-10 max-w-2xl">
           <h2 className="mb-2 text-3xl font-bold drop-shadow-[0_25px_25px_rgb(0,0,0)] md:text-4xl md:drop-shadow-none lg:text-5xl xl:text-6xl">

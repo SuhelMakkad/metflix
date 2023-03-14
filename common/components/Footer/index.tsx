@@ -29,7 +29,7 @@ const Footer = () => {
 
   const links = [
     {
-      label: "Contact Me",
+      label: "Contact Us",
       href: "mailto:makkadsuhel11@gmail.com",
     },
     {
@@ -41,24 +41,24 @@ const Footer = () => {
       href: "/terms-of-use",
     },
     {
-      label: "Legal Notice",
-      href: "/",
+      label: "TMDB",
+      href: "https://www.themoviedb.org",
     },
     {
-      label: "Cookie Preference",
-      href: "/",
+      label: "NextJS 13",
+      href: "https://nextjs.org",
     },
     {
-      label: "Corporate Information",
-      href: "/",
+      label: "Tailwind CSS",
+      href: "https://tailwindcss.com",
     },
     {
-      label: "Media Center",
-      href: "/",
+      label: "TypeScript",
+      href: "https://www.typescriptlang.org",
     },
     {
-      label: "Help Center",
-      href: "/",
+      label: "React Icons",
+      href: "https://github.com/react-icons/react-icons",
     },
   ];
 
@@ -66,11 +66,11 @@ const Footer = () => {
     <footer
       className="
         mx-auto mt-20 flex max-w-7xl flex-col items-center
-        gap-10 px-8 pb-4 text-center 
+        gap-10 px-8 pb-4 text-center text-sm
         text-stone-400 md:items-start md:gap-6 md:text-start
       "
     >
-      <ul className="flex gap-6 text-3xl text-white">
+      <ul className="flex gap-6 text-2xl text-white">
         {socials.map((social) => (
           <li
             key={social.href}

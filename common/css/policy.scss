@@ -1,43 +1,44 @@
 .wrapper {
   margin-top: 5rem;
+  @apply mx-auto max-w-7xl px-8;
 
-  & * {
+  * {
     @apply text-stone-300;
   }
 
-  & strong {
+  strong {
     @apply font-semibold;
   }
 
-  & h1,
-  & h2,
-  & h3,
-  & h4,
-  & strong {
+  h1,
+  h2,
+  h3,
+  h4,
+  strong {
     @apply text-stone-50;
   }
 
-  & h1 {
+  h1 {
     @apply my-3 text-2xl font-semibold;
   }
 
-  & h2 {
+  h2 {
     @apply my-2 text-xl font-semibold;
   }
 
-  & h3 {
+  h3 {
     @apply my-2 text-xl font-medium;
   }
 
-  & p {
+  p {
     @apply my-2;
   }
 
-  & ul {
+  ul {
     @apply list-disc pl-8;
   }
 
-  & a {
+  a {
     @apply text-red-500 underline-offset-2 hover:underline;
   }
 }
