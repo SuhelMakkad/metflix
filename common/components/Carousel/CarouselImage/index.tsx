@@ -15,7 +15,7 @@ export type Props = {
 const CarouselImage = ({ movie }: Props) => {
   return (
     <Link href={"/"} className={"group/image-card"}>
-      <div className="relative transition-transform group-hover/image-card:scale-105">
+      <div className="relative transition-transform group-hover/image-card:scale-105 duration-300">
         <Image
           src={movie.postImg}
           height={750}
@@ -27,8 +27,8 @@ const CarouselImage = ({ movie }: Props) => {
         <div
           className="
             bt-overlay-lg absolute bottom-0 left-0 right-0 origin-bottom 
-            bg-black px-3 pt-10 pb-3 opacity-0 
-            transition-all group-hover/image-card:opacity-100
+            bg-black px-3 pt-10 pb-3 opacity-0 duration-300
+            transition-opacity group-hover/image-card:opacity-100
           "
         >
           <span className="text-lg font-semibold leading-tight">
