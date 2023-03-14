@@ -40,7 +40,7 @@ const ImageCarousel = ({ items }: Props) => {
   };
 
   return (
-    <div className="group/carousel relative -mx-8 overflow-hidden">
+    <div className="group/carousel md:-mx4 lg:-mx6 relative -mx-3 overflow-hidden 2xl:-mx-8">
       <NavButton onClick={scrollLeft} />
       <NavButton onClick={scrollRight} direction="right" />
 
@@ -48,12 +48,12 @@ const ImageCarousel = ({ items }: Props) => {
         onDrag={console.log}
         ref={listRef}
         className="
-          scroll-hidden flex flex-none gap-5
+          scroll-hidden flex flex-none gap-5 
           overflow-x-auto overflow-y-hidden scroll-smooth 
           md:gap-6 2xl:gap-8
         "
       >
-        <li className="-mr-5 h-1 w-[2rem] shrink-0" />
+        <li className="-mr-5 h-1 w-3 shrink-0 md:-mr-6 md:w-4 lg:w-6 2xl:-mr-8 2xl:w-8" />
 
         {items.map((movie) => (
           <li key={movie.postImg} className={"shrink-0"}>
@@ -61,7 +61,7 @@ const ImageCarousel = ({ items }: Props) => {
           </li>
         ))}
 
-        <li className="-mr-5 h-1 w-[2rem] shrink-0" />
+        <li className="-mr-5 h-1 w-3 shrink-0 md:-mr-6 md:w-4 lg:w-6 2xl:-mr-8 2xl:w-8" />
       </ul>
     </div>
   );
