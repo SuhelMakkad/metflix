@@ -3,14 +3,17 @@
 import { useRef, useState } from "react";
 import { useSelectedLayoutSegments } from "next/navigation";
 
+import Link from "next/link";
+
 import { RiArrowDownSFill } from "react-icons/ri";
 
-import Link from "next/link";
 import useOutsideClick from "@/hooks/useOnClickOutside";
 
 const NavLinks = () => {
   const [isListOpen, setIsListOpen] = useState(false);
-  const listRef = useRef(null);
+
+  const listRef = useRef<HTMLDivElement>(null);
+
   useOutsideClick([listRef], () => setIsListOpen(false));
 
   const navItems = [
@@ -32,7 +35,7 @@ const NavLinks = () => {
   const currentPath = segments.reduce((prev, curr) => `${prev}/${curr}`, "");
 
   return (
-    <div className="group relative" ref={listRef}>
+    <div className="group relative text-lg" ref={listRef}>
       <button
         onClick={() => setIsListOpen((prev) => !prev)}
         className="flex items-center gap-2 focus-visible:border md:hidden"
@@ -45,10 +48,11 @@ const NavLinks = () => {
       <ul
         className={`
           absolute left-1/2 h-full -translate-x-1/2 translate-y-1 flex-col items-center
-          whitespace-nowrap border-t-4 border-stone-200  
-          text-stone-300 md:relative md:left-auto 
-          md:flex md:translate-y-0 md:translate-x-0 md:flex-row md:gap-4
-          md:border-none md:px-0 md:py-0 ${isListOpen ? "flex" : "hidden"}
+          whitespace-nowrap border-t-4 border-stone-200 text-stone-200 
+          md:relative md:left-auto md:flex md:translate-y-0 md:translate-x-0 
+          md:flex-row md:gap-6 md:border-none md:px-0 md:py-0 ${
+            isListOpen ? "flex" : "hidden"
+          }
         `}
       >
         {navItems.map((navItem) => (
