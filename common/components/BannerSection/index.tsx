@@ -6,6 +6,7 @@ import { getTrendingMovies } from "@/api/tmbd";
 import { Movie } from "@/api/types";
 
 import Image from "next/image";
+import LoadingBanner from "./Loading";
 
 const BannerSection = () => {
   const [bannerItem, setBannerItem] = useState<Movie>();
@@ -26,7 +27,7 @@ const BannerSection = () => {
     setMovies();
   }, []);
 
-  if (!bannerItem) return <p>Loading...</p>;
+  if (!bannerItem) return <LoadingBanner />;
 
   return (
     <section className="relative -mx-8 max-h-[85vh] overflow-hidden">
