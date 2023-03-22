@@ -3,6 +3,7 @@
 import { useRef } from "react";
 
 import CarouselImage from "./CarouselImage";
+import LoadingImage from "./LoadingImage";
 import NavButton from "./NavButton";
 
 export type Props = {
@@ -15,6 +16,7 @@ export type Props = {
 };
 
 const ImageCarousel = ({ items }: Props) => {
+  const loadingCardCount = 20;
   const listRef = useRef<HTMLUListElement>(null);
 
   const scrollLeft = () => {
@@ -55,11 +57,19 @@ const ImageCarousel = ({ items }: Props) => {
       >
         <li className="-mr-5 h-1 w-3 shrink-0 md:-mr-6 md:w-4 lg:w-6 2xl:-mr-8 2xl:w-8" />
 
-        {items.map((movie) => (
-          <li key={movie.postImg} className={"shrink-0"}>
-            <CarouselImage movie={movie} />
-          </li>
-        ))}
+        {items.length
+          ? items.map((movie) => (
+              <li key={movie.postImg} className={"shrink-0"}>
+                <CarouselImage movie={movie} />
+              </li>
+            ))
+          : Array(loadingCardCount)
+              .fill(0)
+              .map((_, index) => (
+                <li key={index} className={"shrink-0"}>
+                  <LoadingImage />
+                </li>
+              ))}
 
         <li className="-mr-5 h-1 w-3 shrink-0 md:-mr-6 md:w-4 lg:w-6 2xl:-mr-8 2xl:w-8" />
       </ul>
