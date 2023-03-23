@@ -23,9 +23,6 @@ export type ItemType = TVType | MovieType | DetailType;
 
 /**
  * Possible URLs
- * - /discover/tv
- * - /discover/movie
- *
  * - /trending/movie/day
  * - /trending/tv/day
  *
@@ -59,12 +56,6 @@ export const getTMDBUrl = (
   itemType?: ItemType,
   timeWindow?: TimeWindow
 ) => {
-  if (itemType === "discover") {
-    return `${tmdbBaseURL}/${itemType}/${media}`;
-  }
-
-  console.log(itemType === "trending", typeof timeWindow);
-
   if (itemType === "trending") {
     return timeWindow
       ? `${tmdbBaseURL}/${itemType}/${media}/${timeWindow}`

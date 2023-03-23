@@ -9,7 +9,7 @@ export type Props = {
 
 const SectionHeading = ({ href, children }: Props) => {
   return (
-    <div className="group/heading mb-4 flex items-center gap-4 lg:mb-5">
+    <header className="group/heading mb-4 flex items-center gap-4 lg:mb-5">
       <h3 className="text-lg font-semibold md:text-xl lg:text-2xl">
         {children}
       </h3>
@@ -30,7 +30,7 @@ const SectionHeading = ({ href, children }: Props) => {
           <MdOutlineKeyboardArrowRight className="text-base md:text-lg" />
         </Link>
       )}
-    </div>
+    </header>
   );
 };
 

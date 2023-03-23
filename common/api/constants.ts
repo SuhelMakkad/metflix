@@ -13,8 +13,6 @@ export const DETAIL_TYPES = [
 
 export const MOVIE_TYPES = [
   "trending",
-  "discover",
-  "latest",
   "top_rated",
   "popular",
   "now_playing",
@@ -23,8 +21,6 @@ export const MOVIE_TYPES = [
 
 export const TV_TYPES = [
   "trending",
-  "discover",
-  "latest",
   "top_rated",
   "popular",
   "airing_today",
