@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import "@/css/legal.scss";
+import PrintBtn from "@/components/Button/PrintBtn";
 
 export const metadata = {
   title: "Privacy Policy - Metflix",
@@ -10,7 +11,10 @@ export const metadata = {
 export default function PrivacyPage() {
   return (
     <div className="wrapper">
-      <h1>Privacy Policy</h1>
+      <div className="flex items-center justify-between">
+        <h1>Privacy Policy</h1>
+        <PrintBtn />
+      </div>
       <p>Last updated: March 13, 2023</p>
       <p>
         This Privacy Policy describes Our policies and procedures on the

@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import PrintBtn from "@/components/Button/PrintBtn";
+
 import "@/css/legal.scss";
 
 export const metadata = {
@@ -10,9 +12,10 @@ export const metadata = {
 export default function TermsOfUsePage() {
   return (
     <div className="wrapper">
-      <h1>
-        <strong>Metflix Terms and Conditions</strong>
-      </h1>
+      <div className="flex items-center justify-between">
+        <h1>Metflix Terms and Conditions</h1>
+        <PrintBtn />
+      </div>
 
       <h2>Welcome to Metflix!</h2>
 
