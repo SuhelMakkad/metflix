@@ -6,7 +6,7 @@ import TopRatedTVShows from "@/components/Movies/TopRatedTVShows";
 export default async function Home() {
   return (
     <>
-      <BannerSection />
+      <BannerSection media="movie" type="trending" />
 
       <div className="flex flex-col gap-[3vw]">
         <TrendingNowMovies />

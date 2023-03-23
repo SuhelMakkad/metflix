@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { MoviesRes, MovieType, TimeWindow, TVShowsRes } from "./types";
+import { MoviesRes, MovieType, TimeWindow, TVShowsRes, TVType } from "./types";
 
 export const BASE_URL = "/api/tmdb";
 
@@ -25,13 +25,18 @@ export const getMovies = async (
   return res.data.movies as MoviesRes;
 };
 
-export const getTVShows = async (type: MovieType, id?: string) => {
+export const getTVShows = async (
+  type: TVType,
+  id?: string,
+  timeWindow?: TimeWindow
+) => {
   const mediaType = "tv";
   const reqUrl = `${BASE_URL}/${mediaType}`;
   const config = {
     params: {
       type,
       id,
+      timeWindow,
     },
   };
   const res = await axios.get(reqUrl, config).catch(console.error);

@@ -1,31 +1,51 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
-import { getMovies } from "@/api/tmdb";
-import { Movie } from "@/api/types";
+import { getMovies, getTVShows } from "@/api/tmdb";
+import { Movie, Media, TVShow, MovieType, TVType } from "@/api/types";
 
 import Image from "next/image";
 import LoadingBanner from "./Loading";
 
-const BannerSection = () => {
-  const [bannerItem, setBannerItem] = useState<Movie>();
+export type Props = {
+  media: Media;
+  type: TVType | MovieType;
+};
+
+const BannerSection = ({ media, type }: Props) => {
+  const [bannerItem, setBannerItem] = useState<Movie | TVShow>();
 
   useEffect(() => {
     const setMovies = async () => {
-      const res = await getMovies("trending");
+      const res =
+        media === "movie"
+          ? await getMovies(type as MovieType)
+          : await getTVShows(type as TVType);
 
       if (!res) {
         throw Error("Can not get movies");
       }
-      const { results: movies } = res;
-      const rndInt = Math.floor(Math.random() * (movies.length + 1));
+      const { results } = res;
+      const rndInt = Math.floor(Math.random() * (results.length + 1));
 
-      setBannerItem(movies[rndInt]);
+      setBannerItem(results[rndInt]);
     };
 
     setMovies();
   }, []);
+
+  const title = useMemo(
+    () =>
+      bannerItem
+        ? "title" in bannerItem
+          ? bannerItem.title ?? bannerItem.original_title
+          : "name" in bannerItem
+          ? bannerItem.name ?? bannerItem.original_name
+          : ""
+        : "",
+    [bannerItem]
+  );
 
   if (!bannerItem) return <LoadingBanner />;
 
@@ -34,7 +54,7 @@ const BannerSection = () => {
       <div className="absolute inset-0 px-8">
         <header className="absolute bottom-1/3 z-10 max-w-2xl">
           <h2 className="mb-2 text-3xl font-bold drop-shadow-[0_25px_25px_rgb(0,0,0)] md:text-4xl md:drop-shadow-none lg:text-5xl xl:text-6xl">
-            {bannerItem.original_title ?? bannerItem.title}
+            {title}
           </h2>
           <p className="drop-shadow-[0_25px_25px_rgb(0 0,0)] text-stone-50 md:text-lg md:drop-shadow-none lg:text-xl">
             {bannerItem.overview.length > 150
@@ -49,7 +69,7 @@ const BannerSection = () => {
 
       <Image
         src={`https://image.tmdb.org/t/p/original/${bannerItem.backdrop_path}`}
-        alt={`Image for movie ${bannerItem.original_title}`}
+        alt={`Image for movie ${title}`}
         className="-z-50 hidden min-h-[30rem] w-full object-cover md:block"
         height={1152}
         width={2048}
@@ -58,7 +78,7 @@ const BannerSection = () => {
 
       <Image
         src={`https://image.tmdb.org/t/p/original/${bannerItem.poster_path}`}
-        alt={`Image for movie ${bannerItem.original_title}`}
+        alt={`Image for movie ${title}`}
         className="-z-50 block min-h-[30rem] w-full object-cover md:hidden"
         height={1311}
         width={874}
