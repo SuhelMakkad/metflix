@@ -14,6 +14,7 @@ const NavButton = ({ className, direction = "left", ...props }: Props) => {
   return (
     <button
       {...props}
+      title={`Scroll to the ${direction}`}
       className={`
         ${className} absolute top-1/2 z-10 grid h-16 w-16 -translate-y-1/2
         scale-50 place-content-center rounded-full bg-black/50 p-4 text-4xl opacity-0 transition-all
