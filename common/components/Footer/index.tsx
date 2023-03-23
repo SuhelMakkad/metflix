@@ -8,26 +8,27 @@ import {
 } from "react-icons/ai";
 
 const Footer = () => {
+  const myName = "Suhel Makkad";
   const socials = [
     {
       icon: <AiFillGithub />,
       href: "https://github.com/SuhelMakkad",
-      label: "GitHub Account of Suhel Makkad",
+      label: `GitHub Account ${myName}`,
     },
     {
       icon: <AiFillLinkedin />,
       href: "https://www.linkedin.com/in/suhel-makkad-606a3219b",
-      label: "Linkedin Account of Suhel Makkad",
+      label: `Linkedin Account ${myName}`,
     },
     {
       icon: <AiOutlineTwitter />,
       href: "https://twitter.com/suhel_makad",
-      label: "Twitter Account of Suhel Makkad",
+      label: `Twitter Account ${myName}`,
     },
     {
       icon: <AiOutlineInstagram />,
       href: "https://www.instagram.com/suhel_makkad",
-      label: "Instagram Account of Suhel Makkad",
+      label: `Instagram Account ${myName}`,
     },
   ];
 

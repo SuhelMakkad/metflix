@@ -37,7 +37,7 @@ export default async function MoviesPage() {
 
       <ul className="flex flex-col gap-[3vw]">
         {tvShowsCarousel.map((movieCarousel, index) => (
-          <li>
+          <li key={index}>
             <TVShowsCarousel
               key={index}
               title={movieCarousel.title}
