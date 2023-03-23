@@ -34,11 +34,11 @@ const Footer = () => {
     },
     {
       label: "Privacy Policy",
-      href: "/privacy-policy",
+      href: "/legal/privacy",
     },
     {
       label: "Terms of Use",
-      href: "/terms-of-use",
+      href: "/legal/termsofuse",
     },
     {
       label: "TMDB",

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import "@/css/policy.scss";
+import "@/css/legal.scss";
 
 export const metadata = {
   title: "Privacy Policy - Metflix",
