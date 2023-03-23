@@ -43,9 +43,14 @@ const ImageCarousel = ({ items }: Props) => {
 
   return (
     <div className="group/carousel md:-mx4 lg:-mx6 relative -mx-3 overflow-hidden 2xl:-mx-8">
-      <NavButton onClick={scrollLeft} />
-      <NavButton onClick={scrollRight} direction="right" />
-
+      {items.length ? (
+        <>
+          <NavButton onClick={scrollLeft} />
+          <NavButton onClick={scrollRight} direction="right" />
+        </>
+      ) : (
+        ""
+      )}
       <ul
         onDrag={console.log}
         ref={listRef}

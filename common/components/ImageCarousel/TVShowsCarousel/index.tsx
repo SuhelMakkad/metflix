@@ -2,24 +2,30 @@
 
 import { useEffect, useState } from "react";
 
-import { TVShows } from "@/api/types";
+import { TVType, TVShows } from "@/api/types";
 import { getTVShows } from "@/api/tmdb";
 
 import SectionHeading from "@/components/SectionHeading";
 import ImageCarousel from "@/components/Carousel";
 
-const TopRatedTVShows = () => {
-  const [movies, setMovies] = useState<TVShows>([]);
+export type Props = {
+  title: string;
+  href?: string;
+  type: TVType;
+};
+
+const TVShowsCarousel = ({ title, href, type }: Props) => {
+  const [tvShows, setTVShows] = useState<TVShows>([]);
 
   useEffect(() => {
     const fetchTVShows = async () => {
-      const res = await getTVShows("top_rated");
+      const res = await getTVShows(type);
 
       if (!res) return;
 
       const { results } = res;
 
-      setMovies(results);
+      setTVShows(results);
     };
 
     fetchTVShows();
@@ -27,12 +33,10 @@ const TopRatedTVShows = () => {
 
   return (
     <section>
-      <header>
-        <SectionHeading href="/"> Top Rated TV Shows </SectionHeading>
-      </header>
+      <SectionHeading href={href}> {title} </SectionHeading>
 
       <ImageCarousel
-        items={movies.map((movie) => ({
+        items={tvShows.map((movie) => ({
           postImg: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
           title: movie.name ?? movie.original_name,
           avgRatings: movie.vote_average,
@@ -43,4 +47,4 @@ const TopRatedTVShows = () => {
   );
 };
 
-export default TopRatedTVShows;
+export default TVShowsCarousel;
