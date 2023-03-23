@@ -1,7 +1,7 @@
 const LoadingBanner = () => {
   const descriptionLinesCount = 3;
   return (
-    <section className="relative -mx-8 aspect-[1.778] max-h-[85vh] overflow-hidden">
+    <section className="relative -mx-8 aspect-[0.667] max-h-[85vh] overflow-hidden md:aspect-[1.778]">
       <div className="absolute inset-0 px-8">
         <div className="absolute bottom-1/3 z-10 w-full max-w-2xl">
           <div
