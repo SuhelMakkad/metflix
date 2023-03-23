@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { getTrendingMovies } from "@/api/tmbd";
+import { getMovies } from "@/api/tmdb";
 import { Movie } from "@/api/types";
 
 import Image from "next/image";
@@ -13,7 +13,7 @@ const BannerSection = () => {
 
   useEffect(() => {
     const setMovies = async () => {
-      const res = await getTrendingMovies();
+      const res = await getMovies("trending");
 
       if (!res) {
         throw Error("Can not get movies");

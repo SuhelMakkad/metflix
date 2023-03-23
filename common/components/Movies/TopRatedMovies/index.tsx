@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { Movies } from "@/api/types";
-import { getTopRatedMovies } from "@/api/tmbd";
+import { getMovies } from "@/api/tmdb";
 
 import SectionHeading from "@/components/SectionHeading";
 import ImageCarousel from "@/components/Carousel";
@@ -12,8 +12,8 @@ const TopRatedMovies = () => {
   const [movies, setMovies] = useState<Movies>([]);
 
   useEffect(() => {
-    const getMovies = async () => {
-      const res = await getTopRatedMovies();
+    const fetchMovies = async () => {
+      const res = await getMovies("top_rated");
 
       if (!res) return;
 
@@ -22,7 +22,7 @@ const TopRatedMovies = () => {
       setMovies(results);
     };
 
-    getMovies();
+    fetchMovies();
   }, []);
 
   return (

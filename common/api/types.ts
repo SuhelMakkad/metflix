@@ -1,3 +1,21 @@
+import {
+  MEDIAS,
+  DETAIL_TYPES,
+  MOVIE_TYPES,
+  TV_TYPES,
+  TIME_WINDOW,
+} from "./constants";
+
+export type Media = (typeof MEDIAS)[number];
+
+export type DetailType = (typeof DETAIL_TYPES)[number];
+
+export type MovieType = (typeof MOVIE_TYPES)[number];
+
+export type TVType = (typeof TV_TYPES)[number];
+
+export type TimeWindow = (typeof TIME_WINDOW)[number];
+
 export type Movie = {
   id: number;
   overview: string;
@@ -13,15 +31,6 @@ export type Movie = {
   release_date: string;
   title: string;
   video: boolean;
-};
-
-export type Movies = Movie[];
-
-export type MoviesRes = {
-  page: number;
-  results: Movies;
-  total_pages: number;
-  total_results: number;
 };
 
 export type TVShow = {
@@ -40,7 +49,12 @@ export type TVShow = {
   original_name: string;
 };
 
-export type TVShows = TVShow[];
+export type MoviesRes = {
+  page: number;
+  results: Movies;
+  total_pages: number;
+  total_results: number;
+};
 
 export type TVShowsRes = {
   page: number;
@@ -48,3 +62,7 @@ export type TVShowsRes = {
   total_pages: number;
   total_results: number;
 };
+
+export type TVShows = TVShow[];
+
+export type Movies = Movie[];

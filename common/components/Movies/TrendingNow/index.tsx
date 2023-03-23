@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { Movies } from "@/api/types";
-import { getTrendingMovies } from "@/api/tmbd";
+import { getMovies } from "@/api/tmdb";
 
 import SectionHeading from "@/components/SectionHeading";
 import ImageCarousel from "@/components/Carousel";
@@ -12,8 +12,8 @@ const TrendingNowMovies = () => {
   const [movies, setMovies] = useState<Movies>([]);
 
   useEffect(() => {
-    const getMovies = async () => {
-      const res = await getTrendingMovies();
+    const fetchMovies = async () => {
+      const res = await getMovies("trending");
 
       if (!res) return;
 
@@ -22,7 +22,7 @@ const TrendingNowMovies = () => {
       setMovies(results);
     };
 
-    getMovies();
+    fetchMovies();
   }, []);
 
   return (
