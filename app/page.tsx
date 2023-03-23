@@ -12,7 +12,7 @@ export const metadata = {
 };
 
 export default async function MoviesPage() {
-  const movieCarousels: MoviesCarouselProp[] = [
+  const moviesCarousel: MoviesCarouselProp[] = [
     {
       title: "Trending Movies",
       href: "/",
@@ -25,7 +25,7 @@ export default async function MoviesPage() {
     },
   ];
 
-  const tvShowCarousels: TVShowsCarouselProp[] = [
+  const tvShowsCarousel: TVShowsCarouselProp[] = [
     {
       title: "Trending TV Shoes",
       href: "/",
@@ -42,7 +42,7 @@ export default async function MoviesPage() {
       <BannerSection media="movie" type="trending" />
 
       <ul className="flex flex-col gap-[3vw]">
-        {movieCarousels.map((movieCarousel, index) => (
+        {moviesCarousel.map((movieCarousel, index) => (
           <li>
             <MoviesCarousel
               key={index}
@@ -53,7 +53,7 @@ export default async function MoviesPage() {
           </li>
         ))}
 
-        {tvShowCarousels.map((movieCarousel, index) => (
+        {tvShowsCarousel.map((movieCarousel, index) => (
           <li key={index}>
             <TVShowsCarousel
               title={movieCarousel.title}

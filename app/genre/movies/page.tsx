@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 export default async function MoviesPage() {
-  const movieCarousels: MoviesCarouselProp[] = [
+  const moviesCarousel: MoviesCarouselProp[] = [
     {
       title: "Trending Today",
       href: "/",
@@ -41,7 +41,7 @@ export default async function MoviesPage() {
       <BannerSection media="movie" type="popular" />
 
       <ul className="flex flex-col gap-[3vw]">
-        {movieCarousels.map((movieCarousel, index) => (
+        {moviesCarousel.map((movieCarousel, index) => (
           <li>
             <MoviesCarousel
               key={index}
