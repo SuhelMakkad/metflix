@@ -12,18 +12,22 @@ const Footer = () => {
     {
       icon: <AiFillGithub />,
       href: "https://github.com/SuhelMakkad",
+      label: "GitHub Account of Suhel Makkad",
     },
     {
       icon: <AiFillLinkedin />,
       href: "https://www.linkedin.com/in/suhel-makkad-606a3219b",
+      label: "Linkedin Account of Suhel Makkad",
     },
     {
       icon: <AiOutlineTwitter />,
       href: "https://twitter.com/suhel_makad",
+      label: "Twitter Account of Suhel Makkad",
     },
     {
       icon: <AiOutlineInstagram />,
       href: "https://www.instagram.com/suhel_makkad",
+      label: "Instagram Account of Suhel Makkad",
     },
   ];
 
@@ -76,7 +80,11 @@ const Footer = () => {
             key={social.href}
             className="scale-100 transition-transform hover:scale-105"
           >
-            <Link target={"_blank"} href={social.href}>
+            <Link
+              target={"_blank"}
+              href={social.href}
+              aria-label={social.label}
+            >
               {social.icon}
             </Link>
           </li>
