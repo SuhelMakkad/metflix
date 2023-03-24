@@ -13,25 +13,25 @@ export default async function MoviesPage() {
   const moviesCarousel: MoviesCarouselProp[] = [
     {
       title: "Trending Movies",
-      href: "/",
+      href: "/genre/movies/trending",
       type: "trending",
     },
     {
       title: "Top Rated Movies",
-      href: "/",
+      href: "/genre/movies/top_rated",
       type: "top_rated",
     },
   ];
 
   const tvShowsCarousel: TVShowsCarouselProp[] = [
     {
-      title: "Trending TV Shoes",
-      href: "/",
+      title: "Trending TV Shows",
+      href: "/genre/tv-shows/trending",
       type: "trending",
     },
     {
-      title: "Top Rated TV Shoes",
-      href: "/",
+      title: "Top Rated TV Shows",
+      href: "/genre/tv-shows/top_rated",
       type: "top_rated",
     },
   ];
