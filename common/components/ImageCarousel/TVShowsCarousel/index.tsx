@@ -18,6 +18,7 @@ export type Props = {
 
 const TVShowsCarousel = ({ title, id, href, type }: Props) => {
   const [tvShows, setTVShows] = useState<TVShows>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchTVShows = async () => {
@@ -28,10 +29,13 @@ const TVShowsCarousel = ({ title, id, href, type }: Props) => {
       const { results } = res;
 
       setTVShows(results);
+      setIsLoading(false);
     };
 
     fetchTVShows();
   }, []);
+
+  if (!isLoading && !tvShows.length) return <span></span>;
 
   return (
     <section>
