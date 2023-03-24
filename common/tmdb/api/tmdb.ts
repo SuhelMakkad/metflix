@@ -1,13 +1,7 @@
 import axios from "axios";
-
-import {
-  MoviesRes,
-  MovieType,
-  TimeWindow,
-  TVShowsRes,
-  TVType,
-  Media,
-} from "../types";
+import type { Media, TimeWindow } from "../types";
+import type { MoviesRes, MovieType } from "../types/movie";
+import type { TVShowsRes, TVType } from "../types/tv";
 
 export const BASE_URL = "/api/tmdb";
 
