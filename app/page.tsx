@@ -1,10 +1,8 @@
 import BannerSection from "@/components/BannerSection";
-import MoviesCarousel, {
-  Props as MoviesCarouselProp,
-} from "@/components/ImageCarousel/MoviesCarousel";
-import TVShowsCarousel, {
-  Props as TVShowsCarouselProp,
-} from "@/components/ImageCarousel/TVShowsCarousel";
+import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
+import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
+import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";
+import type { Props as TVShowsCarouselProp } from "@/components/ImageCarousel/TVShowsCarousel";
 
 export const metadata = {
   title: "Movies - Metflix",
@@ -41,7 +39,7 @@ export default async function MoviesPage() {
     <>
       <BannerSection media="movie" type="trending" />
 
-      <ul className="flex flex-col gap-6 lg:gap-7">
+      <ul className="flex flex-col gap-[3vw]">
         {moviesCarousel.map((movieCarousel, index) => (
           <li key={index}>
             <MoviesCarousel
