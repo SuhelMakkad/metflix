@@ -35,7 +35,7 @@ const Footer = () => {
   const links = [
     {
       label: "Contact Us",
-      href: "mailto:makkadsuhel11@gmail.com",
+      href: "mailto:makadsuhel11@gmail.com",
     },
     {
       label: "Privacy Policy",
