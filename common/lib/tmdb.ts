@@ -1,6 +1,6 @@
 import defaultAxios from "axios";
 
-import {
+import type {
   DetailType,
   Media,
   MoviesRes,

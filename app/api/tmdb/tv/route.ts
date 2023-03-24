@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { getTVShows } from "@/lib/tmdb";
 import { TIME_WINDOW, TV_TYPES } from "@/api/constants";
-import { TimeWindow, TVType } from "@/api/types";
+import type { TimeWindow, TVType } from "@/api/types";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

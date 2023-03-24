@@ -5,7 +5,7 @@ import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 
 import { getMovies, getTVShows, getVideoUrl } from "@/api/tmdb";
-import { Movie, Media, TVShow, MovieType, TVType } from "@/api/types";
+import type { Movie, Media, TVShow, MovieType, TVType } from "@/api/types";
 
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";

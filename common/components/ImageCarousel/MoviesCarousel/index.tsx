@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import { MovieType, Movies } from "@/api/types";
 import { getMovies } from "@/api/tmdb";
+import type { MovieType, Movies } from "@/api/types";
 
 import SectionHeading from "@/components/SectionHeading";
 import ImageCarousel from "@/components/Carousel";
