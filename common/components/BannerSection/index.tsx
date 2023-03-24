@@ -2,11 +2,16 @@
 
 import { useEffect, useState, useMemo } from "react";
 
+import Image from "next/image";
+
 import { getMovies, getTVShows } from "@/api/tmdb";
 import { Movie, Media, TVShow, MovieType, TVType } from "@/api/types";
 
-import Image from "next/image";
+import { BsFillPlayFill } from "react-icons/bs";
+import { AiOutlineInfoCircle } from "react-icons/ai";
+
 import LoadingBanner from "./Loading";
+import Button from "../Button";
 
 export type Props = {
   media: Media;
@@ -61,6 +66,19 @@ const BannerSection = ({ media, type }: Props) => {
               ? `${bannerItem.overview.slice(0, 150)}...`
               : bannerItem.overview}
           </p>
+
+          <div className="mt-5 flex gap-2">
+            <Button size={"small"}>
+              <span className="flex items-center gap-1">
+                <BsFillPlayFill className="text-2xl" /> Play
+              </span>
+            </Button>
+            <Button intent={"translucent"} size={"small"}>
+              <span className="flex items-center gap-1">
+                <AiOutlineInfoCircle className="text-xl" /> More Info
+              </span>
+            </Button>
+          </div>
         </header>
 
         <span className="lr-overlay absolute inset-0 max-w-3xl"></span>
