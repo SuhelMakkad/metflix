@@ -1,15 +1,16 @@
 import { NextResponse } from "next/server";
 
 import { getVideos, getVideoUrl } from "@/lib/tmdb";
+import type { Media } from "@/api/types";
 
 export type Params = {
+  media: Media;
   id: string;
 };
 
 export async function GET(request: Request, { params }: { params: Params }) {
-  const { id } = params;
+  const { id, media } = params;
 
-  const media = "movie";
   const videos = await getVideos(id, media).catch(console.error);
 
   if (!videos || !videos.length) {
