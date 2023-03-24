@@ -2,7 +2,7 @@ import defaultAxios from "axios";
 
 import type { DetailType, Media, TimeWindow } from "@/tmdb/types";
 import type { MovieDetails, MoviesRes, MovieType } from "@/tmdb/types/movie";
-import type { TVShowsRes, TVType } from "@/tmdb/types/tv";
+import type { TVShowDetails, TVShowsRes, TVType } from "@/tmdb/types/tv";
 import type { VideoRes, VideoSource } from "@/tmdb/types/video";
 
 export const tmdbBaseURL = "https://api.themoviedb.org/3";
@@ -113,6 +113,16 @@ export const getTVShows = async (
   if (!res || !res.data) return;
 
   return res.data as TVShowsRes;
+};
+
+export const getTVShow = async (id: string) => {
+  const mediaType = "tv";
+  const reqUrl = getTMDBUrl(mediaType, id);
+
+  const res = await axios(reqUrl).catch(console.error);
+  if (!res || !res.data) return;
+
+  return res.data as TVShowDetails;
 };
 
 export const getVideoUrl = (key: string, site: VideoSource) => {

@@ -2,29 +2,28 @@ import Image from "next/image";
 
 import { getVideoUrl } from "@/tmdb/api/video";
 
-import type { MovieDetails } from "@/tmdb/types/movie";
 import type { Media } from "@/tmdb/types";
+import type { MovieDetails } from "@/tmdb/types/movie";
+import type { TVShowDetails } from "@/tmdb/types/tv";
 
 import { BsFillPlayFill } from "react-icons/bs";
 
 import LoadingBanner from "./Loading";
 import Button from "../Button";
-import { AiFillStar } from "react-icons/ai";
 
 export type Props = {
-  item: MovieDetails;
+  item: MovieDetails | TVShowDetails;
   media: Media;
 };
 
 const DetailsBanner = ({ item, media }: Props) => {
-  // const title = item
-  //   ? "title" in item
-  //     ? item.title ?? item.original_title
-  //     : "name" in item
-  //     ? item.name ?? item.original_name
-  //     : ""
-  //   : "";
-  const title = item.title ?? item.original_title;
+  const title = item
+    ? "title" in item
+      ? item.title ?? item.original_title
+      : "name" in item
+      ? item.name ?? item.original_name
+      : ""
+    : "";
 
   if (!item) return <LoadingBanner />;
 

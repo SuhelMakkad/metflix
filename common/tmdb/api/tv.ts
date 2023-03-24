@@ -2,11 +2,11 @@ import axios from "axios";
 
 import { APP_BASE_URL } from ".";
 
-import type { TimeWindow } from "../types";
+import type { DetailType, TimeWindow } from "../types";
 import type { TVShowsRes, TVType } from "../types/tv";
 
 export type Args = {
-  type: TVType;
+  type: TVType | DetailType;
   id?: string;
   timeWindow?: TimeWindow;
   page?: string | number;

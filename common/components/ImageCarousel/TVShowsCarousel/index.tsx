@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { getTVShows } from "@/tmdb/api/tv";
+import type { DetailType } from "@/tmdb/types";
 import type { TVType, TVShows } from "@/tmdb/types/tv";
 
 import SectionHeading from "@/components/SectionHeading";
@@ -10,16 +11,17 @@ import ImageCarousel from "@/components/Carousel";
 
 export type Props = {
   title: string;
+  id?: string;
   href?: string;
-  type: TVType;
+  type: TVType | DetailType;
 };
 
-const TVShowsCarousel = ({ title, href, type }: Props) => {
+const TVShowsCarousel = ({ title, id, href, type }: Props) => {
   const [tvShows, setTVShows] = useState<TVShows>([]);
 
   useEffect(() => {
     const fetchTVShows = async () => {
-      const res = await getTVShows({ type });
+      const res = await getTVShows({ type, id });
 
       if (!res) return;
 
