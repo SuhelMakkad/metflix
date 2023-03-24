@@ -1,6 +1,6 @@
-import BannerSection from "@/components/BannerSection";
-import type { MovieType } from "@/api/types";
 import { MOVIE_TYPES } from "@/api/constants";
+import type { MovieType } from "@/api/types";
+
 import MoviesList from "@/components/ImageList/MoviesList";
 
 export const metadata = {

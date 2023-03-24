@@ -1,5 +1,6 @@
-import type { TVType } from "@/api/types";
 import { TV_TYPES } from "@/api/constants";
+import type { TVType } from "@/api/types";
+
 import TVShowsList from "@/components/ImageList/TVShowsList";
 
 export const metadata = {
@@ -27,7 +28,6 @@ export default async function MoviesPage({ params }: Props) {
 }
 
 export const dynamicParams = false;
-
 export const revalidate = 86400;
 
 export async function generateStaticParams() {
