@@ -1,4 +1,4 @@
-import { VIDEO_TYPE, VIDEO_SOURCE } from "../constants/constants";
+import { VIDEO_TYPE, VIDEO_SOURCE } from "../constants";
 
 export type VideoSource = (typeof VIDEO_SOURCE)[number];
 

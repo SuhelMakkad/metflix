@@ -1,4 +1,4 @@
-import { TV_TYPES } from "../constants/constants";
+import { TV_TYPES } from "../constants";
 
 export type TVType = (typeof TV_TYPES)[number];
 

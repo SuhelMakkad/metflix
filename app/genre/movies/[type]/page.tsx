@@ -1,4 +1,4 @@
-import { MOVIE_TYPES } from "@/tmdb/constants/constants";
+import { MOVIE_TYPES } from "@/tmdb/constants";
 
 import MoviesList from "@/components/ImageList/MoviesList";
 import type { MovieType } from "@/tmdb/types/movie";

@@ -1,4 +1,4 @@
-import { MEDIAS, DETAIL_TYPES, TIME_WINDOW } from "../constants/constants";
+import { MEDIAS, DETAIL_TYPES, TIME_WINDOW } from "../constants";
 
 export type Media = (typeof MEDIAS)[number];
 

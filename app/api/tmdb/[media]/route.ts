@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { getMovies, getTVShows } from "@/lib/tmdb";
 
-import { MOVIE_TYPES, TIME_WINDOW, TV_TYPES } from "@/tmdb/constants/constants";
+import { MOVIE_TYPES, TIME_WINDOW, TV_TYPES } from "@/tmdb/constants";
 
 import type { Media, TimeWindow } from "@/tmdb/types";
 import type { MovieType } from "@/tmdb/types/movie";

@@ -1,4 +1,4 @@
-import { MOVIE_TYPES } from "../constants/constants";
+import { MOVIE_TYPES } from "../constants";
 
 export type MovieType = (typeof MOVIE_TYPES)[number];
 

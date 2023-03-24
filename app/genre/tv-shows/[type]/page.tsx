@@ -1,4 +1,4 @@
-import { TV_TYPES } from "@/tmdb/constants/constants";
+import { TV_TYPES } from "@/tmdb/constants";
 
 import TVShowsList from "@/components/ImageList/TVShowsList";
 import type { TVType } from "@/tmdb/types/tv";
