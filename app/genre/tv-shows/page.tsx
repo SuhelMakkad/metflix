@@ -11,22 +11,22 @@ export default async function MoviesPage() {
   const tvShowsCarousel: TVShowsCarouselProp[] = [
     {
       title: "Trending Today",
-      href: "/",
+      href: "/genre/tv-shows/trending",
       type: "trending",
     },
     {
       title: "Popular",
-      href: "/",
+      href: "/genre/tv-shows/popular",
       type: "popular",
     },
     {
       title: "Top Rated",
-      href: "/",
+      href: "/genre/tv-shows/top_rated",
       type: "top_rated",
     },
     {
       title: "New Releases",
-      href: "/",
+      href: "/genre/tv-shows/on_the_air",
       type: "on_the_air",
     },
   ];
