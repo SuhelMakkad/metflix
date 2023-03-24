@@ -72,7 +72,7 @@ const BannerSection = ({ media, type }: Props) => {
               : bannerItem.overview}
           </p>
 
-          <div className="mt-5 flex gap-2">
+          <div className="mt-5 flex items-stretch gap-2">
             <Button
               size={"small"}
               target="_blank"
@@ -82,8 +82,14 @@ const BannerSection = ({ media, type }: Props) => {
                 <BsFillPlayFill className="text-2xl" /> Play
               </span>
             </Button>
-            <Button intent={"translucent"} size={"small"}>
-              <span className="flex items-center gap-1">
+            <Button
+              href={`/details/${media === "movie" ? "movie" : "tv-show"}/${
+                bannerItem.id
+              }`}
+              intent={"translucent"}
+              size={"small"}
+            >
+              <span className="flex h-full items-center gap-1">
                 <AiOutlineInfoCircle className="text-xl" /> More Info
               </span>
             </Button>
