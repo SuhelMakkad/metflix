@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AiFillStar } from "react-icons/ai";
 
 import ConditionalWrapper from "@/components/ConditionalWrapper";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 export type Props = {
   movie: {
@@ -24,7 +25,7 @@ const CarouselImage = ({ movie }: Props) => {
     >
       <div className={"group/image-card"}>
         <div className="relative transition-transform duration-300 group-hover/image-card:scale-105">
-          <Image
+          <ImageWithFallback
             src={movie.postImg}
             height={750}
             width={500}
