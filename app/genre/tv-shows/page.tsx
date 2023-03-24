@@ -35,7 +35,7 @@ export default async function MoviesPage() {
     <>
       <BannerSection media="tv" type="popular" />
 
-      <ul className="flex flex-col gap-[3vw]">
+      <ul className="flex flex-col gap-6 lg:gap-7">
         {tvShowsCarousel.map((movieCarousel, index) => (
           <li key={index}>
             <TVShowsCarousel
