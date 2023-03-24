@@ -29,24 +29,24 @@ export async function GET(request: Request, { params }: { params: Params }) {
   }
 
   if (media === "movie") {
-    if (!MOVIE_TYPES.includes(type as MovieType)) {
-      return new Response("invalid movie type", {
-        status: 400,
+    const movies = await getMovies(type as MovieType, id, timeWindow, page);
+
+    if (!movies) {
+      return new Response("no movies found", {
+        status: 404,
       });
     }
-
-    const movies = await getMovies(type as MovieType, id, timeWindow, page);
     return NextResponse.json({ movies });
   }
 
   if (media === "tv") {
-    if (!TV_TYPES.includes(type as TVType)) {
-      return new Response("invalid tv type", {
-        status: 400,
+    const tv = await getTVShows(type as TVType, id, timeWindow, page);
+
+    if (!tv) {
+      return new Response("no movies found", {
+        status: 404,
       });
     }
-
-    const tv = await getTVShows(type as TVType, id, timeWindow, page);
     return NextResponse.json({ tv });
   }
 }

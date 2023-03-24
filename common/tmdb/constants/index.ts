@@ -27,6 +27,15 @@ export const TV_TYPES = [
   "on_the_air",
 ] as const;
 
-export const VIDEO_SOURCE = ["YouTube", "Vimeo"];
+export const VIDEO_SOURCE = ["YouTube", "Vimeo"] as const;
 
-export const VIDEO_TYPE = ["Trailer", "Clip", "Featurette"];
+export const VIDEO_TYPE = ["Trailer", "Clip", "Featurette"] as const;
+
+export const STATUS = [
+  "Rumored",
+  "Planned",
+  "In Production",
+  "Post Production",
+  "Released",
+  "Canceled",
+] as const;

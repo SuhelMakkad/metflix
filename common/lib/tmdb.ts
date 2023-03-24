@@ -1,7 +1,7 @@
 import defaultAxios from "axios";
 
 import type { DetailType, Media, TimeWindow } from "@/tmdb/types";
-import type { MoviesRes, MovieType } from "@/tmdb/types/movie";
+import type { MovieDetails, MoviesRes, MovieType } from "@/tmdb/types/movie";
 import type { TVShowsRes, TVType } from "@/tmdb/types/tv";
 import type { VideoRes, VideoSource } from "@/tmdb/types/video";
 
@@ -83,6 +83,16 @@ export const getMovies = async (
   if (!res || !res.data) return;
 
   return res.data as MoviesRes;
+};
+
+export const getMovie = async (id: string) => {
+  const mediaType = "movie";
+  const reqUrl = getTMDBUrl(mediaType, id);
+
+  const res = await axios(reqUrl).catch(console.error);
+  if (!res || !res.data) return;
+
+  return res.data as MovieDetails;
 };
 
 export const getTVShows = async (
