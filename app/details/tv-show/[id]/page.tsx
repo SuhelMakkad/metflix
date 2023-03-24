@@ -3,6 +3,8 @@ import { getMovie, getTVShow } from "@/lib/tmdb";
 import DetailsBanner from "@/components/DetailsBanner";
 import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";
 import type { Props as TVShowsCarouselProp } from "@/components/ImageCarousel/TVShowsCarousel";
+import SectionHeading from "@/components/SectionHeading";
+import ImageCarousel from "@/components/Carousel";
 
 export const metadata = {
   title: "Movie - Metflix",
@@ -37,6 +39,26 @@ export default async function MoviesPage({ params }: Props) {
       <DetailsBanner item={tvShow} media={"tv"} />
 
       <ul className="flex flex-col gap-[3vw]">
+        <li>
+          <section>
+            <SectionHeading> Seasons </SectionHeading>
+
+            <ImageCarousel
+              items={tvShow.seasons.map((season) => ({
+                postImg: `https://image.tmdb.org/t/p/w500${season.poster_path}`,
+                title: season.name,
+                details: (
+                  <div className="flex items-center gap-1 text-sm text-stone-200">
+                    {new Date(season.air_date).getFullYear()}
+                    {" · "}
+                    {season.episode_count} Episodes
+                  </div>
+                ),
+              }))}
+            />
+          </section>
+        </li>
+
         {tsShowsCarousel.map((tvShowCarousel, index) => (
           <li key={index}>
             <TVShowsCarousel

@@ -10,9 +10,10 @@ export type Props = {
   items: {
     postImg: string;
     title: string;
-    href: string;
-    avgRatings: number;
-    totalRatings: number;
+    href?: string;
+    avgRatings?: number;
+    totalRatings?: number;
+    details?: React.ReactElement;
   }[];
 };
 
