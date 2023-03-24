@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 
 import Image from "next/image";
 
-import { getMovies, getTVShows } from "@/api/tmdb";
+import { getMovies, getTVShows, getVideoUrl } from "@/api/tmdb";
 import { Movie, Media, TVShow, MovieType, TVType } from "@/api/types";
 
 import { BsFillPlayFill } from "react-icons/bs";
@@ -68,7 +68,7 @@ const BannerSection = ({ media, type }: Props) => {
           </p>
 
           <div className="mt-5 flex gap-2">
-            <Button size={"small"}>
+            <Button size={"small"} href={getVideoUrl(bannerItem.id, media)}>
               <span className="flex items-center gap-1">
                 <BsFillPlayFill className="text-2xl" /> Play
               </span>

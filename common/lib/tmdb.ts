@@ -8,12 +8,13 @@ import {
   TimeWindow,
   TVShowsRes,
   TVType,
+  VideoRes,
+  VideoSource,
 } from "@/api/types";
 
 export const tmdbBaseURL = "https://api.themoviedb.org/3";
 
 const axios = defaultAxios.create({
-  baseURL: tmdbBaseURL,
   params: {
     api_key: process.env.TMBD_API_KEY,
   },
@@ -79,7 +80,7 @@ export const getMovies = async (
   const mediaType = "movie";
   const reqUrl = getTMDBUrl(mediaType, id, type, timeWindow);
 
-  const res = await axios(reqUrl);
+  const res = await axios(reqUrl).catch(console.error);
   if (!res || !res.data) return;
 
   return res.data as MoviesRes;
@@ -93,8 +94,31 @@ export const getTVShows = async (
   const mediaType = "tv";
   const reqUrl = getTMDBUrl(mediaType, id, type, timeWindow);
 
-  const res = await axios(reqUrl);
+  const res = await axios(reqUrl).catch(console.error);
   if (!res || !res.data) return;
 
   return res.data as TVShowsRes;
+};
+
+export const getVideoUrl = (key: string, site: VideoSource) => {
+  if (site === "YouTube") {
+    return `https://www.youtube.com/watch?v=${key}`;
+  }
+
+  if (site === "Vimeo") {
+    return `https://player.vimeo.com/video/${key}`;
+  }
+};
+
+export const getVideos = async (id: string, mediaType: Media) => {
+  const itemType = "videos";
+  const reqUrl = `${tmdbBaseURL}/${mediaType}/${id}/${itemType}`;
+
+  const res = await axios(reqUrl).catch(console.error);
+
+  if (!res || !res.data) return;
+
+  const { results } = res.data as VideoRes;
+
+  return results;
 };

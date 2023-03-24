@@ -1,6 +1,13 @@
 import axios from "axios";
 
-import { MoviesRes, MovieType, TimeWindow, TVShowsRes, TVType } from "./types";
+import {
+  MoviesRes,
+  MovieType,
+  TimeWindow,
+  TVShowsRes,
+  TVType,
+  Media,
+} from "./types";
 
 export const BASE_URL = "/api/tmdb";
 
@@ -44,4 +51,8 @@ export const getTVShows = async (
   if (!res || !res.data) return;
 
   return res.data.tv as TVShowsRes;
+};
+
+export const getVideoUrl = (id: string | number, media: Media) => {
+  return `/api/tmdb/${media}/video/${id}`;
 };

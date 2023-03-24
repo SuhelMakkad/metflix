@@ -52,7 +52,6 @@ const ImageCarousel = ({ items }: Props) => {
         ""
       )}
       <ul
-        onDrag={console.log}
         ref={listRef}
         className="
           scroll-hidden flex flex-none gap-3
