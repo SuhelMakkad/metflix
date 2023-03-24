@@ -15,7 +15,7 @@ const Navbar = () => {
     >
       <Link
         href={"/"}
-        className="mr-8 text-3xl font-bold uppercase text-red-600"
+        className="mr-4 text-3xl font-bold uppercase text-red-600 md:mr-6 lg:mr-8"
       >
         Metflix
       </Link>

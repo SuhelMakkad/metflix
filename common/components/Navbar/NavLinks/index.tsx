@@ -35,7 +35,7 @@ const NavLinks = () => {
   const currentPath = segments.reduce((prev, curr) => `${prev}/${curr}`, "");
 
   return (
-    <div className="group relative text-lg" ref={listRef}>
+    <div className="text-md group relative md:text-lg" ref={listRef}>
       <button
         onClick={() => setIsListOpen((prev) => !prev)}
         className="flex items-center gap-2 focus-visible:border md:hidden"
