@@ -1,5 +1,5 @@
 .wrapper {
-  @apply mx-auto mt-20 max-w-7xl px-8;
+  @apply mx-auto mt-20 max-w-7xl md:px-6 lg:px-8;
 
   * {
     @apply text-stone-300;
