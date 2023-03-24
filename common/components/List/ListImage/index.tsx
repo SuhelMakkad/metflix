@@ -21,6 +21,7 @@ const ListImage = ({ movie }: Props) => {
           height={750}
           width={500}
           alt={`Poster Image for ${movie.title}`}
+          className="bg-stone-900"
         />
 
         <div

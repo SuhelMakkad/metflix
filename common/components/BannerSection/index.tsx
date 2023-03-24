@@ -30,8 +30,8 @@ const BannerSection = ({ media, type }: Props) => {
     const setMovies = async () => {
       const res =
         media === "movie"
-          ? await getMovies(type as MovieType)
-          : await getTVShows(type as TVType);
+          ? await getMovies({ type: type as MovieType })
+          : await getTVShows({ type: type as TVType });
 
       if (!res) {
         throw Error("Can not get movies");

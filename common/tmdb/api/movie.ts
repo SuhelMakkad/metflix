@@ -5,11 +5,16 @@ import { APP_BASE_URL } from ".";
 import type { TimeWindow } from "../types";
 import type { MoviesRes, MovieType } from "../types/movie";
 
-export const getMovies = async (
-  type: MovieType,
-  id?: string,
-  timeWindow?: TimeWindow
-) => {
+export type Args = {
+  type: MovieType;
+  id?: string;
+  timeWindow?: TimeWindow;
+  page?: string | number;
+};
+
+export const getMovies = async (data: Args) => {
+  const { type, id, page, timeWindow } = data;
+
   const mediaType = "movie";
   const reqUrl = `${APP_BASE_URL}/${mediaType}`;
   const config = {
@@ -17,10 +22,11 @@ export const getMovies = async (
       type,
       id,
       timeWindow,
+      page,
     },
   };
-  const res = await axios.get(reqUrl, config).catch(console.error);
 
+  const res = await axios.get(reqUrl, config).catch(console.error);
   if (!res || !res.data) return;
 
   return res.data.movies as MoviesRes;

@@ -19,7 +19,7 @@ const MoviesCarousel = ({ title, href, type }: Props) => {
 
   useEffect(() => {
     const fetchMovies = async () => {
-      const res = await getMovies(type);
+      const res = await getMovies({ type });
 
       if (!res) return;
 

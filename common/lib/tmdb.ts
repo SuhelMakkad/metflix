@@ -68,12 +68,18 @@ export const getTMDBUrl = (
 export const getMovies = async (
   type: MovieType,
   id?: string,
-  timeWindow?: TimeWindow
+  timeWindow?: TimeWindow,
+  page?: string | number
 ) => {
   const mediaType = "movie";
   const reqUrl = getTMDBUrl(mediaType, id, type, timeWindow);
+  const config = {
+    params: {
+      page,
+    },
+  };
 
-  const res = await axios(reqUrl).catch(console.error);
+  const res = await axios(reqUrl, config).catch(console.error);
   if (!res || !res.data) return;
 
   return res.data as MoviesRes;
@@ -82,12 +88,18 @@ export const getMovies = async (
 export const getTVShows = async (
   type: TVType,
   id?: string,
-  timeWindow?: TimeWindow
+  timeWindow?: TimeWindow,
+  page?: string | number
 ) => {
   const mediaType = "tv";
   const reqUrl = getTMDBUrl(mediaType, id, type, timeWindow);
+  const config = {
+    params: {
+      page,
+    },
+  };
 
-  const res = await axios(reqUrl).catch(console.error);
+  const res = await axios(reqUrl, config).catch(console.error);
   if (!res || !res.data) return;
 
   return res.data as TVShowsRes;

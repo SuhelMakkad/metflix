@@ -1,5 +1,6 @@
 import ListImage from "./ListImage";
-import LoadingImage from "./LoadingImage";
+import LoadingImage from "./Loading";
+import ImageListWrapper from "./Wrapper";
 
 export type Props = {
   items: {
@@ -11,32 +12,16 @@ export type Props = {
 };
 
 const ImageList = ({ items }: Props) => {
-  const loadingCardCount = 20;
+  if (!items || !items.length) return <span />;
 
   return (
-    <div className="group/carousel relative overflow-hidden">
-      <ul
-        className="
-          grid grid-cols-2 gap-3
-          sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8
-          2xl:gap-6
-        "
-      >
-        {items.length
-          ? items.map((movie) => (
-              <li key={movie.postImg} className={"w-full"}>
-                <ListImage movie={movie} />
-              </li>
-            ))
-          : Array(loadingCardCount)
-              .fill(0)
-              .map((_, index) => (
-                <li key={index} className={"shrink-0"}>
-                  <LoadingImage />
-                </li>
-              ))}
-      </ul>
-    </div>
+    <ImageListWrapper>
+      {items.map((movie) => (
+        <li key={movie.postImg} className={"w-full"}>
+          <ListImage movie={movie} />
+        </li>
+      ))}
+    </ImageListWrapper>
   );
 };
 

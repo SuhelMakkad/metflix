@@ -19,7 +19,7 @@ const TVShowsCarousel = ({ title, href, type }: Props) => {
 
   useEffect(() => {
     const fetchTVShows = async () => {
-      const res = await getTVShows(type);
+      const res = await getTVShows({ type });
 
       if (!res) return;
 

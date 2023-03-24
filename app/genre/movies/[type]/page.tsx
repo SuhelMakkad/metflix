@@ -19,7 +19,7 @@ export default async function MoviesPage({ params }: Props) {
 
   return (
     <div className="mt-20">
-      <MoviesList title={`${type.replaceAll("_", " ")} Movies`} type={type} />;
+      <MoviesList title={`${type.replaceAll("_", " ")} Movies`} type={type} />
     </div>
   );
 }

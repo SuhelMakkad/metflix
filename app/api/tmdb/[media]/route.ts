@@ -18,6 +18,7 @@ export async function GET(request: Request, { params }: { params: Params }) {
   const { searchParams } = new URL(request.url);
 
   const id = searchParams.get("id") ?? undefined;
+  const page = searchParams.get("page") ?? undefined;
   const type = searchParams.get("type") as MovieType | TVType;
   const timeWindow = searchParams.get("timeWindow") as TimeWindow;
 
@@ -34,7 +35,7 @@ export async function GET(request: Request, { params }: { params: Params }) {
       });
     }
 
-    const movies = await getMovies(type as MovieType, id, timeWindow);
+    const movies = await getMovies(type as MovieType, id, timeWindow, page);
     return NextResponse.json({ movies });
   }
 
@@ -45,7 +46,7 @@ export async function GET(request: Request, { params }: { params: Params }) {
       });
     }
 
-    const tv = await getTVShows(type as TVType, id, timeWindow);
+    const tv = await getTVShows(type as TVType, id, timeWindow, page);
     return NextResponse.json({ tv });
   }
 }
