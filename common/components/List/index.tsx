@@ -5,6 +5,7 @@ import ImageListWrapper from "./Wrapper";
 export type Props = {
   items: {
     postImg: string;
+    href: string;
     title: string;
     avgRatings: number;
     totalRatings: number;

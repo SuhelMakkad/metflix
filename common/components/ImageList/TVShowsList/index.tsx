@@ -44,11 +44,12 @@ const TVShowsList = ({ title, type }: Props) => {
 
       {tvShows.length ? (
         <ImageList
-          items={tvShows.map((movie) => ({
-            postImg: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-            title: movie.name ?? movie.original_name,
-            avgRatings: movie.vote_average,
-            totalRatings: movie.vote_count,
+          items={tvShows.map((tv) => ({
+            postImg: `https://image.tmdb.org/t/p/w500${tv.poster_path}`,
+            title: tv.name ?? tv.original_name,
+            avgRatings: tv.vote_average,
+            totalRatings: tv.vote_count,
+            href: `/details/tv-show/${tv.id}`,
           }))}
         />
       ) : (

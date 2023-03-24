@@ -7,6 +7,7 @@ export type Props = {
   movie: {
     postImg: string;
     title: string;
+    href: string;
     avgRatings: number;
     totalRatings: number;
   };
@@ -14,7 +15,7 @@ export type Props = {
 
 const ListImage = ({ movie }: Props) => {
   return (
-    <Link href={"/"} className={"group/image-card"}>
+    <Link href={movie.href ?? "/"} className={"group/image-card"}>
       <div className="relative transition-transform duration-300 group-hover/image-card:scale-105">
         <Image
           src={movie.postImg}
