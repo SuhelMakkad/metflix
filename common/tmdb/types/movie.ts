@@ -6,6 +6,7 @@ import {
   Status,
 } from ".";
 import { MOVIE_TYPES } from "../constants";
+import { Video } from "./video";
 
 export type MovieType = (typeof MOVIE_TYPES)[number];
 
@@ -35,6 +36,7 @@ export type MovieDetails = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  videos: Video[];
 };
 
 export type Movie = {

@@ -1,6 +1,8 @@
-import { getMovie } from "@/lib/tmdb";
+import { getCredits, getMovie } from "@/lib/tmdb";
 
 import DetailsBanner from "@/components/DetailsBanner";
+import SectionHeading from "@/components/SectionHeading";
+import ImageCarousel from "@/components/Carousel";
 import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 
@@ -17,9 +19,12 @@ export type Props = {
 
 export default async function MoviesPage({ params }: Props) {
   const { id } = params;
-  const movie = await getMovie(id);
 
+  const movie = await getMovie(id);
   if (!movie) throw new Error("No Movie Found!");
+
+  const credits = await getCredits(id, "movie");
+  const castList = credits?.cast || [];
 
   const moviesCarousel: MoviesCarouselProp[] = [
     {
@@ -37,6 +42,26 @@ export default async function MoviesPage({ params }: Props) {
       <DetailsBanner item={movie} media={"movie"} />
 
       <ul className="flex flex-col gap-[3vw]">
+        {!!castList.length && (
+          <li>
+            <section>
+              <SectionHeading> Meet the Cast </SectionHeading>
+
+              <ImageCarousel
+                items={castList.map((cast) => ({
+                  postImg: `https://image.tmdb.org/t/p/w500${cast.profile_path}`,
+                  title: cast.name,
+                  details: (
+                    <span className="text-sm italic text-stone-200">
+                      As {cast.character}
+                    </span>
+                  ),
+                }))}
+              />
+            </section>
+          </li>
+        )}
+
         {moviesCarousel.map((movieCarousel, index) => (
           <li key={index}>
             <MoviesCarousel

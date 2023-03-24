@@ -9,6 +9,7 @@ export const DETAIL_TYPES = [
   "recommendations",
   "similar",
   "videos",
+  "credits",
 ] as const;
 
 export const MOVIE_TYPES = [

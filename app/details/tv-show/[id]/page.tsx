@@ -1,4 +1,4 @@
-import { getMovie, getTVShow } from "@/lib/tmdb";
+import { getCredits, getTVShow } from "@/lib/tmdb";
 
 import DetailsBanner from "@/components/DetailsBanner";
 import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";
@@ -19,9 +19,12 @@ export type Props = {
 
 export default async function MoviesPage({ params }: Props) {
   const { id } = params;
-  const tvShow = await getTVShow(id);
 
+  const tvShow = await getTVShow(id);
   if (!tvShow) throw new Error("No tvShow Found!");
+
+  const credits = await getCredits(id, "movie");
+  const castList = credits?.cast || [];
 
   const tsShowsCarousel: TVShowsCarouselProp[] = [
     {
@@ -39,25 +42,47 @@ export default async function MoviesPage({ params }: Props) {
       <DetailsBanner item={tvShow} media={"tv"} />
 
       <ul className="flex flex-col gap-[3vw]">
-        <li>
-          <section>
-            <SectionHeading> Seasons </SectionHeading>
+        {!!castList.length && (
+          <li>
+            <section>
+              <SectionHeading> Meet the Cast </SectionHeading>
 
-            <ImageCarousel
-              items={tvShow.seasons.map((season) => ({
-                postImg: `https://image.tmdb.org/t/p/w500${season.poster_path}`,
-                title: season.name,
-                details: (
-                  <div className="flex items-center gap-1 text-sm text-stone-200">
-                    {new Date(season.air_date).getFullYear()}
-                    {" · "}
-                    {season.episode_count} Episodes
-                  </div>
-                ),
-              }))}
-            />
-          </section>
-        </li>
+              <ImageCarousel
+                items={castList.map((cast) => ({
+                  postImg: `https://image.tmdb.org/t/p/w500${cast.profile_path}`,
+                  title: cast.name,
+                  details: (
+                    <span className="text-sm italic text-stone-200">
+                      As {cast.character}
+                    </span>
+                  ),
+                }))}
+              />
+            </section>
+          </li>
+        )}
+
+        {!!tvShow.seasons.length && (
+          <li>
+            <section>
+              <SectionHeading> Seasons </SectionHeading>
+
+              <ImageCarousel
+                items={tvShow.seasons.map((season) => ({
+                  postImg: `https://image.tmdb.org/t/p/w500${season.poster_path}`,
+                  title: season.name,
+                  details: (
+                    <div className="flex items-center gap-1 text-sm text-stone-200">
+                      {new Date(season.air_date).getFullYear()}
+                      {" · "}
+                      {season.episode_count} Episodes
+                    </div>
+                  ),
+                }))}
+              />
+            </section>
+          </li>
+        )}
 
         {tsShowsCarousel.map((tvShowCarousel, index) => (
           <li key={index}>
