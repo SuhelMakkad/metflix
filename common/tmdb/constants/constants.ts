@@ -26,3 +26,7 @@ export const TV_TYPES = [
   "airing_today",
   "on_the_air",
 ] as const;
+
+export const VIDEO_SOURCE = ["YouTube", "Vimeo"];
+
+export const VIDEO_TYPE = ["Trailer", "Clip", "Featurette"];

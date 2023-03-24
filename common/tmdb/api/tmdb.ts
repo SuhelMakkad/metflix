@@ -7,7 +7,7 @@ import {
   TVShowsRes,
   TVType,
   Media,
-} from "./types";
+} from "../types";
 
 export const BASE_URL = "/api/tmdb";
 

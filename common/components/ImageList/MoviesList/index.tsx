@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import { getMovies } from "@/api/tmdb";
-import type { MovieType, Movies } from "@/api/types";
+import { getMovies } from "@/tmdb/api/tmdb";
+import type { MovieType, Movies } from "@/tmdb/types/movie";
 
 import SectionHeading from "@/components/SectionHeading";
 import ImageList from "@/components/List";

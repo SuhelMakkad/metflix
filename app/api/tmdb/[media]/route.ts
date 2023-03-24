@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
 
 import { getMovies, getTVShows } from "@/lib/tmdb";
-import { MOVIE_TYPES, TIME_WINDOW, TV_TYPES } from "@/api/constants";
-import type { Media, MovieType, TimeWindow, TVType } from "@/api/types";
+
+import { MOVIE_TYPES, TIME_WINDOW, TV_TYPES } from "@/tmdb/constants/constants";
+
+import type { Media, TimeWindow } from "@/tmdb/types";
+import type { MovieType } from "@/tmdb/types/movie";
+import type { TVType } from "@/tmdb/types/tv";
 
 export type Params = {
   media: Media;

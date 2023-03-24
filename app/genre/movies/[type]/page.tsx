@@ -1,7 +1,7 @@
-import { MOVIE_TYPES } from "@/api/constants";
-import type { MovieType } from "@/api/types";
+import { MOVIE_TYPES } from "@/tmdb/constants/constants";
 
 import MoviesList from "@/components/ImageList/MoviesList";
+import type { MovieType } from "@/tmdb/types/movie";
 
 export const metadata = {
   title: "Movies - Metflix",

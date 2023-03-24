@@ -1,16 +1,9 @@
 import defaultAxios from "axios";
 
-import type {
-  DetailType,
-  Media,
-  MoviesRes,
-  MovieType,
-  TimeWindow,
-  TVShowsRes,
-  TVType,
-  VideoRes,
-  VideoSource,
-} from "@/api/types";
+import type { DetailType, Media, TimeWindow } from "@/tmdb/types";
+import type { MoviesRes, MovieType } from "@/tmdb/types/movie";
+import type { TVShowsRes, TVType } from "@/tmdb/types/tv";
+import type { VideoRes, VideoSource } from "@/tmdb/types/video";
 
 export const tmdbBaseURL = "https://api.themoviedb.org/3";
 

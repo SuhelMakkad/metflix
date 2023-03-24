@@ -1,5 +1,6 @@
 import BannerSection from "@/components/BannerSection";
 import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
+
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 
 export const metadata = {

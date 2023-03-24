@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-import { getMovies } from "@/api/tmdb";
-import type { MovieType, Movies } from "@/api/types";
+import { getMovies } from "@/tmdb/api/tmdb";
 
 import SectionHeading from "@/components/SectionHeading";
 import ImageCarousel from "@/components/Carousel";
+import type { Movies, MovieType } from "@/tmdb/types/movie";
 
 export type Props = {
   title: string;

@@ -4,8 +4,10 @@ import { useEffect, useState, useMemo } from "react";
 
 import Image from "next/image";
 
-import { getMovies, getTVShows, getVideoUrl } from "@/api/tmdb";
-import type { Movie, Media, TVShow, MovieType, TVType } from "@/api/types";
+import { getMovies, getTVShows, getVideoUrl } from "@/tmdb/api/tmdb";
+import type { Media } from "@/tmdb/types";
+import type { Movie, MovieType } from "@/tmdb/types/movie";
+import type { TVShow, TVType } from "@/tmdb/types/tv";
 
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";

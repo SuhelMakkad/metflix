@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import { getTVShows } from "@/api/tmdb";
-import type { TVType, TVShows } from "@/api/types";
+import { getTVShows } from "@/tmdb/api/tmdb";
+import type { TVType, TVShows } from "@/tmdb/types/tv";
 
 import SectionHeading from "@/components/SectionHeading";
 import ImageList from "@/components/List";
