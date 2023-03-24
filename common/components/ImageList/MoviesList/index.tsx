@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { getMovies } from "@/tmdb/api/tmdb";
+import { getMovies } from "@/tmdb/api/movie";
 import type { MovieType, Movies } from "@/tmdb/types/movie";
 
 import SectionHeading from "@/components/SectionHeading";

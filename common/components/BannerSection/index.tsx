@@ -4,7 +4,10 @@ import { useEffect, useState, useMemo } from "react";
 
 import Image from "next/image";
 
-import { getMovies, getTVShows, getVideoUrl } from "@/tmdb/api/tmdb";
+import { getMovies } from "@/tmdb/api/movie";
+import { getTVShows } from "@/tmdb/api/tv";
+import { getVideoUrl } from "@/tmdb/api/video";
+
 import type { Media } from "@/tmdb/types";
 import type { Movie, MovieType } from "@/tmdb/types/movie";
 import type { TVShow, TVType } from "@/tmdb/types/tv";
