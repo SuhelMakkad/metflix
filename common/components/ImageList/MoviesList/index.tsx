@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
-import useIntersectionObserver from "@/hooks/useIntersectionObserver";
+import { useInView } from "react-intersection-observer";
 
 import { getMovies } from "@/tmdb/api/movie";
 import type { MovieType, Movies } from "@/tmdb/types/movie";
@@ -10,6 +10,7 @@ import type { MovieType, Movies } from "@/tmdb/types/movie";
 import SectionHeading from "@/components/SectionHeading";
 import ImageList from "@/components/List";
 import LoadingImages from "@/components/List/Loading";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 export type Props = {
   title: string;
@@ -20,9 +21,7 @@ const MoviesList = ({ title, type }: Props) => {
   const [movies, setMovies] = useState<Movies>([]);
   const [currPageCount, setCurrPageCount] = useState(0);
 
-  const loaderDivRef = useRef<HTMLDivElement | null>(null);
-  const entry = useIntersectionObserver(loaderDivRef, {});
-  const isVisible = !!entry?.isIntersecting;
+  const [loaderDivRef, inView, entry] = useInView({});
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -36,7 +35,7 @@ const MoviesList = ({ title, type }: Props) => {
     };
 
     fetchMovies();
-  }, [isVisible]);
+  }, [inView]);
 
   return (
     <section>
@@ -57,8 +56,8 @@ const MoviesList = ({ title, type }: Props) => {
       )}
 
       {!!movies.length && (
-        <div ref={loaderDivRef} className="mt-3 md:mt-4 2xl:mt-6 ">
-          <LoadingImages loadingCardCount={8} />
+        <div ref={loaderDivRef} className="mt-8 flex justify-center">
+          <LoadingSpinner />
         </div>
       )}
     </section>

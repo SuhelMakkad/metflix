@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from "react";
+import { RefObject, useLayoutEffect, useState } from "react";
 
 interface Args extends IntersectionObserverInit {
   freezeOnceVisible?: boolean;
@@ -21,7 +21,7 @@ function useIntersectionObserver(
     setEntry(entry);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const node = elementRef?.current; // DOM Ref
     const hasIOSupport = !!window.IntersectionObserver;
 
@@ -34,6 +34,7 @@ function useIntersectionObserver(
 
     return () => observer.disconnect();
   }, [
+    elementRef,
     elementRef?.current,
     JSON.stringify(threshold),
     root,
