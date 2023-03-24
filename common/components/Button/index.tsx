@@ -1,6 +1,6 @@
-import React, { ButtonHTMLAttributes } from "react";
+import React, { HTMLAttributeAnchorTarget } from "react";
 
-import Link, { LinkProps } from "next/link";
+import Link from "next/link";
 
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
@@ -41,6 +41,7 @@ export interface ButtonOrLinkProps
   href?: string;
   className?: string;
   children?: JSX.Element | string;
+  target?: HTMLAttributeAnchorTarget | undefined;
 }
 
 const Button = ({

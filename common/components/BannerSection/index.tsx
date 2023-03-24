@@ -68,7 +68,11 @@ const BannerSection = ({ media, type }: Props) => {
           </p>
 
           <div className="mt-5 flex gap-2">
-            <Button size={"small"} href={getVideoUrl(bannerItem.id, media)}>
+            <Button
+              size={"small"}
+              target="_blank"
+              href={getVideoUrl(bannerItem.id, media)}
+            >
               <span className="flex items-center gap-1">
                 <BsFillPlayFill className="text-2xl" /> Play
               </span>
