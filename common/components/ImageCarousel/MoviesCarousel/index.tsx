@@ -41,6 +41,7 @@ const MoviesCarousel = ({ title, href, type }: Props) => {
           title: movie.title ?? movie.original_title,
           avgRatings: movie.vote_average,
           totalRatings: movie.vote_count,
+          href: `/details/movie/${movie.id}`,
         }))}
       />
     </section>
