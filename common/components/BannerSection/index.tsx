@@ -39,10 +39,11 @@ const BannerSection = ({ media, type }: Props) => {
           : await getTVShows({ type: type as TVType });
 
       if (!res) {
-        throw Error("Can not get movies");
+        throw new Error("Can not get movies");
       }
       const { results } = res;
       const rndInt = Math.floor(Math.random() * (results.length + 1));
+
       return results[rndInt];
     },
   });

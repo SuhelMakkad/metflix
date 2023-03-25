@@ -1,14 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import { getMovies } from "@/tmdb/api/movie";
 
 import SectionHeading from "@/components/SectionHeading";
 import ImageCarousel from "@/components/Carousel";
 
 import type { DetailType } from "@/tmdb/types";
-import type { Movies, MovieType } from "@/tmdb/types/movie";
+import type { MovieType } from "@/tmdb/types/movie";
+import { useQuery } from "@tanstack/react-query";
 
 export type Props = {
   title: string;
@@ -18,32 +17,24 @@ export type Props = {
 };
 
 const MoviesCarousel = ({ title, href, type, id }: Props) => {
-  const [movies, setMovies] = useState<Movies>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMovies = async () => {
+  const { data: movies, isLoading } = useQuery({
+    queryKey: ["movies", type, id],
+    queryFn: async () => {
       const res = await getMovies({ type, id });
+      if (!res) return null;
 
-      if (!res) return;
+      return res.results;
+    },
+  });
 
-      const { results } = res;
-
-      setMovies(results);
-      setIsLoading(false);
-    };
-
-    fetchMovies();
-  }, []);
-
-  if (!isLoading && !movies.length) return <span></span>;
+  if (!isLoading && (!movies || !movies.length)) return <span></span>;
 
   return (
     <section>
       <SectionHeading href={href}> {title} </SectionHeading>
 
       <ImageCarousel
-        items={movies.map((movie) => ({
+        items={(movies ?? []).map((movie) => ({
           id: movie.id,
           postImg: movie.poster_path
             ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`

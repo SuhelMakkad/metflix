@@ -27,6 +27,7 @@ export const getMovies = async (data: Args) => {
   };
 
   const res = await axios.get(reqUrl, config).catch(console.error);
+
   if (!res || !res.data) return;
 
   return res.data.movies as MoviesRes;

@@ -21,11 +21,6 @@ export async function generateMetadata() {
 export default async function MoviesPage() {
   const moviesCarousel: MoviesCarouselProp[] = [
     {
-      title: "Trending Today",
-      href: "/genre/movies/trending",
-      type: "trending",
-    },
-    {
       title: "Now Playing",
       href: "/genre/movies/now_playing",
       type: "now_playing",
@@ -39,6 +34,11 @@ export default async function MoviesPage() {
       title: "Popular",
       href: "/genre/movies/popular",
       type: "popular",
+    },
+    {
+      title: "Trending Today",
+      href: "/genre/movies/trending",
+      type: "trending",
     },
     {
       title: "Top Rated",
