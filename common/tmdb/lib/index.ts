@@ -1,25 +1,15 @@
 import defaultAxios from "axios";
 
-import type {
-  Credits,
-  DetailType,
-  Media,
-  Page,
-  TimeWindow,
-} from "@/tmdb/types";
-import type { MovieDetails, MoviesRes, MovieType } from "@/tmdb/types/movie";
-import type { TVShowDetails, TVShowsRes, TVType } from "@/tmdb/types/tv";
-import type { VideoRes, VideoSource } from "@/tmdb/types/video";
-import type { MultiSearchRes } from "@/tmdb/types/search";
-import type {
-  PersonCastRes,
-  PersonDetails,
-  PersonImageRes,
-} from "@/tmdb/types/person";
+import { TMDB_BASE_URL } from "../constants";
 
-export const tmdbBaseURL = "https://api.themoviedb.org/3";
+import type { Credits, DetailType, Media, TimeWindow } from "@/tmdb/types";
+import type { MovieType } from "@/tmdb/types/movie";
+import type { TVType } from "@/tmdb/types/tv";
+import type { VideoSource } from "@/tmdb/types/video";
 
-const axios = defaultAxios.create({
+export const tmdbBaseURL = TMDB_BASE_URL;
+
+export const axios = defaultAxios.create({
   params: {
     api_key: process.env.TMBD_API_KEY,
   },
@@ -77,36 +67,6 @@ export const getTMDBUrl = (
   return `${tmdbBaseURL}/${media}/${itemType}`;
 };
 
-export const getMovies = async (
-  type: MovieType,
-  id?: string,
-  timeWindow?: TimeWindow,
-  page?: Page
-) => {
-  const mediaType = "movie";
-  const reqUrl = getTMDBUrl(mediaType, id, type, timeWindow);
-  const config = {
-    params: {
-      page,
-    },
-  };
-
-  const res = await axios(reqUrl, config).catch(console.error);
-  if (!res || !res.data) return;
-
-  return res.data as MoviesRes;
-};
-
-export const getMovie = async (id: string) => {
-  const mediaType = "movie";
-  const reqUrl = getTMDBUrl(mediaType, id);
-
-  const res = await axios(reqUrl).catch(console.error);
-  if (!res || !res.data) return;
-
-  return res.data as MovieDetails;
-};
-
 export const getCredits = async (id: string, media: Media) => {
   const reqUrl = getTMDBUrl(media, id, "credits");
 
@@ -117,36 +77,6 @@ export const getCredits = async (id: string, media: Media) => {
   return res.data as Credits;
 };
 
-export const getTVShows = async (
-  type: TVType,
-  id?: string,
-  timeWindow?: TimeWindow,
-  page?: Page
-) => {
-  const mediaType = "tv";
-  const reqUrl = getTMDBUrl(mediaType, id, type, timeWindow);
-  const config = {
-    params: {
-      page,
-    },
-  };
-
-  const res = await axios(reqUrl, config).catch(console.error);
-  if (!res || !res.data) return;
-
-  return res.data as TVShowsRes;
-};
-
-export const getTVShow = async (id: string) => {
-  const mediaType = "tv";
-  const reqUrl = getTMDBUrl(mediaType, id);
-
-  const res = await axios(reqUrl).catch(console.error);
-  if (!res || !res.data) return;
-
-  return res.data as TVShowDetails;
-};
-
 export const getVideoUrl = (key: string, site: VideoSource) => {
   if (site === "YouTube") {
     return `https://www.youtube.com/watch?v=${key}`;
@@ -155,64 +85,4 @@ export const getVideoUrl = (key: string, site: VideoSource) => {
   if (site === "Vimeo") {
     return `https://player.vimeo.com/video/${key}`;
   }
-};
-
-export const getVideos = async (id: string, mediaType: Media) => {
-  const itemType = "videos";
-  const reqUrl = `${tmdbBaseURL}/${mediaType}/${id}/${itemType}`;
-
-  const res = await axios(reqUrl).catch(console.error);
-  if (!res || !res.data) return;
-
-  const { results } = res.data as VideoRes;
-
-  return results;
-};
-
-export const getPerson = async (id: string) => {
-  const reqUrl = `${tmdbBaseURL}/person/${id}`;
-
-  console.log({ reqUrl });
-
-  const res = await axios(reqUrl).catch(console.error);
-  if (!res || !res.data) return;
-
-  return res.data as PersonDetails;
-};
-
-export const getPersonCredits = async (id: string) => {
-  const reqUrl = `${tmdbBaseURL}/person/${id}/combined_credits`;
-
-  console.log({ reqUrl });
-
-  const res = await axios(reqUrl).catch(console.error);
-  if (!res || !res.data) return;
-
-  return res.data as PersonCastRes;
-};
-
-export const getPersonImages = async (id: string) => {
-  const reqUrl = `${tmdbBaseURL}/person/${id}/images`;
-
-  console.log({ reqUrl });
-
-  const res = await axios(reqUrl).catch(console.error);
-  if (!res || !res.data) return;
-
-  return res.data as PersonImageRes;
-};
-
-export const searchAll = async (query: string, page?: Page) => {
-  const reqUrl = `${tmdbBaseURL}/search/multi`;
-  const config = {
-    params: {
-      query,
-      page,
-    },
-  };
-
-  const res = await axios(reqUrl, config).catch(console.error);
-  if (!res || !res.data) return;
-
-  return res.data as MultiSearchRes;
 };

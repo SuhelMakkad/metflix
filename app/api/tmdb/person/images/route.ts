@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { getPersonImages } from "@/tmdb/lib";
+import { getPersonImages } from "@/tmdb/lib/person";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

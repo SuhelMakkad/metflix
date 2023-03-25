@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { searchAll } from "@/tmdb/lib";
-import type { Media } from "@/tmdb/types";
+import { searchAll } from "@/tmdb/lib/search";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

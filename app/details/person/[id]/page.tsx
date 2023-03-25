@@ -1,8 +1,13 @@
+import {
+  getPerson,
+  getPersonCredits,
+  getPersonImages,
+} from "@/tmdb/lib/person";
+
 import ImageCarousel from "@/components/Carousel";
 import ImageList from "@/components/List";
 import PersonDetails from "@/components/PersonDetails";
 import SectionHeading from "@/components/SectionHeading";
-import { getPerson, getPersonCredits, getPersonImages } from "@/tmdb/lib";
 
 export const metadata = {
   title: "Person - Metflix",

@@ -1,4 +1,5 @@
-import { getCredits, getMovie } from "@/tmdb/lib";
+import { getCredits } from "@/tmdb/lib";
+import { getMovie } from "@/tmdb/lib/movie";
 
 import DetailsBanner from "@/components/DetailsBanner";
 import SectionHeading from "@/components/SectionHeading";

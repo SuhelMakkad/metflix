@@ -1,4 +1,5 @@
-import { getCredits, getTVShow } from "@/tmdb/lib";
+import { getTVShow } from "@/tmdb/lib/tv";
+import { getCredits } from "@/tmdb/lib";
 
 import DetailsBanner from "@/components/DetailsBanner";
 import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
-import { getVideos, getVideoUrl } from "@/tmdb/lib";
+import { getVideos } from "@/tmdb/lib/video";
+import { getVideoUrl } from "@/tmdb/lib";
 import type { Media } from "@/tmdb/types";
 
 export type Params = {
