@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 
+import { useSearchParams } from "next/navigation";
+
 import { useInView } from "react-intersection-observer";
 
 import ImageList from "@/components/List";
@@ -14,12 +16,15 @@ import type { MultiSearchRes } from "@/tmdb/types/search";
 
 export type Item = MultiSearchRes["results"][number];
 
-const SearchSection = ({ query }: { query: string }) => {
+const SearchSection = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [currPageCount, setCurrPageCount] = useState(0);
   const [totalPageCount, setTotalPageCount] = useState(0);
 
   const [loaderDivRef, inView, entry] = useInView({});
+
+  const searchParams = useSearchParams();
+  const query = searchParams.get("q") ?? "";
 
   const getDetails = useCallback((item: Item) => {
     const { media_type: mediaType } = item;
