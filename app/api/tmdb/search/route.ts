@@ -5,7 +5,9 @@ import type { Media } from "@/tmdb/types";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
+
   const query = searchParams.get("query");
+  const page = searchParams.get("page") ?? 1;
 
   if (!query) {
     return new Response("no query found", {
@@ -13,7 +15,7 @@ export async function GET(request: Request) {
     });
   }
 
-  const result = await searchAll(query).catch(console.error);
+  const result = await searchAll(query, page).catch(console.error);
 
   if (!result) {
     return new Response("no results found", {

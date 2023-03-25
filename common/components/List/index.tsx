@@ -3,12 +3,14 @@ import ImageListWrapper from "./Wrapper";
 
 export type Props = {
   items: {
-    id: number | string;
+    key: number | string;
     postImg: string;
-    href: string;
+    href?: string;
     title: string;
-    avgRatings: number;
-    totalRatings: number;
+    avgRatings?: number;
+    totalRatings?: number;
+    details?: React.ReactElement;
+    header?: React.ReactElement;
   }[];
 };
 
@@ -18,7 +20,7 @@ const ImageList = ({ items }: Props) => {
   return (
     <ImageListWrapper>
       {items.map((movie) => (
-        <li key={movie.id} className={"w-full"}>
+        <li key={movie.key} className={"w-full"}>
           <ListImage movie={movie} />
         </li>
       ))}
