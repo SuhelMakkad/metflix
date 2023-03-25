@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import { getTVShows } from "@/tmdb/api/tv";
@@ -18,47 +19,61 @@ export type Props = {
 };
 
 const TVShowsList = ({ title, type }: Props) => {
-  const [tvShows, setTVShows] = useState<TVShows>([]);
-  const [currPageCount, setCurrPageCount] = useState(0);
-
   const [loaderDivRef, inView, entry] = useInView({});
 
+  const {
+    data: tvShowPages,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteQuery({
+    queryKey: ["tv", type],
+    queryFn: async ({ pageParam = 1 }) => {
+      const res = await getTVShows({ type, page: pageParam });
+      if (!res) return null;
+
+      return res;
+    },
+    getNextPageParam: (lastPage, page) => {
+      const currPageCount = page.length;
+      const totalPages = lastPage?.total_pages ?? 0;
+
+      return currPageCount >= totalPages ? undefined : currPageCount + 1;
+    },
+  });
+
   useEffect(() => {
-    const fetchTVShows = async () => {
-      const res = await getTVShows({ type, page: currPageCount + 1 });
-      if (!res) return;
-
-      const { results } = res;
-
-      setTVShows((prev) => [...prev, ...results]);
-      setCurrPageCount((prev) => prev + 1);
-    };
-
-    fetchTVShows();
+    fetchNextPage();
   }, [inView]);
 
   return (
     <section>
       <SectionHeading> {title} </SectionHeading>
 
-      {tvShows.length ? (
+      {tvShowPages?.pages.length ? (
         <ImageList
-          items={tvShows.map((tv) => ({
-            key: tv.id,
-            postImg: tv.poster_path
-              ? `https://image.tmdb.org/t/p/w500${tv.poster_path}`
-              : "",
-            title: tv.name ?? tv.original_name,
-            avgRatings: tv.vote_average,
-            totalRatings: tv.vote_count,
-            href: `/details/tv-show/${tv.id}`,
-          }))}
+          items={(tvShowPages?.pages ?? [])
+            .map((tvShows, index) => {
+              const items = (tvShows?.results ?? []).map((tv) => ({
+                key: tv.id,
+                postImg: tv.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${tv.poster_path}`
+                  : "",
+                title: tv.name ?? tv.original_name,
+                avgRatings: tv.vote_average,
+                totalRatings: tv.vote_count,
+                href: `/details/tv-show/${tv.id}`,
+              }));
+
+              return items;
+            })
+            .reduce((p, c) => p.concat(c), [])}
         />
       ) : (
         <LoadingImages />
       )}
 
-      {!!tvShows.length && (
+      {hasNextPage && (
         <div ref={loaderDivRef} className="mt-8 flex justify-center">
           <LoadingSpinner />
         </div>
