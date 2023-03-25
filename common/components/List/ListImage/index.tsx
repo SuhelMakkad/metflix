@@ -8,7 +8,7 @@ import ConditionalWrapper from "@/components/ConditionalWrapper";
 export type Props = {
   movie: {
     postImg: string;
-    title: string;
+    title?: string;
     href?: string;
     avgRatings?: number;
     totalRatings?: number;

@@ -1,5 +1,5 @@
 import type { Movie } from "./movie";
-import type { Person } from "./people";
+import type { Person } from "./person";
 import type { TVShow } from "./tv";
 
 export type MultiSearchRes = {

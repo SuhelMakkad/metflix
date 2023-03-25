@@ -10,7 +10,7 @@ export type Props = {
   items: {
     id: number;
     postImg: string;
-    title: string;
+    title?: string;
     href?: string;
     avgRatings?: number;
     totalRatings?: number;

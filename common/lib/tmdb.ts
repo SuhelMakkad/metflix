@@ -11,6 +11,11 @@ import type { MovieDetails, MoviesRes, MovieType } from "@/tmdb/types/movie";
 import type { TVShowDetails, TVShowsRes, TVType } from "@/tmdb/types/tv";
 import type { VideoRes, VideoSource } from "@/tmdb/types/video";
 import type { MultiSearchRes } from "@/tmdb/types/search";
+import type {
+  PersonCastRes,
+  PersonDetails,
+  PersonImageRes,
+} from "@/tmdb/types/person";
 
 export const tmdbBaseURL = "https://api.themoviedb.org/3";
 
@@ -162,6 +167,39 @@ export const getVideos = async (id: string, mediaType: Media) => {
   const { results } = res.data as VideoRes;
 
   return results;
+};
+
+export const getPerson = async (id: string) => {
+  const reqUrl = `${tmdbBaseURL}/person/${id}`;
+
+  console.log({ reqUrl });
+
+  const res = await axios(reqUrl).catch(console.error);
+  if (!res || !res.data) return;
+
+  return res.data as PersonDetails;
+};
+
+export const getPersonCredits = async (id: string) => {
+  const reqUrl = `${tmdbBaseURL}/person/${id}/combined_credits`;
+
+  console.log({ reqUrl });
+
+  const res = await axios(reqUrl).catch(console.error);
+  if (!res || !res.data) return;
+
+  return res.data as PersonCastRes;
+};
+
+export const getPersonImages = async (id: string) => {
+  const reqUrl = `${tmdbBaseURL}/person/${id}/images`;
+
+  console.log({ reqUrl });
+
+  const res = await axios(reqUrl).catch(console.error);
+  if (!res || !res.data) return;
+
+  return res.data as PersonImageRes;
 };
 
 export const searchAll = async (query: string, page?: Page) => {

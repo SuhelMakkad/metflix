@@ -1,27 +1,24 @@
 import axios, { GenericAbortSignal } from "axios";
 
 import { APP_BASE_URL } from ".";
-import type { MultiSearchRes } from "../types/search";
-import type { Page } from "../types";
+import { PersonDetails } from "../types/person";
 
 export type Params = {
-  query: string;
-  page: Page;
+  id: string;
   signal?: GenericAbortSignal;
 };
 
-export const searchAll = async ({ query, page, signal }: Params) => {
-  const reqUrl = `${APP_BASE_URL}/search`;
+export const getPerson = async ({ id, signal }: Params) => {
+  const reqUrl = `${APP_BASE_URL}/person`;
   const config = {
     signal,
     params: {
-      query,
-      page,
+      id,
     },
   };
 
   const res = await axios.get(reqUrl, config).catch(console.error);
   if (!res || !res.data) return;
 
-  return res.data.result as MultiSearchRes;
+  return res.data.person as PersonDetails;
 };

@@ -9,7 +9,7 @@ import ImageWithFallback from "@/components/ImageWithFallback";
 export type Props = {
   movie: {
     postImg: string;
-    title: string;
+    title?: string;
     href?: string;
     avgRatings?: number;
     totalRatings?: number;

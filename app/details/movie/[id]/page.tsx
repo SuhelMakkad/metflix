@@ -52,6 +52,7 @@ export default async function MoviesPage({ params }: Props) {
                   id: cast.id,
                   postImg: `https://image.tmdb.org/t/p/w500${cast.profile_path}`,
                   title: cast.name,
+                  href: `/details/person/${cast.id}`,
                   details: cast.character ? (
                     <span className="text-sm italic text-stone-200">
                       As {cast.character}
@@ -85,7 +86,7 @@ export const dynamicParams = true;
 export const revalidate = 86400;
 
 export async function generateStaticParams() {
-  const tempIds = [603692, 4, 5];
+  const tempIds = [603692];
   return tempIds.map((id) => ({
     id,
   }));

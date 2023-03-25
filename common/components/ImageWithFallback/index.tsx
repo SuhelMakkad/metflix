@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 
 import Image from "next/image";
@@ -10,6 +12,7 @@ export type Props = {
 const ImageWithFallback = (props: Props) => {
   const {
     src,
+    className,
     fallbackSrc = "/assets/images/fallback/metflix.jpg",
     ...rest
   } = props;
@@ -22,6 +25,7 @@ const ImageWithFallback = (props: Props) => {
   return (
     <img
       {...rest}
+      className={`${className} bg-stone-900`}
       src={imgSrc as string}
       onError={() => setImgSrc(fallbackSrc)}
     />
