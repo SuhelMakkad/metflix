@@ -26,11 +26,19 @@ export default async function PersonsPage({ params }: Props) {
   const person = await getPerson(id);
   if (!person) throw new Error("No person Found!");
 
-  const credits = await getPersonCredits(id);
-  const castList = credits?.cast || [];
+  const creditsPromise = getPersonCredits(id);
+  const personImagesResPromise = getPersonImages(id);
+  const [creditsRes, personImagesRes] = await Promise.allSettled([
+    creditsPromise,
+    personImagesResPromise,
+  ]);
 
-  const personImagesRes = await getPersonImages(id);
-  const profiles = personImagesRes?.profiles || [];
+  const credits = creditsRes.status === "fulfilled" ? creditsRes.value : null;
+  const personImages =
+    personImagesRes.status === "fulfilled" ? personImagesRes.value : null;
+
+  const castList = credits?.cast || [];
+  const profiles = personImages?.profiles || [];
 
   return (
     <div className="mt-20">
