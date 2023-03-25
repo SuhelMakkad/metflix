@@ -1,41 +1,64 @@
 "use client";
 
-import type { ChangeEvent } from "react";
+import { useRef } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 
 import { BiSearch } from "react-icons/bi";
 import debounce from "@/utils/debounce";
 
 const SearchBar = () => {
+  const searchRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+  const segment = useSelectedLayoutSegment();
+
+  const navigateToSearchPage = (q: string) => {
+    if (!q) return;
+
+    const searchPage = `/search?q=${q}`;
+    router.replace(searchPage);
+  };
 
   const handleInputChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-
-    if (!value) return;
-
-    const searchPage = `/search?q=${value}`;
-    router.replace(searchPage);
+    navigateToSearchPage(value);
   }, 100);
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const value = searchRef.current?.value ?? "";
+    navigateToSearchPage(value);
+    (document?.activeElement as HTMLInputElement).blur();
+  };
+
   return (
-    <label
-      htmlFor="main-search"
-      className="group/search-wrapper ml-auto flex items-center gap-1"
-      tabIndex={0}
-    >
-      <BiSearch className="text-xl" />
-      <input
-        type="search"
-        id="main-search"
-        className="
-          hidden border-none bg-transparent
-          group-focus-within/search-wrapper:block
-        "
-        onChange={handleInputChange}
-      />
-    </label>
+    <form className="ml-auto" onSubmit={handleSubmit}>
+      <label
+        htmlFor="main-search"
+        className={`
+        group/search-wrapper bottom-0 
+        flex items-center border-red-600
+        py-1 focus-within:gap-2 focus-within:border-b ${
+          segment === "search" ? "gap-2 border-b" : ""
+        }
+      `}
+      >
+        <BiSearch className="text-2xl" />
+        <input
+          ref={searchRef}
+          type="search"
+          id="main-search"
+          className={`
+          w-0 bg-transparent outline-none transition-[width] 
+          group-focus-within/search-wrapper:w-[25vw] ${
+            segment === "search" ? "w-[25vw]" : ""
+          }
+        `}
+          onChange={handleInputChange}
+        />
+      </label>
+    </form>
   );
 };
 
