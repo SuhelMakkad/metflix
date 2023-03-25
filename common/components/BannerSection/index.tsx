@@ -18,6 +18,7 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import LoadingBanner from "./Loading";
 import Button from "../Button";
 import BannerImage from "./Image";
+import { useQuery } from "@tanstack/react-query";
 
 export type Props = {
   media: Media;
@@ -25,10 +26,13 @@ export type Props = {
 };
 
 const BannerSection = ({ media, type }: Props) => {
-  const [bannerItem, setBannerItem] = useState<Movie | TVShow>();
-
-  useEffect(() => {
-    const setMovies = async () => {
+  const {
+    isLoading,
+    error,
+    data: bannerItem,
+  } = useQuery({
+    queryKey: [media, type],
+    queryFn: async () => {
       const res =
         media === "movie"
           ? await getMovies({ type: type as MovieType })
@@ -38,13 +42,13 @@ const BannerSection = ({ media, type }: Props) => {
         throw Error("Can not get movies");
       }
       const { results } = res;
-      const rndInt = Math.floor(Math.random() * (results.length + 1));
-
-      setBannerItem(results[rndInt]);
-    };
-
-    setMovies();
-  }, []);
+      return results;
+    },
+    select: (data) => {
+      const rndInt = Math.floor(Math.random() * (data.length + 1));
+      return data[rndInt];
+    },
+  });
 
   const title = useMemo(
     () =>
@@ -58,7 +62,9 @@ const BannerSection = ({ media, type }: Props) => {
     [bannerItem]
   );
 
-  if (!bannerItem) return <LoadingBanner />;
+  if (isLoading) return <LoadingBanner />;
+
+  if (!bannerItem) return <span></span>;
 
   return (
     <section className="relative -mx-8 max-h-[85vh] overflow-hidden">
@@ -73,7 +79,7 @@ const BannerSection = ({ media, type }: Props) => {
             {title}
           </h1>
           <p className="drop-shadow-[0_25px_25px_rgb(0 0,0)] text-stone-50 md:text-lg md:drop-shadow-none lg:text-xl">
-            {bannerItem.overview.length > 150
+            {bannerItem.overview?.length > 150
               ? `${bannerItem.overview.slice(0, 150)}...`
               : bannerItem.overview}
           </p>
