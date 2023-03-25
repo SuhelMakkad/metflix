@@ -1,12 +1,11 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { useSelectedLayoutSegments } from "next/navigation";
 
+import { useSelectedLayoutSegments } from "next/navigation";
 import Link from "next/link";
 
 import { RiArrowDownSFill } from "react-icons/ri";
-
 import useOutsideClick from "@/hooks/useOnClickOutside";
 
 const NavLinks = () => {
