@@ -31,7 +31,7 @@ const BannerSection = ({ media, type }: Props) => {
     error,
     data: bannerItem,
   } = useQuery({
-    queryKey: [media, type],
+    queryKey: [media, type, "banner"],
     queryFn: async () => {
       const res =
         media === "movie"
@@ -42,11 +42,8 @@ const BannerSection = ({ media, type }: Props) => {
         throw Error("Can not get movies");
       }
       const { results } = res;
-      return results;
-    },
-    select: (data) => {
-      const rndInt = Math.floor(Math.random() * (data.length + 1));
-      return data[rndInt];
+      const rndInt = Math.floor(Math.random() * (results.length + 1));
+      return results[rndInt];
     },
   });
 
