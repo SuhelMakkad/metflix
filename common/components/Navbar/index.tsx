@@ -4,9 +4,8 @@ import Link from "next/link";
 
 import { useInView } from "react-intersection-observer";
 
-import { BiSearch } from "react-icons/bi";
-
 import NavLinks from "./NavLinks";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   const [loaderDivRef, inView, entry] = useInView({});
@@ -31,14 +30,7 @@ const Navbar = () => {
 
         <NavLinks />
 
-        <div className="ml-auto flex items-center gap-1">
-          <BiSearch className="text-lg" />
-          {/* <input
-          type="search"
-          id="main-search"
-          className="border-none  bg-transparent outline-none"
-        /> */}
-        </div>
+        <SearchBar />
       </nav>
     </div>
   );

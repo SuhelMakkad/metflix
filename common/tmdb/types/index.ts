@@ -8,10 +8,14 @@ export type TimeWindow = (typeof TIME_WINDOW)[number];
 
 export type Status = (typeof STATUS)[number];
 
+export type Page = number | string;
+
 export type Genre = {
   id: number;
   name: string;
 };
+
+export type GenreIds = number[];
 
 export type ProductionCompany = {
   id: number;

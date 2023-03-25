@@ -8,6 +8,7 @@ import NavButton from "./NavButton";
 
 export type Props = {
   items: {
+    id: number;
     postImg: string;
     title: string;
     href?: string;
@@ -65,7 +66,7 @@ const ImageCarousel = ({ items }: Props) => {
 
         {items.length
           ? items.map((movie) => (
-              <li key={movie.postImg} className={"shrink-0"}>
+              <li key={movie.id} className={"shrink-0"}>
                 <CarouselImage movie={movie} />
               </li>
             ))

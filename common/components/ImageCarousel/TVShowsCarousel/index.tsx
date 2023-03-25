@@ -43,6 +43,7 @@ const TVShowsCarousel = ({ title, id, href, type }: Props) => {
 
       <ImageCarousel
         items={tvShows.map((tv) => ({
+          id: tv.id,
           postImg: `https://image.tmdb.org/t/p/w500${tv.poster_path}`,
           title: tv.name ?? tv.original_name,
           avgRatings: tv.vote_average,

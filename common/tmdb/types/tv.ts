@@ -1,4 +1,10 @@
-import { Genre, ProductionCompany, ProductionCountry, SpokenLanguage } from ".";
+import {
+  Genre,
+  GenreIds,
+  ProductionCompany,
+  ProductionCountry,
+  SpokenLanguage,
+} from ".";
 import { TV_TYPES } from "../constants";
 
 export type TVType = (typeof TV_TYPES)[number];
@@ -81,7 +87,7 @@ export type TVShow = {
   poster_path: string;
   backdrop_path: string;
   popularity: number;
-  genre_ids: number[];
+  genre_ids: GenreIds;
   original_language: string;
   vote_average: number;
   vote_count: number;

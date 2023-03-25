@@ -1,7 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 
 import { AiFillStar } from "react-icons/ai";
+
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 export type Props = {
   movie: {
@@ -17,7 +18,7 @@ const ListImage = ({ movie }: Props) => {
   return (
     <Link href={movie.href ?? "/"} className={"group/image-card"}>
       <div className="relative transition-transform duration-300 group-hover/image-card:scale-105">
-        <Image
+        <ImageWithFallback
           src={movie.postImg}
           height={750}
           width={500}

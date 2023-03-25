@@ -1,15 +1,16 @@
 import defaultAxios from "axios";
 
 import type {
-  Cast,
   Credits,
   DetailType,
   Media,
+  Page,
   TimeWindow,
 } from "@/tmdb/types";
 import type { MovieDetails, MoviesRes, MovieType } from "@/tmdb/types/movie";
 import type { TVShowDetails, TVShowsRes, TVType } from "@/tmdb/types/tv";
 import type { VideoRes, VideoSource } from "@/tmdb/types/video";
+import type { MultiSearchRes } from "@/tmdb/types/search";
 
 export const tmdbBaseURL = "https://api.themoviedb.org/3";
 
@@ -75,7 +76,7 @@ export const getMovies = async (
   type: MovieType,
   id?: string,
   timeWindow?: TimeWindow,
-  page?: string | number
+  page?: Page
 ) => {
   const mediaType = "movie";
   const reqUrl = getTMDBUrl(mediaType, id, type, timeWindow);
@@ -115,7 +116,7 @@ export const getTVShows = async (
   type: TVType,
   id?: string,
   timeWindow?: TimeWindow,
-  page?: string | number
+  page?: Page
 ) => {
   const mediaType = "tv";
   const reqUrl = getTMDBUrl(mediaType, id, type, timeWindow);
@@ -156,10 +157,24 @@ export const getVideos = async (id: string, mediaType: Media) => {
   const reqUrl = `${tmdbBaseURL}/${mediaType}/${id}/${itemType}`;
 
   const res = await axios(reqUrl).catch(console.error);
-
   if (!res || !res.data) return;
 
   const { results } = res.data as VideoRes;
 
   return results;
+};
+
+export const searchAll = async (query: string, page?: Page) => {
+  const reqUrl = `${tmdbBaseURL}/search/multi`;
+  const config = {
+    params: {
+      query,
+      page,
+    },
+  };
+
+  const res = await axios(reqUrl, config).catch(console.error);
+  if (!res || !res.data) return;
+
+  return res.data as MultiSearchRes;
 };

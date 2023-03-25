@@ -1,5 +1,6 @@
 import {
   Genre,
+  GenreIds,
   ProductionCompany,
   ProductionCountry,
   SpokenLanguage,
@@ -45,7 +46,7 @@ export type Movie = {
   poster_path: string;
   backdrop_path: string;
   popularity: number;
-  genre_ids: number[];
+  genre_ids: GenreIds;
   original_language: string;
   vote_average: number;
   vote_count: number;

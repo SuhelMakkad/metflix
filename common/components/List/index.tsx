@@ -1,9 +1,9 @@
 import ListImage from "./ListImage";
-import LoadingImage from "./Loading";
 import ImageListWrapper from "./Wrapper";
 
 export type Props = {
   items: {
+    id: number | string;
     postImg: string;
     href: string;
     title: string;
@@ -18,7 +18,7 @@ const ImageList = ({ items }: Props) => {
   return (
     <ImageListWrapper>
       {items.map((movie) => (
-        <li key={movie.postImg} className={"w-full"}>
+        <li key={movie.id} className={"w-full"}>
           <ListImage movie={movie} />
         </li>
       ))}
