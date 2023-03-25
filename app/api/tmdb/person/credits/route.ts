@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { getPersonCredits } from "@/lib/tmdb";
+import { getPersonCredits } from "@/tmdb/lib";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

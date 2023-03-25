@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { getMovies, getTVShows } from "@/lib/tmdb";
+import { getMovies, getTVShows } from "@/tmdb/lib";
 
 import { TIME_WINDOW } from "@/tmdb/constants";
 

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { searchAll } from "@/lib/tmdb";
+import { searchAll } from "@/tmdb/lib";
 import type { Media } from "@/tmdb/types";
 
 export async function GET(request: Request) {
