@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import { useInView } from "react-intersection-observer";
 
@@ -21,7 +21,7 @@ const SearchSection = ({ query }: { query: string }) => {
 
   const [loaderDivRef, inView, entry] = useInView({});
 
-  const getDetails = (item: Item) => {
+  const getDetails = useCallback((item: Item) => {
     const { media_type: mediaType } = item;
 
     let details: { [key: string]: any } = {
@@ -76,31 +76,67 @@ const SearchSection = ({ query }: { query: string }) => {
     }
 
     return details;
-  };
+  }, []);
 
-  useEffect(() => {
-    if (currPageCount !== 0 && currPageCount >= totalPageCount) return;
-
-    const fetchMovies = async () => {
+  const fetchMovies = useCallback(
+    async (signal: AbortSignal, unmounted: boolean) => {
       const res = await searchAll({
         query,
         page: currPageCount + 1,
+        signal: signal,
       });
-      if (!res) return;
+      if (!res || unmounted) return;
 
       const { results, total_pages } = res;
 
       setItems((prev) => [...prev, ...results]);
       setCurrPageCount((prev) => prev + 1);
       setTotalPageCount(total_pages);
-    };
+    },
+    [query, currPageCount]
+  );
 
-    fetchMovies();
+  useEffect(() => {
+    if (currPageCount !== 0 && currPageCount >= totalPageCount) return;
+    const controller = new AbortController();
+    let unmounted = false;
+
+    fetchMovies(controller.signal, unmounted);
+
+    return () => {
+      unmounted = true;
+      controller.abort();
+    };
   }, [inView]);
+
+  useEffect(() => {
+    setItems([]);
+    setCurrPageCount(0);
+    setTotalPageCount(0);
+
+    const controller = new AbortController();
+    let unmounted = false;
+
+    fetchMovies(controller.signal, unmounted);
+
+    return () => {
+      unmounted = true;
+      controller.abort();
+    };
+  }, [query]);
+
+  if (currPageCount > 0 && items.length === 0) {
+    return (
+      <div className="grid min-h-[70vh] place-content-center text-center text-4xl">
+        No Results Found for
+        <span className="mt-4 italic">{query}</span>
+      </div>
+    );
+  }
 
   return (
     <section>
-      <SectionHeading>Search Results for {query}</SectionHeading>
+      <SectionHeading>Search Results for: {query}</SectionHeading>
 
       {items.length ? (
         <ImageList

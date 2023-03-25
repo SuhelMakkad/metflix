@@ -5,18 +5,19 @@ import type { ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 
 import { BiSearch } from "react-icons/bi";
+import debounce from "@/utils/debounce";
 
 const SearchBar = () => {
   const router = useRouter();
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     if (!value) return;
 
     const searchPage = `/search?q=${value}`;
     router.replace(searchPage);
-  };
+  }, 100);
 
   return (
     <label
