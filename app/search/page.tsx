@@ -15,6 +15,7 @@ export default async function SearchPage({ params, searchParams }: Props) {
 
   return (
     <div className="mt-20">
+      {JSON.stringify(searchParams)}
       <SearchSection query={query} />
     </div>
   );
