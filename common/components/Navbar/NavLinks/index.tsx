@@ -25,10 +25,6 @@ const NavLinks = () => {
       label: "Tv Shows",
       href: "/genre/tv-shows",
     },
-    {
-      label: "My List",
-      href: "/my-list",
-    },
   ];
 
   const segments = useSelectedLayoutSegments();
