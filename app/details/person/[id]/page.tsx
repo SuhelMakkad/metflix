@@ -64,6 +64,9 @@ export default async function PersonsPage({ params }: Props) {
                   title: cast.media_type === "movie" ? cast.title : cast.name,
                   avgRatings: cast.vote_average,
                   totalRatings: cast.vote_count,
+                  href: `/details/${
+                    cast.media_type === "movie" ? "movie" : "tv"
+                  }/${cast.id}`,
                 }))}
               />
             </section>
