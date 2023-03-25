@@ -47,9 +47,9 @@ const NavLinks = () => {
 
       <ul
         className={`
-          absolute left-1/2 h-full -translate-x-1/2 translate-y-1 flex-col items-center
+          absolute top-7 left-1/2 h-full -translate-x-1/2 translate-y-1 flex-col items-center
           whitespace-nowrap border-t-4 border-stone-200 text-stone-200 
-          md:relative md:left-auto md:flex md:translate-y-0 md:translate-x-0 
+          md:relative md:left-auto md:top-auto md:flex md:translate-y-0 md:translate-x-0 
           md:flex-row md:gap-6 md:border-none md:px-0 md:py-0 ${
             isListOpen ? "flex" : "hidden"
           }
@@ -67,7 +67,9 @@ const NavLinks = () => {
                   : "md:hover:text-stone-400"
               }`}
           >
-            <Link href={navItem.href}>{navItem.label}</Link>
+            <Link href={navItem.href} onClick={() => setIsListOpen(false)}>
+              {navItem.label}
+            </Link>
           </li>
         ))}
       </ul>

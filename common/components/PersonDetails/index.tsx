@@ -8,13 +8,13 @@ export type Props = {
 
 const PersonDetails = ({ person }: Props) => {
   return (
-    <section className="mx-auto flex max-w-7xl gap-8">
+    <section className="mx-auto flex max-w-7xl flex-col-reverse gap-8 md:flex-row">
       <ImageWithFallback
         src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
         height={750}
         width={500}
         alt={`Profile Image of ${person.name}`}
-        className="h-max w-60"
+        className="mx-auto h-max w-60"
       />
 
       <div>
