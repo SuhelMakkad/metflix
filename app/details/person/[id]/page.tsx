@@ -43,6 +43,7 @@ export default async function PersonsPage({ params }: Props) {
   return (
     <div className="mt-20">
       <PersonDetails person={person} />
+
       <ul className="mt-10 flex flex-col gap-[3vw]">
         <li>
           {!!profiles.length && (
