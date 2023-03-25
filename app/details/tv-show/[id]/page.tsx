@@ -51,10 +51,12 @@ export default async function MoviesPage({ params }: Props) {
                 items={castList.map((cast) => ({
                   postImg: `https://image.tmdb.org/t/p/w500${cast.profile_path}`,
                   title: cast.name,
-                  details: (
+                  details: cast.character ? (
                     <span className="text-sm italic text-stone-200">
                       As {cast.character}
                     </span>
+                  ) : (
+                    <></>
                   ),
                 }))}
               />
