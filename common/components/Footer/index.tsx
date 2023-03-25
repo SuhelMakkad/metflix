@@ -6,6 +6,7 @@ import {
   AiFillLinkedin,
   AiFillGithub,
 } from "react-icons/ai";
+import Year from "./Year";
 
 const Footer = () => {
   const myName = "Suhel Makkad";
@@ -120,7 +121,9 @@ const Footer = () => {
         </Link>
       </div>
 
-      <span>© 2023 Metflix, Inc.</span>
+      <span>
+        © <Year /> Metflix, Inc.
+      </span>
     </footer>
   );
 };
