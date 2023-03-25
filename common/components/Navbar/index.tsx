@@ -16,14 +16,14 @@ const Navbar = () => {
         className={`
           tb-overlay fixed top-0 left-0 right-0
           isolate z-50 flex w-full 
-          items-center gap-4 py-4 px-3
-          transition-colors duration-500 md:px-4 lg:px-6 2xl:px-8
+          items-center gap-2 py-4 px-3 transition-colors
+          duration-500 md:gap-4 md:px-4 lg:px-6 2xl:px-8
           ${inView ? "" : "bg-black"}
         `}
       >
         <Link
           href={"/"}
-          className="mr-4 text-3xl font-bold uppercase text-red-600 md:mr-6 lg:mr-8"
+          className="mr-4 text-2xl font-bold uppercase text-red-600 md:mr-6 md:text-3xl lg:mr-8"
         >
           Metflix
         </Link>

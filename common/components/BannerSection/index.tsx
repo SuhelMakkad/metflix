@@ -62,11 +62,16 @@ const BannerSection = ({ media, type }: Props) => {
 
   return (
     <section className="relative -mx-8 max-h-[85vh] overflow-hidden">
-      <div className="absolute inset-0 px-8">
-        <header className="absolute bottom-1/3 z-10 max-w-2xl">
-          <h2 className="mb-2 text-3xl font-bold drop-shadow-[0_25px_25px_rgb(0,0,0)] md:text-4xl md:drop-shadow-none lg:text-5xl xl:text-6xl">
+      <div className="absolute inset-0">
+        <header className="absolute bottom-1/3 z-10 w-[42rem] max-w-full px-8">
+          <h1
+            className="
+              mb-2 text-3xl font-bold drop-shadow-[0_25px_25px_rgb(0,0,0)] 
+              md:text-4xl md:drop-shadow-none lg:text-5xl xl:text-6xl
+            "
+          >
             {title}
-          </h2>
+          </h1>
           <p className="drop-shadow-[0_25px_25px_rgb(0 0,0)] text-stone-50 md:text-lg md:drop-shadow-none lg:text-xl">
             {bannerItem.overview.length > 150
               ? `${bannerItem.overview.slice(0, 150)}...`

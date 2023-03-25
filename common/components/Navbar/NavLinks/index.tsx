@@ -38,7 +38,7 @@ const NavLinks = () => {
     <div className="text-md group relative md:text-lg" ref={listRef}>
       <button
         onClick={() => setIsListOpen((prev) => !prev)}
-        className="flex items-center gap-2 focus-visible:border md:hidden"
+        className="flex items-center gap-2 text-sm focus-visible:border md:hidden"
       >
         {navItems.find((navItem) => navItem.href === currentPath)?.label ??
           "Catagories"}
