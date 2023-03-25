@@ -17,6 +17,7 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 
 import LoadingBanner from "./Loading";
 import Button from "../Button";
+import BannerImage from "./Image";
 
 export type Props = {
   media: Media;
@@ -100,22 +101,10 @@ const BannerSection = ({ media, type }: Props) => {
         <span className="bt-overlay-lg absolute bottom-0 left-0 right-0 h-[14.7vw]"></span>
       </div>
 
-      <Image
-        src={`https://image.tmdb.org/t/p/original/${bannerItem.backdrop_path}`}
+      <BannerImage
         alt={`Image for movie ${title}`}
-        className="-z-50 hidden min-h-[30rem] w-full object-cover md:block"
-        height={1152}
-        width={2048}
-        property={"true"}
-      />
-
-      <Image
-        src={`https://image.tmdb.org/t/p/original/${bannerItem.poster_path}`}
-        alt={`Image for movie ${title}`}
-        className="-z-50 block min-h-[30rem] w-full object-cover md:hidden"
-        height={1311}
-        width={874}
-        property={"true"}
+        backdropUrl={`https://image.tmdb.org/t/p/original/${bannerItem.backdrop_path}`}
+        posterUrl={`https://image.tmdb.org/t/p/original/${bannerItem.poster_path}`}
       />
     </section>
   );
