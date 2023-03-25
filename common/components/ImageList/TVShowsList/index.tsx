@@ -45,7 +45,9 @@ const TVShowsList = ({ title, type }: Props) => {
         <ImageList
           items={tvShows.map((tv) => ({
             key: tv.id,
-            postImg: `https://image.tmdb.org/t/p/w500${tv.poster_path}`,
+            postImg: tv.poster_path
+              ? `https://image.tmdb.org/t/p/w500${tv.poster_path}`
+              : "",
             title: tv.name ?? tv.original_name,
             avgRatings: tv.vote_average,
             totalRatings: tv.vote_count,

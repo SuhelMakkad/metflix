@@ -149,7 +149,9 @@ const SearchSection = () => {
             const details = getDetails(item);
             return {
               key: details.key,
-              postImg: `https://image.tmdb.org/t/p/w500${details.postImg}`,
+              postImg: details.postImg
+                ? `https://image.tmdb.org/t/p/w500${details.postImg}`
+                : "",
               title: details.title,
               avgRatings: details.avgRatings,
               href: details.href,

@@ -32,7 +32,7 @@ export default async function PersonsPage({ params }: Props) {
       <PersonDetails person={person} />
       <ul className="mt-10 flex flex-col gap-[3vw]">
         <li>
-          {!!castList.length && (
+          {!!profiles.length && (
             <section>
               <SectionHeading> More Images of {person.name} </SectionHeading>
 
@@ -65,7 +65,7 @@ export default async function PersonsPage({ params }: Props) {
                   avgRatings: cast.vote_average,
                   totalRatings: cast.vote_count,
                   href: `/details/${
-                    cast.media_type === "movie" ? "movie" : "tv"
+                    cast.media_type === "movie" ? "movie" : "tv-show"
                   }/${cast.id}`,
                 }))}
               />

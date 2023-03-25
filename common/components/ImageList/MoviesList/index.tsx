@@ -45,7 +45,9 @@ const MoviesList = ({ title, type }: Props) => {
         <ImageList
           items={movies.map((movie) => ({
             key: movie.id,
-            postImg: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+            postImg: movie.poster_path
+              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+              : "",
             title: movie.title ?? movie.original_title,
             avgRatings: movie.vote_average,
             totalRatings: movie.vote_count,

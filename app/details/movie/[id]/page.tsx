@@ -50,7 +50,9 @@ export default async function MoviesPage({ params }: Props) {
               <ImageCarousel
                 items={castList.map((cast) => ({
                   id: cast.id,
-                  postImg: `https://image.tmdb.org/t/p/w500${cast.profile_path}`,
+                  postImg: cast.profile_path
+                    ? `https://image.tmdb.org/t/p/w500${cast.profile_path}`
+                    : "",
                   title: cast.name,
                   href: `/details/person/${cast.id}`,
                   details: cast.character ? (
