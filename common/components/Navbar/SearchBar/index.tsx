@@ -10,8 +10,8 @@ import debounce from "@/utils/debounce";
 
 const SearchBar = () => {
   const searchRef = useRef<HTMLInputElement>(null);
-  const router = useRouter();
   const segment = useSelectedLayoutSegment();
+  const router = useRouter();
 
   const navigateToSearchPage = (q: string) => {
     if (!q) return;

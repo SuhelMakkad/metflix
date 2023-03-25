@@ -77,6 +77,7 @@ const SearchSection = () => {
         ...details,
         postImg: item.profile_path,
         title: item.name,
+        href: `/details/person/${item.id}`,
       };
     }
 
