@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useMemo } from "react";
 
-import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
 
 import { getMovies } from "@/tmdb/api/movie";
 import { getTVShows } from "@/tmdb/api/tv";
 import { getVideoUrl } from "@/tmdb/api/video";
 
 import type { Media } from "@/tmdb/types";
-import type { Movie, MovieType } from "@/tmdb/types/movie";
-import type { TVShow, TVType } from "@/tmdb/types/tv";
+import type { MovieType } from "@/tmdb/types/movie";
+import type { TVType } from "@/tmdb/types/tv";
 
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";
@@ -18,7 +18,6 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import LoadingBanner from "./Loading";
 import Button from "../Button";
 import BannerImage from "./Image";
-import { useQuery } from "@tanstack/react-query";
 
 export type Props = {
   media: Media;

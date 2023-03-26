@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import { getTVShows } from "@/tmdb/api/tv";
-import type { TVType, TVShows } from "@/tmdb/types/tv";
+import type { TVType } from "@/tmdb/types/tv";
 
 import SectionHeading from "@/components/SectionHeading";
 import ImageList from "@/components/List";
