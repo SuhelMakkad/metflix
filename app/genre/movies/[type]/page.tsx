@@ -3,9 +3,11 @@ import { MOVIE_TYPES } from "@/tmdb/constants";
 import MoviesList from "@/components/ImageList/MoviesList";
 import type { MovieType } from "@/tmdb/types/movie";
 
+import { capitalizeSentence } from "@/utils";
+
 export async function generateMetadata({ params }: Props) {
   const { type } = params;
-  const typeName = type.replaceAll("_", " ");
+  const typeName = capitalizeSentence(type.replaceAll("_", " "));
   const title = `${typeName} Movies - Metflix`;
 
   return {

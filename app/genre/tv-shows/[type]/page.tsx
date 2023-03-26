@@ -3,6 +3,8 @@ import { TV_TYPES } from "@/tmdb/constants";
 import TVShowsList from "@/components/ImageList/TVShowsList";
 import type { TVType } from "@/tmdb/types/tv";
 
+import { capitalizeSentence } from "@/utils";
+
 export type Props = {
   params: {
     type: TVType;
@@ -11,7 +13,7 @@ export type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { type } = params;
-  const typeName = type.replaceAll("_", " ");
+  const typeName = capitalizeSentence(type.replaceAll("_", " "));
   const title = `${typeName} TV Shows - Metflix`;
 
   return {
