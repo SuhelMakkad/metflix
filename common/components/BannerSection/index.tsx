@@ -19,6 +19,8 @@ import LoadingBanner from "./Loading";
 import Button from "../Button";
 import BannerImage from "./Image";
 
+import { getRandomInt } from "@/utils";
+
 export type Props = {
   media: Media;
   type: TVType | MovieType;
@@ -41,7 +43,7 @@ const BannerSection = ({ media, type }: Props) => {
         throw new Error("Can not get movies");
       }
       const { results } = res;
-      const rndInt = Math.floor(Math.random() * (results.length + 1));
+      const rndInt = getRandomInt(0, results.length - 1);
 
       return results[rndInt];
     },
