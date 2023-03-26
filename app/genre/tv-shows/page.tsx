@@ -20,9 +20,9 @@ export async function generateMetadata() {
 export default async function MoviesPage() {
   const tvShowsCarousel: TVShowsCarouselProp[] = [
     {
-      title: "Trending Today",
-      href: "/genre/tv-shows/trending",
-      type: "trending",
+      title: "New Releases",
+      href: "/genre/tv-shows/on_the_air",
+      type: "on_the_air",
     },
     {
       title: "Popular",
@@ -30,14 +30,14 @@ export default async function MoviesPage() {
       type: "popular",
     },
     {
+      title: "Trending Today",
+      href: "/genre/tv-shows/trending",
+      type: "trending",
+    },
+    {
       title: "Top Rated",
       href: "/genre/tv-shows/top_rated",
       type: "top_rated",
-    },
-    {
-      title: "New Releases",
-      href: "/genre/tv-shows/on_the_air",
-      type: "on_the_air",
     },
   ];
   return (

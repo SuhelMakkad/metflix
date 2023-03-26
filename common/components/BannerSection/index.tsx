@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useMemo } from "react";
 
-import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
 
 import { getMovies } from "@/tmdb/api/movie";
 import { getTVShows } from "@/tmdb/api/tv";
 import { getVideoUrl } from "@/tmdb/api/video";
 
 import type { Media } from "@/tmdb/types";
-import type { Movie, MovieType } from "@/tmdb/types/movie";
-import type { TVShow, TVType } from "@/tmdb/types/tv";
+import type { MovieType } from "@/tmdb/types/movie";
+import type { TVType } from "@/tmdb/types/tv";
 
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";
@@ -25,26 +25,27 @@ export type Props = {
 };
 
 const BannerSection = ({ media, type }: Props) => {
-  const [bannerItem, setBannerItem] = useState<Movie | TVShow>();
-
-  useEffect(() => {
-    const setMovies = async () => {
+  const {
+    isLoading,
+    error,
+    data: bannerItem,
+  } = useQuery({
+    queryKey: [media, type, "banner"],
+    queryFn: async () => {
       const res =
         media === "movie"
           ? await getMovies({ type: type as MovieType })
           : await getTVShows({ type: type as TVType });
 
       if (!res) {
-        throw Error("Can not get movies");
+        throw new Error("Can not get movies");
       }
       const { results } = res;
       const rndInt = Math.floor(Math.random() * (results.length + 1));
 
-      setBannerItem(results[rndInt]);
-    };
-
-    setMovies();
-  }, []);
+      return results[rndInt];
+    },
+  });
 
   const title = useMemo(
     () =>
@@ -58,7 +59,9 @@ const BannerSection = ({ media, type }: Props) => {
     [bannerItem]
   );
 
-  if (!bannerItem) return <LoadingBanner />;
+  if (isLoading) return <LoadingBanner />;
+
+  if (!bannerItem) return <span></span>;
 
   return (
     <section className="relative -mx-8 max-h-[85vh] overflow-hidden">
@@ -73,7 +76,7 @@ const BannerSection = ({ media, type }: Props) => {
             {title}
           </h1>
           <p className="drop-shadow-[0_25px_25px_rgb(0 0,0)] text-stone-50 md:text-lg md:drop-shadow-none lg:text-xl">
-            {bannerItem.overview.length > 150
+            {bannerItem.overview?.length > 150
               ? `${bannerItem.overview.slice(0, 150)}...`
               : bannerItem.overview}
           </p>

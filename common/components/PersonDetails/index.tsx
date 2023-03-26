@@ -14,7 +14,7 @@ const PersonDetails = ({ person }: Props) => {
         height={750}
         width={500}
         alt={`Profile Image of ${person.name}`}
-        className="mx-auto h-max w-60"
+        className="mx-auto h-max w-60 md:mx-0"
       />
 
       <div>

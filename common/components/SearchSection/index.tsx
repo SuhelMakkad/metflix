@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 
 import { useSearchParams } from "next/navigation";
 
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import ImageList from "@/components/List";
@@ -17,14 +18,10 @@ import type { MultiSearchRes } from "@/tmdb/types/search";
 export type Item = MultiSearchRes["results"][number];
 
 const SearchSection = () => {
-  const [items, setItems] = useState<Item[]>([]);
-  const [currPageCount, setCurrPageCount] = useState(0);
-  const [totalPageCount, setTotalPageCount] = useState(0);
-
-  const [loaderDivRef, inView, entry] = useInView({});
-
   const searchParams = useSearchParams();
   const query = searchParams.get("q") ?? "";
+
+  const [loaderDivRef, inView, entry] = useInView({});
 
   const getDetails = useCallback((item: Item) => {
     const { media_type: mediaType } = item;
@@ -84,54 +81,32 @@ const SearchSection = () => {
     return details;
   }, []);
 
-  const fetchMovies = useCallback(
-    async (signal: AbortSignal, unmounted: boolean) => {
-      const res = await searchAll({
+  const {
+    data: itemPages,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetched,
+  } = useInfiniteQuery({
+    queryKey: [query],
+    queryFn: ({ pageParam = 1 }) =>
+      searchAll({
         query,
-        page: currPageCount + 1,
-        signal: signal,
-      });
-      if (!res || unmounted) return;
+        page: pageParam,
+      }),
+    getNextPageParam: (lastPage, page) => {
+      const currPageCount = page.length;
+      const totalPages = lastPage?.total_pages ?? 0;
 
-      const { results, total_pages } = res;
-
-      setItems((prev) => [...prev, ...results]);
-      setCurrPageCount((prev) => prev + 1);
-      setTotalPageCount(total_pages);
+      return currPageCount >= totalPages ? undefined : currPageCount + 1;
     },
-    [query, currPageCount]
-  );
+  });
 
   useEffect(() => {
-    if (currPageCount !== 0 && currPageCount >= totalPageCount) return;
-    const controller = new AbortController();
-    let unmounted = false;
-
-    fetchMovies(controller.signal, unmounted);
-
-    return () => {
-      unmounted = true;
-      controller.abort();
-    };
+    fetchNextPage();
   }, [inView]);
 
-  useEffect(() => {
-    setItems([]);
-    setCurrPageCount(0);
-    setTotalPageCount(0);
-
-    const controller = new AbortController();
-    let unmounted = false;
-
-    fetchMovies(controller.signal, unmounted);
-
-    return () => {
-      unmounted = true;
-      controller.abort();
-    };
-  }, [query]);
-
-  if (currPageCount > 0 && items.length === 0) {
+  if (isFetched && !itemPages?.pages.length) {
     return (
       <div className="grid min-h-[70vh] place-content-center text-center text-4xl">
         No Results Found for
@@ -144,34 +119,37 @@ const SearchSection = () => {
     <section>
       <SectionHeading>Search Results for: {query}</SectionHeading>
 
-      {items.length ? (
+      {!isLoading && itemPages?.pages.length ? (
         <ImageList
-          items={items.map((item) => {
-            const details = getDetails(item);
-            return {
-              key: details.key,
-              postImg: details.postImg
-                ? `https://image.tmdb.org/t/p/w500${details.postImg}`
-                : "",
-              title: details.title,
-              avgRatings: details.avgRatings,
-              href: details.href,
-              details: details.details,
-              header: details.header,
-              totalRatings: details.totalRatings,
-            };
-          })}
+          items={itemPages.pages
+            .map((items) =>
+              (items?.results ?? []).map((item) => {
+                const details = getDetails(item);
+                return {
+                  key: details.key,
+                  postImg: details.postImg
+                    ? `https://image.tmdb.org/t/p/w500${details.postImg}`
+                    : "",
+                  title: details.title,
+                  avgRatings: details.avgRatings,
+                  href: details.href,
+                  details: details.details,
+                  header: details.header,
+                  totalRatings: details.totalRatings,
+                };
+              })
+            )
+            .reduce((p, c) => p.concat(c), [])}
         />
       ) : (
         <LoadingImages />
       )}
 
-      {!!items.length &&
-        !(currPageCount !== 0 && currPageCount >= totalPageCount) && (
-          <div ref={loaderDivRef} className="mt-8 flex justify-center">
-            <LoadingSpinner />
-          </div>
-        )}
+      {hasNextPage && (
+        <div ref={loaderDivRef} className="mt-8 flex justify-center">
+          <LoadingSpinner />
+        </div>
+      )}
     </section>
   );
 };
