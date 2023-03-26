@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 
+import NextTopLoader from "nextjs-toploader";
 import { useInView } from "react-intersection-observer";
 
 import NavLinks from "./NavLinks";
@@ -12,6 +13,8 @@ const Navbar = () => {
 
   return (
     <div ref={loaderDivRef}>
+      <NextTopLoader color="rgb(220,38,38)" showSpinner={false} />
+
       <nav
         className={`
           tb-overlay fixed top-0 left-0 right-0
