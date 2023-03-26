@@ -28,9 +28,9 @@ const DetailsBanner = ({ item, media }: Props) => {
   if (!item) return <LoadingBanner />;
 
   return (
-    <section className="relative -mx-8 max-h-[85vh] overflow-hidden">
+    <section className="relative -mx-3 max-h-[85vh] overflow-hidden md:-mx-4 lg:-mx-6 2xl:-mx-8">
       <div className="absolute inset-0 px-8">
-        <header className="absolute bottom-1/3 z-10 max-w-2xl">
+        <header className="absolute left-0 right-0 bottom-1/3 z-10 w-[42rem] max-w-full px-8">
           <h2 className="mb-2 text-3xl font-bold drop-shadow-[0_25px_25px_rgb(0,0,0)] md:text-4xl md:drop-shadow-none lg:text-5xl xl:text-6xl">
             {title}
           </h2>
