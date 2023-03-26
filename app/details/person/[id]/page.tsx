@@ -61,7 +61,7 @@ export default async function PersonsPage({ params }: Props) {
     <div className="mt-20">
       <PersonDetails person={person} />
 
-      <ul className="mt-10 flex flex-col gap-[3vw]">
+      <ul className="mt-10 flex flex-col gap-5 lg:gap-7">
         <li>
           {!!profiles.length && (
             <section>
