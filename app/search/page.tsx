@@ -1,3 +1,4 @@
+import QueryProvider from "@/components/QueryProvider";
 import SearchSection from "@/components/SearchSection";
 
 export async function generateMetadata() {
@@ -18,7 +19,9 @@ export async function generateMetadata() {
 export default async function SearchPage() {
   return (
     <div className="mt-20">
-      <SearchSection />
+      <QueryProvider>
+        <SearchSection />
+      </QueryProvider>
     </div>
   );
 }

@@ -53,8 +53,8 @@ const MoviesList = ({ title, type }: Props) => {
       {moviePages?.pages.length ? (
         <ImageList
           items={(moviePages?.pages ?? [])
-            .map((movies, index) => {
-              const items = (movies?.results ?? []).map((movie) => ({
+            .map((movies, index) =>
+              (movies?.results ?? []).map((movie) => ({
                 key: movie.id,
                 postImg: movie.poster_path
                   ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
@@ -63,10 +63,8 @@ const MoviesList = ({ title, type }: Props) => {
                 avgRatings: movie.vote_average,
                 totalRatings: movie.vote_count,
                 href: `/details/movie/${movie.id}`,
-              }));
-
-              return items;
-            })
+              }))
+            )
             .reduce((p, c) => p.concat(c), [])}
         />
       ) : (

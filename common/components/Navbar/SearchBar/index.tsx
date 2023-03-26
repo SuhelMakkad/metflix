@@ -37,11 +37,11 @@ const SearchBar = () => {
       <label
         htmlFor="main-search"
         className={`
-        group/search-wrapper bottom-0 
-        flex items-center border-red-600
-        py-1 focus-within:gap-2 focus-within:border-b ${
-          segment === "search" ? "gap-2 border-b" : ""
-        }
+          group/search-wrapper bottom-0 flex
+          cursor-pointer items-center border-red-600
+          py-1 focus-within:gap-2 focus-within:border-b ${
+            segment === "search" ? "gap-2 border-b" : ""
+          }
       `}
       >
         <BiSearch className="text-2xl" />

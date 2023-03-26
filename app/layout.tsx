@@ -25,9 +25,9 @@ export default function RootLayout({
       <body
         className={`bg-black text-slate-100 antialiased ${openSans.className} overflow-x-hidden`}
       >
-        <QueryProvider>
-          <Navbar />
+        <Navbar />
 
+        <QueryProvider>
           <main className="px-3 md:px-4 lg:px-6 2xl:px-8">{children}</main>
         </QueryProvider>
 
