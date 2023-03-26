@@ -1,3 +1,4 @@
+import ImageWithFallback from "@/components/ImageWithFallback";
 import Image from "next/image";
 
 export type Props = {
@@ -9,7 +10,7 @@ export type Props = {
 const BannerImage = ({ backdropUrl, posterUrl, alt }: Props) => {
   return (
     <>
-      <Image
+      <ImageWithFallback
         src={backdropUrl}
         alt={alt}
         className="-z-50 hidden min-h-[30rem] w-full object-cover md:block"
@@ -18,7 +19,7 @@ const BannerImage = ({ backdropUrl, posterUrl, alt }: Props) => {
         property={"true"}
       />
 
-      <Image
+      <ImageWithFallback
         src={posterUrl}
         alt={alt}
         className="-z-50 block min-h-[30rem] w-full object-cover md:hidden"
