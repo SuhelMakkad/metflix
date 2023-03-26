@@ -57,7 +57,7 @@ export default async function MoviesPage({ params }: Props) {
 
   return (
     <>
-      <DetailsBanner item={movie} media={"movie"} />
+      <DetailsBanner bannerItem={movie} media={"movie"} />
 
       <ul className="flex flex-col gap-5 lg:gap-7">
         {!!castList.length && (

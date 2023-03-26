@@ -1,5 +1,4 @@
 import ImageWithFallback from "@/components/ImageWithFallback";
-import Image from "next/image";
 
 export type Props = {
   backdropUrl: string;
