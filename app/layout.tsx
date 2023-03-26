@@ -1,4 +1,5 @@
 import { Open_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 import QueryProvider from "@/components/QueryProvider";
 import FaviconLinks from "@/components/FaviconLinks";
@@ -38,6 +39,7 @@ export default function RootLayout({
         </QueryProvider>
 
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
