@@ -9,7 +9,9 @@ import NavLinks from "./NavLinks";
 import SearchBar from "./SearchBar";
 
 const Navbar = () => {
-  const [loaderDivRef, inView, entry] = useInView({});
+  const [loaderDivRef, inView, entry] = useInView({
+    initialInView: true,
+  });
 
   return (
     <div ref={loaderDivRef}>
