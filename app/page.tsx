@@ -3,10 +3,10 @@ import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";
 import type { Props as TVShowsCarouselProp } from "@/components/ImageCarousel/TVShowsCarousel";
-import { getMovies } from "@/tmdb/lib/movie";
+import { getMovies, getMoviesList } from "@/tmdb/lib/movie";
 import { Movies, MovieType } from "@/tmdb/types/movie";
 import { TVShows, TVType } from "@/tmdb/types/tv";
-import { getTVShows } from "@/tmdb/lib/tv";
+import { getTVShows, getTVShowsList } from "@/tmdb/lib/tv";
 
 export async function generateMetadata() {
   const title = `Home - Metflix`;
@@ -24,35 +24,8 @@ export async function generateMetadata() {
 }
 
 export default async function MoviesPage() {
-  const moviesToGet = ["trending", "top_rated"] satisfies MovieType[];
-  const tvShowsToGet = ["trending", "top_rated"] satisfies TVType[];
-
-  const movies = {} as Record<(typeof moviesToGet)[number], Movies>;
-  const tvShows = {} as Record<(typeof tvShowsToGet)[number], TVShows>;
-
-  const moviePromises = moviesToGet.map((movieType) => getMovies(movieType));
-  const tvShowsPromises = tvShowsToGet.map((movieType) =>
-    getTVShows(movieType)
-  );
-
-  const moviesRes = await Promise.allSettled(moviePromises);
-  const tvShowsRes = await Promise.allSettled(tvShowsPromises);
-
-  const moviesList = moviesRes.map(
-    (movieRes) =>
-      (movieRes.status === "fulfilled" && movieRes.value?.results) || []
-  );
-  const tvShowsList = tvShowsRes.map(
-    (movieRes) =>
-      (movieRes.status === "fulfilled" && movieRes.value?.results) || []
-  );
-
-  moviesToGet.forEach((movieType, index) => {
-    movies[movieType] = moviesList[index];
-  });
-  tvShowsToGet.forEach((movieType, index) => {
-    tvShows[movieType] = tvShowsList[index];
-  });
+  const movies = await getMoviesList(["trending", "top_rated"]);
+  const tvShows = await getTVShowsList(["trending", "top_rated"]);
 
   const moviesCarousel: MoviesCarouselProp[] = [
     {

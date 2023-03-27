@@ -1,9 +1,9 @@
+import { getMoviesList } from "@/tmdb/lib/movie";
+
 import BannerSection from "@/components/BannerSection";
 import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
 
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
-import { getMovies } from "@/tmdb/lib/movie";
-import { Movie, Movies, MovieType } from "@/tmdb/types/movie";
 
 export async function generateMetadata() {
   const title = `Movies - Metflix`;
@@ -21,25 +21,13 @@ export async function generateMetadata() {
 }
 
 export default async function MoviesPage() {
-  const moviesToGet = [
+  const movies = await getMoviesList([
     "now_playing",
     "upcoming",
     "popular",
     "trending",
     "top_rated",
-  ] satisfies MovieType[];
-  const movies = {} as Record<(typeof moviesToGet)[number], Movies>;
-
-  const moviePromises = moviesToGet.map((movieType) => getMovies(movieType));
-  const moviesRes = await Promise.allSettled(moviePromises);
-  const moviesList = moviesRes.map(
-    (movieRes) =>
-      (movieRes.status === "fulfilled" && movieRes.value?.results) || []
-  );
-
-  moviesToGet.forEach((movieType, index) => {
-    movies[movieType] = moviesList[index];
-  });
+  ]);
 
   const moviesCarousel: MoviesCarouselProp[] = [
     {

@@ -1,7 +1,7 @@
 import BannerSection from "@/components/BannerSection";
 import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";
 import type { Props as TVShowsCarouselProp } from "@/components/ImageCarousel/TVShowsCarousel";
-import { getTVShows } from "@/tmdb/lib/tv";
+import { getTVShows, getTVShowsList } from "@/tmdb/lib/tv";
 import { TVShows, TVType } from "@/tmdb/types/tv";
 
 export async function generateMetadata() {
@@ -20,26 +20,12 @@ export async function generateMetadata() {
 }
 
 export default async function TVShowsPage() {
-  const tvShowsToGet = [
+  const tvShows = await getTVShowsList([
     "on_the_air",
     "popular",
     "trending",
     "top_rated",
-  ] satisfies TVType[];
-  const tvShows = {} as Record<(typeof tvShowsToGet)[number], TVShows>;
-
-  const tvShowPromises = tvShowsToGet.map((tvShowType) =>
-    getTVShows(tvShowType)
-  );
-  const tvShowsRes = await Promise.allSettled(tvShowPromises);
-  const tvShowsList = tvShowsRes.map(
-    (tvShowRes) =>
-      (tvShowRes.status === "fulfilled" && tvShowRes.value?.results) || []
-  );
-
-  tvShowsToGet.forEach((movieType, index) => {
-    tvShows[movieType] = tvShowsList[index];
-  });
+  ]);
 
   const tvShowsCarousel: TVShowsCarouselProp[] = [
     {

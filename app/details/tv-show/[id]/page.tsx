@@ -1,4 +1,4 @@
-import { getTVShow } from "@/tmdb/lib/tv";
+import { getTVShow, getTVShowsList } from "@/tmdb/lib/tv";
 import { getCredits } from "@/tmdb/lib";
 
 import DetailsBanner from "@/components/DetailsBanner";
@@ -44,14 +44,16 @@ export default async function MoviesPage({ params }: Props) {
   const credits = await getCredits(id, "movie");
   const castList = credits?.cast || [];
 
+  const tvShows = await getTVShowsList(["recommendations", "similar"], id);
+
   const tsShowsCarousel: TVShowsCarouselProp[] = [
     {
       title: "Similar TV Shows",
-      type: "similar",
+      tvShows: tvShows.similar,
     },
     {
       title: "Recommended TV Shows",
-      type: "recommendations",
+      tvShows: tvShows.recommendations,
     },
   ];
 
@@ -115,10 +117,9 @@ export default async function MoviesPage({ params }: Props) {
           <li key={index}>
             <TVShowsCarousel
               key={index}
-              id={id.toString()}
               title={tvShowCarousel.title}
               href={tvShowCarousel.href}
-              type={tvShowCarousel.type}
+              tvShows={tvShowCarousel.tvShows}
             />
           </li>
         ))}
