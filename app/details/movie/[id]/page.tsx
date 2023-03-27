@@ -1,5 +1,5 @@
 import { getCredits } from "@/tmdb/lib";
-import { getMovie } from "@/tmdb/lib/movie";
+import { getMovie, getMoviesList } from "@/tmdb/lib/movie";
 
 import DetailsBanner from "@/components/DetailsBanner";
 import SectionHeading from "@/components/SectionHeading";
@@ -44,14 +44,16 @@ export default async function MoviesPage({ params }: Props) {
   const credits = await getCredits(id, "movie");
   const castList = credits?.cast || [];
 
+  const movies = await getMoviesList(["recommendations", "similar"], id);
+
   const moviesCarousel: MoviesCarouselProp[] = [
     {
       title: "Similar Movies",
-      type: "similar",
+      movies: movies.similar,
     },
     {
       title: "Recommended Movies",
-      type: "recommendations",
+      movies: movies.recommendations,
     },
   ];
 
@@ -90,10 +92,9 @@ export default async function MoviesPage({ params }: Props) {
           <li key={index}>
             <MoviesCarousel
               key={index}
-              id={id.toString()}
               title={movieCarousel.title}
               href={movieCarousel.href}
-              type={movieCarousel.type}
+              movies={movieCarousel.movies}
             />
           </li>
         ))}

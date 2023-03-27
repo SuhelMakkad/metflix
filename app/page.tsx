@@ -3,6 +3,10 @@ import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";
 import type { Props as TVShowsCarouselProp } from "@/components/ImageCarousel/TVShowsCarousel";
+import { getMovies, getMoviesList } from "@/tmdb/lib/movie";
+import { Movies, MovieType } from "@/tmdb/types/movie";
+import { TVShows, TVType } from "@/tmdb/types/tv";
+import { getTVShows, getTVShowsList } from "@/tmdb/lib/tv";
 
 export async function generateMetadata() {
   const title = `Home - Metflix`;
@@ -20,16 +24,19 @@ export async function generateMetadata() {
 }
 
 export default async function MoviesPage() {
+  const movies = await getMoviesList(["trending", "top_rated"]);
+  const tvShows = await getTVShowsList(["trending", "top_rated"]);
+
   const moviesCarousel: MoviesCarouselProp[] = [
     {
       title: "Trending Movies",
       href: "/genre/movies/trending",
-      type: "trending",
+      movies: movies.trending,
     },
     {
       title: "Top Rated Movies",
       href: "/genre/movies/top_rated",
-      type: "top_rated",
+      movies: movies.top_rated,
     },
   ];
 
@@ -37,17 +44,18 @@ export default async function MoviesPage() {
     {
       title: "Trending TV Shows",
       href: "/genre/tv-shows/trending",
-      type: "trending",
+      tvShows: tvShows.trending,
     },
     {
       title: "Top Rated TV Shows",
       href: "/genre/tv-shows/top_rated",
-      type: "top_rated",
+      tvShows: tvShows.top_rated,
     },
   ];
+
   return (
     <>
-      <BannerSection media="movie" type="trending" />
+      <BannerSection items={movies.trending} />
 
       <ul className="flex flex-col gap-5 lg:gap-7">
         {moviesCarousel.map((movieCarousel, index) => (
@@ -56,17 +64,17 @@ export default async function MoviesPage() {
               key={index}
               title={movieCarousel.title}
               href={movieCarousel.href}
-              type={movieCarousel.type}
+              movies={movieCarousel.movies}
             />
           </li>
         ))}
 
-        {tvShowsCarousel.map((movieCarousel, index) => (
+        {tvShowsCarousel.map((tvShowCarousel, index) => (
           <li key={index}>
             <TVShowsCarousel
-              title={movieCarousel.title}
-              href={movieCarousel.href}
-              type={movieCarousel.type}
+              title={tvShowCarousel.title}
+              href={tvShowCarousel.href}
+              tvShows={tvShowCarousel.tvShows}
             />
           </li>
         ))}
@@ -74,3 +82,5 @@ export default async function MoviesPage() {
     </>
   );
 }
+
+export const revalidate = 86400;
