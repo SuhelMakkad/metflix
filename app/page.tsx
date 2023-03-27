@@ -3,6 +3,7 @@ import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";
 import type { Props as TVShowsCarouselProp } from "@/components/ImageCarousel/TVShowsCarousel";
+import { getMovies } from "@/tmdb/lib/movie";
 
 export async function generateMetadata() {
   const title = `Home - Metflix`;
@@ -20,6 +21,8 @@ export async function generateMetadata() {
 }
 
 export default async function MoviesPage() {
+  const trendingMovies = (await getMovies("trending"))?.results ?? [];
+
   const moviesCarousel: MoviesCarouselProp[] = [
     {
       title: "Trending Movies",
@@ -47,7 +50,7 @@ export default async function MoviesPage() {
   ];
   return (
     <>
-      <BannerSection media="movie" type="trending" />
+      <BannerSection items={trendingMovies} />
 
       <ul className="flex flex-col gap-5 lg:gap-7">
         {moviesCarousel.map((movieCarousel, index) => (
@@ -74,3 +77,5 @@ export default async function MoviesPage() {
     </>
   );
 }
+
+export const revalidate = 86400;

@@ -9,8 +9,8 @@ import { getTVShows } from "@/tmdb/api/tv";
 import { getVideoUrl } from "@/tmdb/api/video";
 
 import type { Media } from "@/tmdb/types";
-import type { MovieType } from "@/tmdb/types/movie";
-import type { TVType } from "@/tmdb/types/tv";
+import type { Movie, Movies, MovieType } from "@/tmdb/types/movie";
+import type { TVShow, TVShows, TVType } from "@/tmdb/types/tv";
 
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";
@@ -22,32 +22,11 @@ import { getRandomInt } from "@/utils";
 import BannerWrapper from "./Wrapper";
 
 export type Props = {
-  media: Media;
-  type: TVType | MovieType;
+  items: TVShows | Movies;
 };
 
-const BannerSection = ({ media, type }: Props) => {
-  const {
-    isLoading,
-    error,
-    data: bannerItem,
-  } = useQuery({
-    queryKey: [media, type, "banner"],
-    queryFn: async () => {
-      const res =
-        media === "movie"
-          ? await getMovies({ type: type as MovieType })
-          : await getTVShows({ type: type as TVType });
-
-      if (!res) {
-        throw new Error("Can not get movies");
-      }
-      const { results } = res;
-      const rndInt = getRandomInt(0, results.length - 1);
-
-      return results[rndInt];
-    },
-  });
+const BannerSection = ({ items }: Props) => {
+  const bannerItem = items[0];
 
   const title = useMemo(
     () =>
@@ -61,7 +40,7 @@ const BannerSection = ({ media, type }: Props) => {
     [bannerItem]
   );
 
-  if (isLoading) return <LoadingBanner />;
+  const media = "title" in bannerItem ? "movie" : "tv";
 
   if (!bannerItem) return <span></span>;
 
