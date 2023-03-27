@@ -106,7 +106,12 @@ const SearchSection = () => {
     fetchNextPage();
   }, [inView]);
 
-  if (isFetched && !itemPages?.pages.length) {
+  if (
+    isFetched &&
+    (!itemPages ||
+      !itemPages.pages.length ||
+      !itemPages.pages[0]?.results.length)
+  ) {
     return (
       <div className="grid min-h-[70vh] place-content-center text-center text-4xl">
         No Results Found for
