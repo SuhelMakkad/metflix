@@ -3,6 +3,7 @@ import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
 
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 import { getMovies } from "@/tmdb/lib/movie";
+import { Movie, Movies, MovieType } from "@/tmdb/types/movie";
 
 export async function generateMetadata() {
   const title = `Movies - Metflix`;
@@ -20,38 +21,56 @@ export async function generateMetadata() {
 }
 
 export default async function MoviesPage() {
-  const popularMovies = (await getMovies("popular"))?.results ?? [];
+  const moviesToGet = [
+    "now_playing",
+    "upcoming",
+    "popular",
+    "trending",
+    "top_rated",
+  ] satisfies MovieType[];
+  const movies = {} as Record<(typeof moviesToGet)[number], Movies>;
+
+  const moviePromises = moviesToGet.map((movieType) => getMovies(movieType));
+  const moviesRes = await Promise.allSettled(moviePromises);
+  const moviesList = moviesRes.map(
+    (movieRes) =>
+      (movieRes.status === "fulfilled" && movieRes.value?.results) || []
+  );
+
+  moviesToGet.forEach((movieType, index) => {
+    movies[movieType] = moviesList[index];
+  });
 
   const moviesCarousel: MoviesCarouselProp[] = [
     {
       title: "Now Playing",
       href: "/genre/movies/now_playing",
-      type: "now_playing",
+      movies: movies.now_playing,
     },
     {
       title: "Upcoming",
       href: "/genre/movies/upcoming",
-      type: "upcoming",
+      movies: movies.upcoming,
     },
     {
       title: "Popular",
       href: "/genre/movies/popular",
-      type: "popular",
+      movies: movies.popular,
     },
     {
       title: "Trending Today",
       href: "/genre/movies/trending",
-      type: "trending",
+      movies: movies.trending,
     },
     {
       title: "Top Rated",
       href: "/genre/movies/top_rated",
-      type: "top_rated",
+      movies: movies.top_rated,
     },
   ];
   return (
     <>
-      <BannerSection items={popularMovies} />
+      <BannerSection items={movies.popular} />
 
       <ul className="flex flex-col gap-5 lg:gap-7">
         {moviesCarousel.map((movieCarousel, index) => (
@@ -60,7 +79,7 @@ export default async function MoviesPage() {
               key={index}
               title={movieCarousel.title}
               href={movieCarousel.href}
-              type={movieCarousel.type}
+              movies={movieCarousel.movies}
             />
           </li>
         ))}

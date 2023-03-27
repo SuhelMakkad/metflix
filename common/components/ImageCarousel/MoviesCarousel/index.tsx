@@ -1,33 +1,18 @@
 "use client";
 
-import { getMovies } from "@/tmdb/api/movie";
-
 import SectionHeading from "@/components/SectionHeading";
 import ImageCarousel from "@/components/Carousel";
 
-import type { DetailType } from "@/tmdb/types";
-import type { MovieType } from "@/tmdb/types/movie";
-import { useQuery } from "@tanstack/react-query";
+import type { Movies } from "@/tmdb/types/movie";
 
 export type Props = {
   title: string;
-  id?: string;
   href?: string;
-  type: MovieType | DetailType;
+  movies: Movies;
 };
 
-const MoviesCarousel = ({ title, href, type, id }: Props) => {
-  const { data: movies, isLoading } = useQuery({
-    queryKey: ["movies", type, id],
-    queryFn: async () => {
-      const res = await getMovies({ type, id });
-      if (!res) return null;
-
-      return res.results;
-    },
-  });
-
-  if (!isLoading && (!movies || !movies.length)) return <span></span>;
+const MoviesCarousel = ({ title, href, movies }: Props) => {
+  if (!movies.length) return <span></span>;
 
   return (
     <section>
