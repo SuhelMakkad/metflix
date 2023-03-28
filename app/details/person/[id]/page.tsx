@@ -10,6 +10,7 @@ import PersonDetails from "@/components/PersonDetails";
 import SectionHeading from "@/components/SectionHeading";
 
 import { capitalizeSentence } from "@/utils";
+import { generateSiteMetadata } from "@/utils/siteMetadata";
 
 export type Props = {
   params: {
@@ -24,24 +25,20 @@ export async function generateMetadata({ params }: Props) {
 
   const typeName = capitalizeSentence(person?.name ?? "");
   const title = `${typeName} - Metflix`;
-
-  return {
-    title,
-    openGraph: {
-      title,
-      description: person?.biography.slice(0, 150),
-      siteName: "Metflix",
-      locale: "en-US",
-      type: "website",
-      images: [
-        {
-          url: `https://image.tmdb.org/t/p/w500${person?.profile_path}`,
-          width: 500,
-          height: 750,
-        },
-      ],
+  const description = person?.biography.slice(0, 150);
+  const images = [
+    {
+      url: `https://image.tmdb.org/t/p/w500${person?.profile_path}`,
+      width: 500,
+      height: 750,
     },
-  };
+  ];
+
+  return generateSiteMetadata({
+    title,
+    description,
+    images
+  });
 }
 
 export default async function PersonsPage({ params }: Props) {

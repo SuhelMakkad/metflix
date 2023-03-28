@@ -8,6 +8,7 @@ import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 
 import { capitalizeSentence } from "@/utils";
+import { generateSiteMetadata } from "@/utils/siteMetadata";
 
 export type Props = {
   params: {
@@ -22,29 +23,25 @@ export async function generateMetadata({ params }: Props) {
 
   const typeName = capitalizeSentence(movie?.title ?? "");
   const title = `${typeName} - Metflix`;
-
-  return {
-    title,
-    openGraph: {
-      title,
-      description: movie?.overview.slice(0, 150),
-      siteName: "Metflix",
-      locale: "en-US",
-      type: "website",
-      images: [
-        {
-          url: `https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`,
-          width: 500,
-          height: 281,
-        },
-        {
-          url: `https://image.tmdb.org/t/p/w500${movie?.poster_path}`,
-          width: 500,
-          height: 750,
-        },
-      ],
+  const description = movie?.overview.slice(0, 150);
+  const images = [
+    {
+      url: `https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`,
+      width: 500,
+      height: 281,
     },
-  };
+    {
+      url: `https://image.tmdb.org/t/p/w500${movie?.poster_path}`,
+      width: 500,
+      height: 750,
+    },
+  ];
+
+  return generateSiteMetadata({
+    title,
+    description,
+    images,
+  });
 }
 
 export default async function MoviesPage({ params }: Props) {
