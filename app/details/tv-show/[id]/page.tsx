@@ -31,6 +31,18 @@ export async function generateMetadata({ params }: Props) {
       siteName: "Metflix",
       locale: "en-US",
       type: "website",
+      images: [
+        {
+          url: `https://image.tmdb.org/t/p/w500${tvShow?.backdrop_path}`,
+          width: 500,
+          height: 281,
+        },
+        {
+          url: `https://image.tmdb.org/t/p/w500${tvShow?.poster_path}`,
+          width: 500,
+          height: 750,
+        },
+      ],
     },
   };
 }

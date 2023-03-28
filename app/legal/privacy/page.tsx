@@ -1,7 +1,9 @@
 import Link from "next/link";
 
-import "@/css/legal.scss";
 import PrintBtn from "@/components/Button/PrintBtn";
+import { email } from "@/utils/me";
+
+import "@/css/legal.scss";
 
 export async function generateMetadata() {
   const title = `Privacy Policy - Metflix`;
@@ -525,8 +527,8 @@ export default function PrivacyPage() {
       <ul>
         <li>
           By email:{" "}
-          <Link href={"mailto:makadsuhel11@gmail.com"} target="_blank">
-            makadsuhel11@gmail.com
+          <Link href={`mailto:${email}`} target="_blank">
+            {email}
           </Link>
         </li>
       </ul>
