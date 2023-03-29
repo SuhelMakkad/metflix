@@ -1,24 +1,14 @@
 "use client";
 
-import { useMemo } from "react";
-
-import { useQuery } from "@tanstack/react-query";
-
-import { getMovies } from "@/tmdb/api/movie";
-import { getTVShows } from "@/tmdb/api/tv";
 import { getVideoUrl } from "@/tmdb/api/video";
 
-import type { Media } from "@/tmdb/types";
-import type { Movie, Movies, MovieType } from "@/tmdb/types/movie";
-import type { TVShow, TVShows, TVType } from "@/tmdb/types/tv";
+import type { Movies } from "@/tmdb/types/movie";
+import type { TVShows } from "@/tmdb/types/tv";
 
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
-import LoadingBanner from "./Loading";
 import Button from "../Button";
-
-import { getRandomInt } from "@/utils";
 import BannerWrapper from "./Wrapper";
 
 export type Props = {
@@ -28,17 +18,13 @@ export type Props = {
 const BannerSection = ({ items }: Props) => {
   const bannerItem = items[0];
 
-  const title = useMemo(
-    () =>
-      bannerItem
-        ? "title" in bannerItem
-          ? bannerItem.title ?? bannerItem.original_title
-          : "name" in bannerItem
-          ? bannerItem.name ?? bannerItem.original_name
-          : ""
-        : "",
-    [bannerItem]
-  );
+  const title = bannerItem
+    ? "title" in bannerItem
+      ? bannerItem.title ?? bannerItem.original_title
+      : "name" in bannerItem
+      ? bannerItem.name ?? bannerItem.original_name
+      : ""
+    : "";
 
   const media = "title" in bannerItem ? "movie" : "tv";
 
