@@ -38,11 +38,11 @@ export const getTVShow = async (id: string) => {
   return res.data as TVShowDetails;
 };
 
-export const getTVShowsList = async (
-  tvShowsToGet: TVType[] | DetailType[],
+export const getTVShowsList = async  <T extends (TVType | DetailType)[]>(
+  tvShowsToGet:  T,
   id?: string
 ) => {
-  const tvShows = {} as Record<(typeof tvShowsToGet)[number], TVShows>;
+  const tvShows = <Record<T[number], TVShows>>{};
 
   const tvShowPromises = tvShowsToGet.map((tvShowType) =>
     getTVShows(tvShowType, id)
@@ -54,7 +54,7 @@ export const getTVShowsList = async (
   );
 
   tvShowsToGet.forEach((movieType, index) => {
-    tvShows[movieType] = tvShowsList[index];
+    tvShows[movieType as T[number]] = tvShowsList[index];
   });
 
   return tvShows;

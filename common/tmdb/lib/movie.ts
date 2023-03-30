@@ -38,11 +38,12 @@ export const getMovie = async (id: string) => {
   return res.data as MovieDetails;
 };
 
-export const getMoviesList = async (
-  moviesToGet: MovieType[] | DetailType[],
+
+export const getMoviesList = async <T extends (MovieType | DetailType)[]>(
+  moviesToGet: T,
   id?: string
 ) => {
-  const movies = {} as Record<(typeof moviesToGet)[number], Movies>;
+  const movies = <Record<T[number], Movies>>{};
 
   const moviePromises = moviesToGet.map((movieType) =>
     getMovies(movieType, id)
@@ -54,7 +55,7 @@ export const getMoviesList = async (
   );
 
   moviesToGet.forEach((movieType, index) => {
-    movies[movieType] = moviesList[index];
+    movies[movieType as T[number]] = moviesList[index];
   });
 
   return movies;
