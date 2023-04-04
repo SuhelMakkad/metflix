@@ -11,3 +11,11 @@ export const capitalizeSentence = (sentence: string) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 };
+
+export const getIsoFormattedDate = (timestamp: number | string | Date) => {
+  const date = new Date(timestamp);
+
+  if (date.toString() === "Invalid Date") return timestamp;
+
+  return date.toISOString();
+};
