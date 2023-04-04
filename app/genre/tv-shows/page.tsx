@@ -29,8 +29,7 @@ export default async function TVShowsPage() {
     "top_rated",
   ]);
 
-  const bannerItem =
-    tvShows.popular[getRandomInt(0, tvShows.popular.length - 1)];
+  const bannerItem = tvShows.popular[0];
 
   const tvShowsCarousel: TVShowsCarouselProp[] = [
     {

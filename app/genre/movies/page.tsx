@@ -31,7 +31,7 @@ export default async function MoviesPage() {
     "top_rated",
   ]);
 
-  const bannerItem = movies.popular[getRandomInt(0, movies.popular.length - 1)];
+  const bannerItem = movies.popular[0];
 
   const moviesCarousel: MoviesCarouselProp[] = [
     {

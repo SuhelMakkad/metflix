@@ -29,8 +29,7 @@ export default async function MoviesPage() {
   const movies = await getMoviesList(["trending", "top_rated"]);
   const tvShows = await getTVShowsList(["trending", "top_rated"]);
 
-  const bannerItem =
-    movies.trending[getRandomInt(0, movies.trending.length - 1)];
+  const bannerItem = movies.trending[0];
 
   const moviesCarousel: MoviesCarouselProp[] = [
     {
