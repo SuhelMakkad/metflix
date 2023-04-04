@@ -5,6 +5,8 @@ import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
 
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 
+import { getRandomInt } from "@/utils";
+
 export async function generateMetadata() {
   const title = `Movies - Metflix`;
 
@@ -28,6 +30,8 @@ export default async function MoviesPage() {
     "trending",
     "top_rated",
   ]);
+
+  const bannerItem = movies.popular[getRandomInt(0, movies.popular.length - 1)];
 
   const moviesCarousel: MoviesCarouselProp[] = [
     {
@@ -58,7 +62,7 @@ export default async function MoviesPage() {
   ];
   return (
     <>
-      <BannerSection items={movies.popular} />
+      <BannerSection bannerItem={bannerItem} />
 
       <ul className="flex flex-col gap-5 lg:gap-7">
         {moviesCarousel.map((movieCarousel, index) => (

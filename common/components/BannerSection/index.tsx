@@ -2,8 +2,8 @@
 
 import { getVideoUrl } from "@/tmdb/api/video";
 
-import type { Movies } from "@/tmdb/types/movie";
-import type { TVShows } from "@/tmdb/types/tv";
+import type { Movie } from "@/tmdb/types/movie";
+import type { TVShow } from "@/tmdb/types/tv";
 
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";
@@ -11,15 +11,11 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import Button from "@/components/Button";
 import BannerWrapper from "./Wrapper";
 
-import { getRandomInt } from "@/utils";
-
 export type Props = {
-  items: TVShows | Movies;
+  bannerItem: TVShow | Movie;
 };
 
-const BannerSection = ({ items }: Props) => {
-  const bannerItem = items[getRandomInt(0, items.length - 1)];
-
+const BannerSection = ({ bannerItem }: Props) => {
   const title = bannerItem
     ? "title" in bannerItem
       ? bannerItem.title ?? bannerItem.original_title

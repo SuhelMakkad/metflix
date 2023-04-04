@@ -1,8 +1,10 @@
+import { getTVShowsList } from "@/tmdb/lib/tv";
+
 import BannerSection from "@/components/BannerSection";
 import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";
 import type { Props as TVShowsCarouselProp } from "@/components/ImageCarousel/TVShowsCarousel";
-import { getTVShows, getTVShowsList } from "@/tmdb/lib/tv";
-import { TVShows, TVType } from "@/tmdb/types/tv";
+
+import { getRandomInt } from "@/utils";
 
 export async function generateMetadata() {
   const title = `TV Show - Metflix`;
@@ -26,6 +28,9 @@ export default async function TVShowsPage() {
     "trending",
     "top_rated",
   ]);
+
+  const bannerItem =
+    tvShows.popular[getRandomInt(0, tvShows.popular.length - 1)];
 
   const tvShowsCarousel: TVShowsCarouselProp[] = [
     {
@@ -51,7 +56,7 @@ export default async function TVShowsPage() {
   ];
   return (
     <>
-      <BannerSection items={tvShows.popular} />
+      <BannerSection bannerItem={bannerItem} />
 
       <ul className="flex flex-col gap-5 lg:gap-7">
         {tvShowsCarousel.map((movieCarousel, index) => (
