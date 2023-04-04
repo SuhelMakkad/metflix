@@ -1,0 +1,37 @@
+#User-agent: *
+User-agent: Googlebot
+Disallow:
+
+User-agent: Googlebot-Mobile
+Disallow:
+
+User-Agent: Bingbot
+allow: /
+
+User-agent: Yahoo! Slurp
+allow: /
+
+User-agent: Slurp
+allow: /
+
+User-agent: MSNBot
+allow: /
+
+User-agent: Scrubby
+allow: /
+
+User-agent: Robozilla
+allow: /
+
+User-Agent: Facebot
+allow: /
+
+User-Agent: Yandex
+allow: /
+
+User-agent: Gigabot
+allow: /
+
+Disallow: /admin/*
+Disallow: /cgi-bin/
+Sitemap: https://met-flix.vercel.app/sitemap
