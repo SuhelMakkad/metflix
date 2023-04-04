@@ -8,15 +8,17 @@ import type { TVShows } from "@/tmdb/types/tv";
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
-import Button from "../Button";
+import Button from "@/components/Button";
 import BannerWrapper from "./Wrapper";
+
+import { getRandomInt } from "@/utils";
 
 export type Props = {
   items: TVShows | Movies;
 };
 
 const BannerSection = ({ items }: Props) => {
-  const bannerItem = items[0];
+  const bannerItem = items[getRandomInt(0, items.length - 1)];
 
   const title = bannerItem
     ? "title" in bannerItem

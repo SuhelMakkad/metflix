@@ -1,12 +1,12 @@
+import { getMoviesList } from "@/tmdb/lib/movie";
+import { getTVShowsList } from "@/tmdb/lib/tv";
+
 import BannerSection from "@/components/BannerSection";
 import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
-import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";
+
+import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 import type { Props as TVShowsCarouselProp } from "@/components/ImageCarousel/TVShowsCarousel";
-import { getMovies, getMoviesList } from "@/tmdb/lib/movie";
-import { Movies, MovieType } from "@/tmdb/types/movie";
-import { TVShows, TVType } from "@/tmdb/types/tv";
-import { getTVShows, getTVShowsList } from "@/tmdb/lib/tv";
 
 export async function generateMetadata() {
   const title = `Home - Metflix`;
