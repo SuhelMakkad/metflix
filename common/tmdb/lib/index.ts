@@ -15,7 +15,7 @@ export const axios = defaultAxios.create({
   },
 });
 
-export type ItemType = TVType | MovieType | DetailType;
+export type ItemType = TVType | MovieType | DetailType | "latest";
 
 /**
  * Possible URLs

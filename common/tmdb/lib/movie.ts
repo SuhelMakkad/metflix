@@ -28,6 +28,16 @@ export const getMovies = async (
   return res.data as MoviesRes;
 };
 
+export const getLatestMovie = async () => {
+  const mediaType = "movie";
+  const reqUrl = getTMDBUrl(mediaType, undefined, "latest");
+
+  const res = await axios(reqUrl).catch(console.error);
+  if (!res || !res.data) return;
+
+  return res.data as MovieDetails;
+};
+
 export const getMovie = async (id: string) => {
   const mediaType = "movie";
   const reqUrl = getTMDBUrl(mediaType, id);
@@ -37,7 +47,6 @@ export const getMovie = async (id: string) => {
 
   return res.data as MovieDetails;
 };
-
 
 export const getMoviesList = async <T extends (MovieType | DetailType)[]>(
   moviesToGet: T,
