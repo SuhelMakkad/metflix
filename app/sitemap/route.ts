@@ -5,11 +5,6 @@ export async function GET(request: Request) {
 
   const sitemaps = ["/sitemap/pages"];
 
-  // const propertiesCount = await getPropertiesCount();
-  // const propertiesSiteMapCount = Math.ceil(propertiesCount / propertiesPerSiteMap);
-  // const propertiesSitemaps = new Array(propertiesSiteMapCount)
-  //   .fill()
-  //   .map((_, index) => `/api/sitemaps/properties/${index + 1}/sitemap.xml`);
   const propertiesSitemaps: string[] = [];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
