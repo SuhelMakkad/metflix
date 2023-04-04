@@ -1,3 +1,5 @@
+export const BASE_URL = "https://met-flix.vercel.app";
+
 export const getRandomInt = (min: number, max: number) => {
   const minInt = Math.ceil(min);
   const maxInt = Math.floor(max);
@@ -10,12 +12,4 @@ export const capitalizeSentence = (sentence: string) => {
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
-};
-
-export const getIsoFormattedDate = (timestamp: number | string | Date) => {
-  const date = new Date(timestamp);
-
-  if (date.toString() === "Invalid Date") return timestamp;
-
-  return date.toISOString();
 };

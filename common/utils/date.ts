@@ -16,3 +16,11 @@ export const getFormattedDate = (
 
   return dateTimeFormat.format(str);
 };
+
+export const getIsoFormattedDate = (timestamp: number | string | Date) => {
+  const date = new Date(timestamp);
+
+  if (date.toString() === "Invalid Date") return timestamp;
+
+  return date.toISOString();
+};

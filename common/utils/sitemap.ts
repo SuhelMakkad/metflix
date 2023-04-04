@@ -1,4 +1,4 @@
-import { getIsoFormattedDate } from ".";
+import { getIsoFormattedDate } from "./date";
 
 export type PageType = { url: string; timestamp: string | number };
 

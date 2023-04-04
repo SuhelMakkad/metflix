@@ -4,6 +4,7 @@ import {
   getPersonImages,
 } from "@/tmdb/lib/person";
 
+import SchemaScripts from "@/components/SchemaScripts";
 import ImageCarousel from "@/components/Carousel";
 import ImageList from "@/components/List";
 import PersonDetails from "@/components/PersonDetails";
@@ -11,6 +12,7 @@ import SectionHeading from "@/components/SectionHeading";
 
 import { capitalizeSentence } from "@/utils";
 import { generateSiteMetadata } from "@/utils/siteMetadata";
+import { getPersonSchema } from "@/utils/seo/personSchema";
 
 export type Props = {
   params: {
@@ -37,7 +39,7 @@ export async function generateMetadata({ params }: Props) {
   return generateSiteMetadata({
     title,
     description,
-    images
+    images,
   });
 }
 
@@ -62,53 +64,73 @@ export default async function PersonsPage({ params }: Props) {
   const profiles = personImages?.profiles || [];
 
   return (
-    <div className="mt-20">
-      <PersonDetails person={person} />
+    <>
+      <SchemaScripts
+        schemas={[
+          {
+            id: "person-schema",
+            value: getPersonSchema({
+              name: person.name,
+              title: person.known_for_department,
+              imageUrl: `https://image.tmdb.org/t/p/w500${person.profile_path}`,
+              url: person.homepage,
+              gender: person.deathday,
+              birthDate: person.birthday,
+              birthPlace: person.place_of_birth,
+              deathDate: person.deathday,
+            }),
+          },
+        ]}
+      />
 
-      <ul className="mt-10 flex flex-col gap-5 lg:gap-7">
-        <li>
-          {!!profiles.length && (
-            <section>
-              <SectionHeading> More Images of {person.name} </SectionHeading>
+      <div className="mt-20">
+        <PersonDetails person={person} />
 
-              <ImageCarousel
-                items={profiles.map((profile, index) => ({
-                  id: index,
-                  totalRatings: profile.vote_count,
-                  avgRatings: profile.vote_average,
-                  postImg: profile.file_path
-                    ? `https://image.tmdb.org/t/p/w500${profile.file_path}`
-                    : "",
-                }))}
-              />
-            </section>
-          )}
-        </li>
+        <ul className="mt-10 flex flex-col gap-5 lg:gap-7">
+          <li>
+            {!!profiles.length && (
+              <section>
+                <SectionHeading> More Images of {person.name} </SectionHeading>
 
-        <li>
-          {!!castList.length && (
-            <section>
-              <SectionHeading> As Seen in </SectionHeading>
+                <ImageCarousel
+                  items={profiles.map((profile, index) => ({
+                    id: index,
+                    totalRatings: profile.vote_count,
+                    avgRatings: profile.vote_average,
+                    postImg: profile.file_path
+                      ? `https://image.tmdb.org/t/p/w500${profile.file_path}`
+                      : "",
+                  }))}
+                />
+              </section>
+            )}
+          </li>
 
-              <ImageList
-                items={castList.map((cast) => ({
-                  key: cast.id,
-                  postImg: cast.poster_path
-                    ? `https://image.tmdb.org/t/p/w500${cast.poster_path}`
-                    : "",
-                  title: cast.media_type === "movie" ? cast.title : cast.name,
-                  avgRatings: cast.vote_average,
-                  totalRatings: cast.vote_count,
-                  href: `/details/${
-                    cast.media_type === "movie" ? "movie" : "tv-show"
-                  }/${cast.id}`,
-                }))}
-              />
-            </section>
-          )}
-        </li>
-      </ul>
-    </div>
+          <li>
+            {!!castList.length && (
+              <section>
+                <SectionHeading> As Seen in </SectionHeading>
+
+                <ImageList
+                  items={castList.map((cast) => ({
+                    key: cast.id,
+                    postImg: cast.poster_path
+                      ? `https://image.tmdb.org/t/p/w500${cast.poster_path}`
+                      : "",
+                    title: cast.media_type === "movie" ? cast.title : cast.name,
+                    avgRatings: cast.vote_average,
+                    totalRatings: cast.vote_count,
+                    href: `/details/${
+                      cast.media_type === "movie" ? "movie" : "tv-show"
+                    }/${cast.id}`,
+                  }))}
+                />
+              </section>
+            )}
+          </li>
+        </ul>
+      </div>
+    </>
   );
 }
 
