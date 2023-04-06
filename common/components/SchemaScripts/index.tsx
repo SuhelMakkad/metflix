@@ -15,7 +15,7 @@ const SchemaScripts = ({ schemas }: Prop) => {
         <script
           id={id}
           key={id}
-          type="application/ld+json+text"
+          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(value) }}
         />
       ))}
