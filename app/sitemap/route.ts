@@ -3,7 +3,7 @@ export async function GET(request: Request) {
   const host = request.headers.get("host");
   const baseUrl = `${httpType}://${host}`;
 
-  const sitemaps = ["/sitemap/pages.xml"];
+  const sitemaps = ["/sitemap/pages"];
 
   const propertiesSitemaps: string[] = [];
 
