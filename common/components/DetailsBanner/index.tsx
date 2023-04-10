@@ -36,7 +36,7 @@ const DetailsBanner = ({ bannerItem, media }: Props) => {
       title={title}
     >
       <span>
-        {bannerItem.reduce((accu, curr, index) => `${accu}${index > 0 ? ", " : ""}${curr.name}`, "")}
+        {bannerItem.genres.reduce((accu, curr, index) => `${accu}${index > 0 ? ", " : ""}${curr.name}`, "")}
       </span>
 
       <p className="drop-shadow-[0_25px_25px_rgb(0 0,0)] mt-4 text-stone-50 md:text-lg md:drop-shadow-none lg:text-xl">
