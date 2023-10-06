@@ -24,9 +24,9 @@ const BannerSection = ({ bannerItem }: Props) => {
       : ""
     : "";
 
-  const media = "title" in bannerItem ? "movie" : "tv";
-
   if (!bannerItem) return <span></span>;
+
+  const media = "title" in bannerItem ? "movie" : "tv";
 
   return (
     <BannerWrapper
