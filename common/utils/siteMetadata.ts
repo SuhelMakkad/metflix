@@ -1,11 +1,12 @@
 import { twitterUserName } from "./me";
 
+export const baseUrl = "https://met-flix.vercel.app";
+
 export type SiteMetadataProps = {
   title: string;
   description?: string;
   images: { url: string; width: number; height: number }[];
 };
-
 
 export const generateSiteMetadata = ({
   title,
@@ -14,6 +15,7 @@ export const generateSiteMetadata = ({
 }: SiteMetadataProps) => {
   const croppedDescription = description?.slice(0, 200) ?? "";
   return {
+    metadataBase: new URL(baseUrl),
     title,
     openGraph: {
       title,
