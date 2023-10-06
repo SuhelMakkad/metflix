@@ -36,7 +36,7 @@ const BannerSection = ({ bannerItem }: Props) => {
       posterPath={bannerItem.poster_path}
       title={title}
     >
-      <p className="drop-shadow-[0_25px_25px_rgb(0 0,0)] text-stone-50 md:text-lg md:drop-shadow-none lg:text-xl">
+      <p className="drop-shadow-[0_25px_25px_rgb(0 0,0)] text-stone-50 md:text-lg md:drop-shadow-none 2xl:text-xl">
         {bannerItem.overview?.length > 150
           ? `${bannerItem.overview.slice(0, 150)}...`
           : bannerItem.overview}

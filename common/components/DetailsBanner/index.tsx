@@ -34,14 +34,14 @@ const DetailsBanner = ({ bannerItem, media }: Props) => {
       posterPath={bannerItem.poster_path}
       title={title}
     >
-      <span>
+      <span className="text-xs md:text-sm">
         {bannerItem.genres.reduce(
           (accu, curr, index) => `${accu}${index > 0 ? ", " : ""}${curr.name}`,
           ""
         )}
       </span>
 
-      <p className="drop-shadow-[0_25px_25px_rgb(0 0,0)] mt-4 text-stone-50 md:text-lg md:drop-shadow-none lg:text-xl">
+      <p className="drop-shadow-[0_25px_25px_rgb(0 0,0)] mt-4 text-sm text-stone-50 md:text-base md:drop-shadow-none 2xl:text-lg">
         {bannerItem.overview.length > 150
           ? `${bannerItem.overview.slice(0, 150)}...`
           : bannerItem.overview}
