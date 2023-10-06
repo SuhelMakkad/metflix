@@ -1,15 +1,16 @@
 "use client";
 
-import { getVideoUrl } from "@/tmdb/api/video";
+import Link from "next/link";
 
+import { getVideoUrl } from "@/tmdb/api/video";
 import type { Movie } from "@/tmdb/types/movie";
 import type { TVShow } from "@/tmdb/types/tv";
 
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
-import Button from "@/components/Button";
 import BannerWrapper from "./Wrapper";
+import { buttonClass } from "../Button";
 
 export type Props = {
   bannerItem: TVShow | Movie;
@@ -42,26 +43,30 @@ const BannerSection = ({ bannerItem }: Props) => {
       </p>
 
       <div className="mt-5 flex items-stretch gap-2">
-        <Button
-          size={"small"}
+        <Link
           target="_blank"
           href={getVideoUrl(bannerItem.id, media)}
+          className={buttonClass({
+            size: "small",
+          })}
         >
           <span className="flex items-center gap-1">
             <BsFillPlayFill className="text-2xl" /> Trailer
           </span>
-        </Button>
-        <Button
+        </Link>
+        <Link
           href={`/details/${media === "movie" ? "movie" : "tv-show"}/${
             bannerItem.id
           }`}
-          intent={"translucent"}
-          size={"small"}
+          className={buttonClass({
+            size: "small",
+            intent: "translucent",
+          })}
         >
           <span className="flex h-full items-center gap-1">
             <AiOutlineInfoCircle className="text-xl" /> More Info
           </span>
-        </Button>
+        </Link>
       </div>
     </BannerWrapper>
   );
