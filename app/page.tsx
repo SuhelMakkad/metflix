@@ -10,6 +10,8 @@ import type { Props as TVShowsCarouselProp } from "@/components/ImageCarousel/TV
 
 import { getRandomInt } from "@/utils";
 
+export const revalidate = 86400;
+
 export async function generateMetadata() {
   const title = `Home - Metflix`;
 
@@ -87,4 +89,3 @@ export default async function MoviesPage() {
   );
 }
 
-export const revalidate = 86400;

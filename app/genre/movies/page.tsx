@@ -7,6 +7,8 @@ import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/Mov
 
 import { getRandomInt } from "@/utils";
 
+export const revalidate = 86400;
+
 export async function generateMetadata() {
   const title = `Movies - Metflix`;
 
