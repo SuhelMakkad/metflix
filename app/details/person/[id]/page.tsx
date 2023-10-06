@@ -138,8 +138,5 @@ export const dynamicParams = true;
 export const revalidate = 86400;
 
 export async function generateStaticParams() {
-  const tempIds = [62];
-  return tempIds.map((id) => ({
-    id,
-  }));
+  return [{ id: "62" }];
 }

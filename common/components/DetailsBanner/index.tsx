@@ -1,7 +1,6 @@
-import Image from "next/image";
+import Link from "next/link";
 
 import { getVideoUrl } from "@/tmdb/api/video";
-
 import type { Media } from "@/tmdb/types";
 import type { MovieDetails } from "@/tmdb/types/movie";
 import type { TVShowDetails } from "@/tmdb/types/tv";
@@ -10,7 +9,7 @@ import { BsFillPlayFill } from "react-icons/bs";
 
 import LoadingBanner from "./Loading";
 import BannerWrapper from "../BannerSection/Wrapper";
-import Button from "../Button";
+import { buttonClass } from "../Button";
 
 export type Props = {
   bannerItem: MovieDetails | TVShowDetails;
@@ -36,7 +35,10 @@ const DetailsBanner = ({ bannerItem, media }: Props) => {
       title={title}
     >
       <span>
-        {bannerItem.genres.reduce((accu, curr, index) => `${accu}${index > 0 ? ", " : ""}${curr.name}`, "")}
+        {bannerItem.genres.reduce(
+          (accu, curr, index) => `${accu}${index > 0 ? ", " : ""}${curr.name}`,
+          ""
+        )}
       </span>
 
       <p className="drop-shadow-[0_25px_25px_rgb(0 0,0)] mt-4 text-stone-50 md:text-lg md:drop-shadow-none lg:text-xl">
@@ -46,15 +48,17 @@ const DetailsBanner = ({ bannerItem, media }: Props) => {
       </p>
 
       <div className="mt-5 flex items-stretch gap-2">
-        <Button
-          size={"small"}
+        <Link
+          className={buttonClass({
+            size: "small",
+          })}
           target="_blank"
           href={getVideoUrl(bannerItem.id, media)}
         >
           <span className="flex items-center gap-1">
             <BsFillPlayFill className="text-2xl" /> Trailer
           </span>
-        </Button>
+        </Link>
       </div>
     </BannerWrapper>
   );

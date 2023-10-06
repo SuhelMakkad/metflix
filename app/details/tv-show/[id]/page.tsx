@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props) {
   return generateSiteMetadata({
     title,
     description,
-    images
+    images,
   });
 }
 
@@ -141,8 +141,5 @@ export const dynamicParams = true;
 export const revalidate = 86400;
 
 export async function generateStaticParams() {
-  const tempIds = [1396];
-  return tempIds.map((id) => ({
-    id,
-  }));
+  return [{ id: "1396" }];
 }
