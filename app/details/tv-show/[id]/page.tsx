@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props) {
   const tvShow = await getTVShow(id);
 
   const typeName = capitalizeSentence(tvShow?.name ?? "");
-  const title = `${typeName} - Metflix`;
+  const title = `${typeName} | Metflix`;
   const description = tvShow?.overview.slice(0, 150);
   const images = [
     {

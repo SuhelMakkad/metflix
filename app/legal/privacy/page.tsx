@@ -6,7 +6,7 @@ import { email } from "@/utils/me";
 import "@/css/legal.scss";
 
 export async function generateMetadata() {
-  const title = `Privacy Policy - Metflix`;
+  const title = `Privacy Policy | Metflix`;
 
   return {
     title,

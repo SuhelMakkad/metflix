@@ -8,13 +8,13 @@ import { capitalizeSentence } from "@/utils";
 export async function generateMetadata({ params }: Props) {
   const { type } = params;
   const typeName = capitalizeSentence(type.replaceAll("_", " "));
-  const title = `${typeName} Movies - Metflix`;
+  const title = `${typeName} Movies | Metflix`;
 
   return {
     title,
     openGraph: {
       title,
-      description: `A list of the ${typeName} Movies at the moment`,
+      description: `Explore the best of ${typeName} on Metflix. Browse a wide selection of ${typeName} movies and TV shows, featuring classic hits and the latest releases. Get all the information you need, from cast details to episode guides, and find your new favorite ${typeName} title today!`,
       siteName: "Metflix",
       locale: "en-US",
       type: "website",

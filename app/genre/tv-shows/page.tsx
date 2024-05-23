@@ -9,13 +9,13 @@ import { getRandomInt } from "@/utils";
 export const revalidate = 86400;
 
 export async function generateMetadata() {
-  const title = `TV Show - Metflix`;
+  const title = `TV Show | Metflix`;
 
   return {
     title,
     openGraph: {
       title,
-      description: `A list of the TV Show`,
+      description: `Explore top TV shows on Metflix! Dive into our extensive collection, featuring the latest series and timeless classics. Discover full cast details, number of seasons, and exclusive insights. Find your next binge-worthy obsession with Metflix’s curated selections.`,
       siteName: "Metflix",
       locale: "en-US",
       type: "website",

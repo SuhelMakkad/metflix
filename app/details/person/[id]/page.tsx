@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props) {
   const person = await getPerson(id);
 
   const typeName = capitalizeSentence(person?.name ?? "");
-  const title = `${typeName} - Metflix`;
+  const title = `${typeName} | Metflix`;
   const description = person?.biography.slice(0, 150);
   const images = [
     {

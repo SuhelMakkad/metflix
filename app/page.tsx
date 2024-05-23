@@ -8,18 +8,16 @@ import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 import type { Props as TVShowsCarouselProp } from "@/components/ImageCarousel/TVShowsCarousel";
 
-import { getRandomInt } from "@/utils";
-
 export const revalidate = 86400;
 
 export async function generateMetadata() {
-  const title = `Home - Metflix`;
+  const title = `Home | Metflix`;
 
   return {
     title,
     openGraph: {
       title,
-      description: `Metflix home page`,
+      description: `Discover the latest in entertainment on Metflix! Explore a vast library of TV shows and movies. Find detailed information about cast members, seasons, and more. Your ultimate guide to new and trending media content!`,
       siteName: "Metflix",
       locale: "en-US",
       type: "website",

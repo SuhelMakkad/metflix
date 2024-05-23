@@ -5,7 +5,7 @@ import PrintBtn from "@/components/Button/PrintBtn";
 import "@/css/legal.scss";
 
 export async function generateMetadata() {
-  const title = `Terms of Use - Metflix`;
+  const title = `Terms of Use | Metflix`;
 
   return {
     title,

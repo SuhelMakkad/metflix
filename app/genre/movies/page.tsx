@@ -5,18 +5,16 @@ import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
 
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 
-import { getRandomInt } from "@/utils";
-
 export const revalidate = 86400;
 
 export async function generateMetadata() {
-  const title = `Movies - Metflix`;
+  const title = `Movies | Metflix`;
 
   return {
     title,
     openGraph: {
       title,
-      description: `A list of the Movies`,
+      description: `Browse the latest movies and all-time classics on Metflix. From blockbuster hits to indie gems, find detailed movie information, cast lists, and exclusive content. Whether you're a film buff or looking for a weekend flick, Metflix is your go-to destination for cinema!`,
       siteName: "Metflix",
       locale: "en-US",
       type: "website",

@@ -2,13 +2,13 @@ import QueryProvider from "@/components/QueryProvider";
 import SearchSection from "@/components/SearchSection";
 
 export async function generateMetadata() {
-  const title = `Search - Metflix`;
+  const title = `Search | Metflix`;
 
   return {
     title,
     openGraph: {
       title,
-      description: `Search Movies and TV Shows - Metflix`,
+      description: `Search and discover your next favorite movie or TV show on Metflix. Browse through an extensive collection of the latest and classic titles, complete with full cast details, season counts, and comprehensive show information. Dive into the world of entertainment with Metflix.`,
       siteName: "Metflix",
       locale: "en-US",
       type: "website",

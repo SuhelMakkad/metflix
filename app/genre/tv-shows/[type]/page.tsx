@@ -14,13 +14,13 @@ export type Props = {
 export async function generateMetadata({ params }: Props) {
   const { type } = params;
   const typeName = capitalizeSentence(type.replaceAll("_", " "));
-  const title = `${typeName} TV Shows - Metflix`;
+  const title = `${typeName} TV Shows | Metflix`;
 
   return {
     title,
     openGraph: {
       title,
-      description: `A list of the ${typeName} TV Shows at the moment`,
+      description: `Immerse yourself in the best ${typeName} TV shows on Metflix. From groundbreaking series to beloved classics, discover a diverse lineup of ${typeName} shows. Explore cast details, season breakdowns, and find your next series to binge. Whether you're a genre aficionado or just exploring, Metflix has something for everyone in ${typeName}.`,
       siteName: "Metflix",
       locale: "en-US",
       type: "website",
