@@ -28,6 +28,7 @@ const TVShowsList = ({ title, type }: Props) => {
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: ["tv", type],
+    initialPageParam: 1,
     queryFn: async ({ pageParam = 1 }) => {
       const res = await getTVShows({ type, page: pageParam });
       if (!res) return null;

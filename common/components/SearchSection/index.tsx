@@ -31,7 +31,7 @@ const SearchSection = () => {
       title: "",
       postImg: "",
       header: (
-        <div className="absolute top-0 right-0 left-0 w-full text-center capitalize">
+        <div className="absolute left-0 right-0 top-0 w-full text-center capitalize">
           <span
             className={`block px-3 py-1 text-sm opacity-90 ${
               mediaType === "movie"
@@ -89,6 +89,7 @@ const SearchSection = () => {
     isFetched,
   } = useInfiniteQuery({
     queryKey: [query],
+    initialPageParam: 1,
     queryFn: ({ pageParam = 1 }) =>
       searchAll({
         query,

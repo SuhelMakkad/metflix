@@ -28,7 +28,8 @@ const MoviesList = ({ title, type }: Props) => {
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: ["movies", type],
-    queryFn: async ({ pageParam = 1 }) => {
+    initialPageParam: 1,
+    queryFn: async ({ pageParam }) => {
       const res = await getMovies({ type, page: pageParam });
       if (!res) return null;
 
