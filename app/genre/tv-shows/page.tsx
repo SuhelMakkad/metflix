@@ -4,24 +4,14 @@ import BannerSection from "@/components/BannerSection";
 import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";
 import type { Props as TVShowsCarouselProp } from "@/components/ImageCarousel/TVShowsCarousel";
 
-import { getRandomInt } from "@/utils";
+import { getMetadata } from "@/utils/seo/metadata";
 
 export const revalidate = 86400;
 
-export async function generateMetadata() {
-  const title = `TV Show | Metflix`;
-
-  return {
-    title,
-    openGraph: {
-      title,
-      description: `Explore top TV shows on Metflix! Dive into our extensive collection, featuring the latest series and timeless classics. Discover full cast details, number of seasons, and exclusive insights. Find your next binge-worthy obsession with Metflix’s curated selections.`,
-      siteName: "Metflix",
-      locale: "en-US",
-      type: "website",
-    },
-  };
-}
+export const metadata = getMetadata({
+  title: "TV Shows",
+  description: `Explore top TV shows on Metflix! Dive into our extensive collection, featuring the latest series and timeless classics. Discover full cast details, number of seasons, and exclusive insights. Find your next binge-worthy obsession with Metflix's curated selections.`,
+});
 
 export default async function TVShowsPage() {
   const tvShows = await getTVShowsList([

@@ -1,24 +1,15 @@
 import Link from "next/link";
 
 import PrintBtn from "@/components/Button/PrintBtn";
+import { getMetadata } from "@/utils/seo/metadata";
 import { email } from "@/utils/me";
 
 import "@/css/legal.scss";
 
-export async function generateMetadata() {
-  const title = `Privacy Policy | Metflix`;
-
-  return {
-    title,
-    openGraph: {
-      title,
-      description: `Privacy Policy page for Metflix`,
-      siteName: "Metflix",
-      locale: "en-US",
-      type: "website",
-    },
-  };
-}
+export const metadata = getMetadata({
+  title: "Privacy Policy",
+  description: `Privacy Policy page for Metflix`,
+});
 
 export default function PrivacyPage() {
   return (

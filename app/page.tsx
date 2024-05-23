@@ -4,26 +4,17 @@ import { getTVShowsList } from "@/tmdb/lib/tv";
 import BannerSection from "@/components/BannerSection";
 import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
 import TVShowsCarousel from "@/components/ImageCarousel/TVShowsCarousel";
-
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 import type { Props as TVShowsCarouselProp } from "@/components/ImageCarousel/TVShowsCarousel";
 
+import { getMetadata } from "@/utils/seo/metadata";
+
 export const revalidate = 86400;
 
-export async function generateMetadata() {
-  const title = `Home | Metflix`;
-
-  return {
-    title,
-    openGraph: {
-      title,
-      description: `Discover the latest in entertainment on Metflix! Explore a vast library of TV shows and movies. Find detailed information about cast members, seasons, and more. Your ultimate guide to new and trending media content!`,
-      siteName: "Metflix",
-      locale: "en-US",
-      type: "website",
-    },
-  };
-}
+export const metadata = getMetadata({
+  title: "Home",
+  description: `Discover the latest in entertainment on Metflix! Explore a vast library of TV shows and movies. Find detailed information about cast members, seasons, and more. Your ultimate guide to new and trending media content!`,
+});
 
 export default async function MoviesPage() {
   const movies = await getMoviesList(["trending", "top_rated"]);

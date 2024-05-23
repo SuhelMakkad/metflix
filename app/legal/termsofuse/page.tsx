@@ -1,23 +1,14 @@
 import Link from "next/link";
 
 import PrintBtn from "@/components/Button/PrintBtn";
+import { getMetadata } from "@/utils/seo/metadata";
 
 import "@/css/legal.scss";
 
-export async function generateMetadata() {
-  const title = `Terms of Use | Metflix`;
-
-  return {
-    title,
-    openGraph: {
-      title,
-      description: `Terms of Use for Metflix`,
-      siteName: "Metflix",
-      locale: "en-US",
-      type: "website",
-    },
-  };
-}
+export const metadata = getMetadata({
+  title: "Terms of Use",
+  description: `Terms of Use for Metflix`,
+});
 
 export default function TermsOfUsePage() {
   return (

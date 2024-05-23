@@ -4,22 +4,16 @@ import MoviesList from "@/components/ImageList/MoviesList";
 import type { MovieType } from "@/tmdb/types/movie";
 
 import { capitalizeSentence } from "@/utils";
+import { getMetadata } from "@/utils/seo/metadata";
 
 export async function generateMetadata({ params }: Props) {
   const { type } = params;
   const typeName = capitalizeSentence(type.replaceAll("_", " "));
-  const title = `${typeName} Movies | Metflix`;
 
-  return {
-    title,
-    openGraph: {
-      title,
-      description: `Explore the best of ${typeName} on Metflix. Browse a wide selection of ${typeName} movies and TV shows, featuring classic hits and the latest releases. Get all the information you need, from cast details to episode guides, and find your new favorite ${typeName} title today!`,
-      siteName: "Metflix",
-      locale: "en-US",
-      type: "website",
-    },
-  };
+  return getMetadata({
+    title: `${typeName} Movies | Metflix`,
+    description: `Explore the best of ${typeName} on Metflix. Browse a wide selection of ${typeName} movies and TV shows, featuring classic hits and the latest releases. Get all the information you need, from cast details to episode guides, and find your new favorite ${typeName} title today!`,
+  });
 }
 
 export type Props = {
