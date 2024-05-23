@@ -17,11 +17,7 @@ const staticPages = [
 ].map((site) => ({ ...site, timestamp: Date.now() }));
 
 export async function GET(request: Request) {
-  const httpType = "https";
-  const host = request.headers.get("host");
-  const baseUrl = `${httpType}://${host}`;
-
-  const sitemap = generateSitemap(baseUrl, staticPages);
+  const sitemap = generateSitemap(staticPages);
 
   return new Response(sitemap, {
     headers: {
