@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import { BASE_URL } from "@/utils/index";
-import { name } from "@/utils/me";
+import { name, twitterUserName } from "@/utils/me";
 
 const metaTitle = "Metflix";
-const defaultImage = `${BASE_URL}/assets/images/logo/logo.png`;
+const defaultImages = [
+  { url: `${BASE_URL}/assets/images/logo/logo.png`, width: 310, height: 310 },
+];
 
 export type GetMetadataParams = {
   title?: string;
   description?: string;
   url?: string;
-  images?: string[];
+  images?: { url: string; width: number; height: number }[];
   keywords?: string;
 };
 
@@ -17,8 +19,8 @@ export const getMetadata = ({
   title,
   description,
   url,
-  images,
   keywords,
+  images = defaultImages,
 }: GetMetadataParams = {}): Metadata => {
   const titleWithName = title ? `${title} | ${metaTitle}` : metaTitle;
 
@@ -26,26 +28,20 @@ export const getMetadata = ({
     title: titleWithName,
     description,
     keywords,
+    metadataBase: new URL(BASE_URL),
 
     openGraph: {
       siteName: metaTitle,
       title: titleWithName,
       description,
-      images: [
-        {
-          url: images ? images[0] : defaultImage,
-          height: 500,
-          width: 1100,
-          type: "image/jpg",
-        },
-      ],
+      images,
       url: `${BASE_URL}${url || ""}`,
       locale: "en_US",
       type: "website",
     },
 
     twitter: {
-      creator: metaTitle,
+      creator: `@${twitterUserName}`,
       card: "summary",
       site: url,
       title: titleWithName,

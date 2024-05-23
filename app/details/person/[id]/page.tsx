@@ -11,8 +11,8 @@ import PersonDetails from "@/components/PersonDetails";
 import SectionHeading from "@/components/SectionHeading";
 
 import { capitalizeSentence } from "@/utils";
-import { generateSiteMetadata } from "@/utils/siteMetadata";
 import { getPersonSchema } from "@/utils/seo/personSchema";
+import { getMetadata } from "@/utils/seo/metadata";
 
 export type Props = {
   params: {
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props) {
   const person = await getPerson(id);
 
   const typeName = capitalizeSentence(person?.name ?? "");
-  const title = `${typeName} | Metflix`;
+  const title = typeName;
   const description = person?.biography.slice(0, 150);
   const images = [
     {
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props) {
     },
   ];
 
-  return generateSiteMetadata({
+  return getMetadata({
     title,
     description,
     images,

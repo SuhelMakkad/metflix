@@ -8,7 +8,7 @@ import MoviesCarousel from "@/components/ImageCarousel/MoviesCarousel";
 import type { Props as MoviesCarouselProp } from "@/components/ImageCarousel/MoviesCarousel";
 
 import { capitalizeSentence } from "@/utils";
-import { generateSiteMetadata } from "@/utils/siteMetadata";
+import { getMetadata } from "@/utils/seo/metadata";
 
 export type Props = {
   params: {
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props) {
   const movie = await getMovie(id);
 
   const typeName = capitalizeSentence(movie?.title ?? "");
-  const title = `${typeName} | Metflix`;
+  const title = typeName;
   const description = movie?.overview.slice(0, 150);
   const images = [
     {
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props) {
     },
   ];
 
-  return generateSiteMetadata({
+  return getMetadata({
     title,
     description,
     images,

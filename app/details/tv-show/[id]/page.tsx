@@ -8,7 +8,7 @@ import SectionHeading from "@/components/SectionHeading";
 import ImageCarousel from "@/components/Carousel";
 
 import { capitalizeSentence } from "@/utils";
-import { generateSiteMetadata } from "@/utils/siteMetadata";
+import { getMetadata } from "@/utils/seo/metadata";
 
 export type Props = {
   params: {
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props) {
   const tvShow = await getTVShow(id);
 
   const typeName = capitalizeSentence(tvShow?.name ?? "");
-  const title = `${typeName} | Metflix`;
+  const title = typeName;
   const description = tvShow?.overview.slice(0, 150);
   const images = [
     {
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props) {
     },
   ];
 
-  return generateSiteMetadata({
+  return getMetadata({
     title,
     description,
     images,
