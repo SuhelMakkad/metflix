@@ -1,5 +1,3 @@
-import { BASE_URL } from "..";
-
 export type PersonType = {
   name: string;
   title: string;

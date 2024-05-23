@@ -1,5 +1,3 @@
-export const BASE_URL = "https://met-flix.vercel.app";
-
 export const getRandomInt = (min: number, max: number) => {
   const minInt = Math.ceil(min);
   const maxInt = Math.floor(max);

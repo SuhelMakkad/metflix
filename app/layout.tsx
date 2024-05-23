@@ -1,4 +1,5 @@
 import { Open_Sans } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import SchemaScripts from "@/components/SchemaScripts";
 import QueryProvider from "@/components/QueryProvider";
@@ -9,6 +10,7 @@ import Footer from "@/components/Footer";
 import { githubUrl, name } from "@/utils/me";
 import { indexPageSchemas } from "@/utils/seo/schemaData";
 import { getMetadata } from "@/utils/seo/metadata";
+import { GOOGLE_ANALYTICS_ID } from "@/utils/constants";
 
 import "@/css/globals.css";
 
@@ -61,6 +63,8 @@ export default function RootLayout({
 
         <Footer />
       </body>
+
+      <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />
     </html>
   );
 }

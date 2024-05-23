@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { BASE_URL } from "@/utils/index";
 import { name, twitterUserName } from "@/utils/me";
+import { BASE_URL } from "@/utils/constants";
 
 const metaTitle = "Metflix";
 const defaultImages = [
