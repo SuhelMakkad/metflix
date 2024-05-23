@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import QueryProvider from "@/components/QueryProvider";
 import SearchSection from "@/components/SearchSection";
 
@@ -20,7 +22,9 @@ export default async function SearchPage() {
   return (
     <div className="mt-20">
       <QueryProvider>
-        <SearchSection />
+        <Suspense>
+          <SearchSection />
+        </Suspense>
       </QueryProvider>
     </div>
   );
