@@ -34,4 +34,4 @@ allow: /
 
 Disallow: /admin/*
 Disallow: /cgi-bin/
-Sitemap: https://met-flix.vercel.app/sitemap
+Sitemap: https://metflix.suhelmakkad.com/sitemap

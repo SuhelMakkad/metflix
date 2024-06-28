@@ -1,4 +1,4 @@
-Check out the app [Metflix](https://met-flix.vercel.app).
+Check out the app [Metflix](https://metflix.suhelmakkad.com).
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

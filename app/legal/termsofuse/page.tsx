@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import PrintBtn from "@/components/Button/PrintBtn";
 import { getMetadata } from "@/utils/seo/metadata";
+import { BASE_URL } from "@/utils/constants";
 
 import "@/css/legal.scss";
 
@@ -22,7 +23,7 @@ export default function TermsOfUsePage() {
 
       <p>
         These terms and conditions outline the rules and regulations for the use
-        of Metflix's Website, located at https://met-flix.vercel.app/.
+        of Metflix's Website, located at {BASE_URL}.
       </p>
 
       <p>

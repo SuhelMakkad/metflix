@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import PrintBtn from "@/components/Button/PrintBtn";
 import { getMetadata } from "@/utils/seo/metadata";
+import { BASE_URL } from "@/utils/constants";
 import { email } from "@/utils/me";
 
 import "@/css/legal.scss";
@@ -122,11 +123,11 @@ export default function PrivacyPage() {
           <p>
             <strong>Website</strong> refers to Metflix, accessible from{" "}
             <Link
-              href="https://met-flix.vercel.app/"
+              href={BASE_URL}
               rel="external nofollow noopener"
               target="_blank"
             >
-              https://met-flix.vercel.app/
+              {BASE_URL}
             </Link>
           </p>
         </li>
