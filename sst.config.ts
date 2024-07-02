@@ -11,13 +11,16 @@ export default {
   stacks(app) {
     app.stack(function Site({ stack }) {
       const site = new NextjsSite(stack, "site", {
+        customDomain: {
+          domainName: "metflix.suhelmakkad.com",
+        },
         environment: {
           TMBD_API_KEY: process.env.TMBD_API_KEY!
         }
       });
 
       stack.addOutputs({
-        SiteUrl: site.url,
+        SiteUrl: site.customDomainUrl || site.url,
       });
     });
   },
