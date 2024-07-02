@@ -17,14 +17,35 @@
       ENV_NAME: ${{ secrets.ENV_NAME }}
 
      steps:
-       - name: Git clone the repository
-         uses: actions/checkout@v3
-       - name: Configure AWS credentials
-         uses: aws-actions/configure-aws-credentials@v2
-         with:
-           role-to-assume: arn:aws:iam::527297456672:role/Github
-           role-duration-seconds: 14390 #adjust as needed for your build time
-           aws-region: us-east-1
-       - name: Deploy app
-         run: |
-           npm i && npx sst deploy --stage prod
+        - name: Git clone the repository
+          uses: actions/checkout@v3
+
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v4
+          with:
+            role-to-assume: arn:aws:iam::527297456672:role/Github
+            role-duration-seconds: 14390 # adjust as needed for your build time
+            aws-region: us-east-1
+           
+        - name: Install pnpm
+          uses: pnpm/action-setup@v4
+          with:
+            version: 8
+            run_install: false
+
+        - name: Get pnpm store directory
+          shell: bash
+          run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+        - name: Setup pnpm cache
+          uses: actions/cache@v4
+          with:
+            path: ${{ env.STORE_PATH }}
+            key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+            restore-keys: ${{ runner.os }}-pnpm-store-
+
+        - name: Installing my packages
+          run: pnpm i
+
+        - name: Deploy app
+          run: npx sst deploy --stage prod
