@@ -43,7 +43,7 @@
         - name: Installing SST
           run: |
             curl -fsSL https://ion.sst.dev/install | bash
-        - run: sst install
+        - run: pwd && ls -l && sst install
 
         - name: Deploy app
           run: NO_BUN=true sst deploy --stage prod
