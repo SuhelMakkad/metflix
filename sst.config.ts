@@ -13,6 +13,7 @@ export default {
       const site = new NextjsSite(stack, "site", {
         customDomain: {
           domainName: "metflix.suhelmakkad.com",
+          hostedZone: "suhelmakkad.com"
         },
         environment: {
           TMBD_API_KEY: process.env.TMBD_API_KEY!
