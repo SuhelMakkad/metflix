@@ -40,7 +40,7 @@
         - name: Installing SST
           run: |
             curl -fsSL https://ion.sst.dev/install | bash
-        - run: sst install
+        - run: ls -l && sst install
 
         - name: Installing node packages
           run: pnpm i
