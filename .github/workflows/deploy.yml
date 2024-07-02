@@ -20,13 +20,6 @@
         - name: Git clone the repository
           uses: actions/checkout@v3
 
-        - name: Configure AWS credentials
-          uses: aws-actions/configure-aws-credentials@v4
-          with:
-            role-to-assume: arn:aws:iam::527297456672:role/Github
-            role-duration-seconds: 14390 # adjust as needed for your build time
-            aws-region: us-east-1
-           
         - name: Install pnpm
           uses: pnpm/action-setup@v4
           with:
@@ -48,4 +41,8 @@
           run: pnpm i
 
         - name: Deploy app
+          env:
+            DATABASE_URL: ${{ secrets.DATABASE_URL }}
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           run: npx sst deploy --stage prod
