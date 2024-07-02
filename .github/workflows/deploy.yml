@@ -37,9 +37,12 @@
             key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
             restore-keys: ${{ runner.os }}-pnpm-store-
 
+        - name: Installing my packages
+          run: pnpm i
+
         - name: Deploy app
           env:
             AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             TMBD_API_KEY: ${{ secrets.TMBD_API_KEY }}
-          run: pnpm i && pnpm sst deploy --stage prod
+          run: pnpm sst deploy --stage prod

@@ -1,18 +1,24 @@
-/// <reference path="./.sst/platform/config.d.ts" />
+import { SSTConfig } from "sst";
+import { NextjsSite } from "sst/constructs";
 
-export default $config({
-  app(input) {
+export default {
+  config(_input) {
     return {
       name: "metflix",
-      removal: input?.stage === "production" ? "retain" : "remove",
-      home: "aws",
+      region: "us-east-1",
     };
   },
-  async run() {
-    new sst.aws.Nextjs("MyWeb", {
-      environment: {
-        TMBD_API_KEY: process.env.TMBD_API_KEY!
-      }
+  stacks(app) {
+    app.stack(function Site({ stack }) {
+      const site = new NextjsSite(stack, "site", {
+        environment: {
+          TMBD_API_KEY: process.env.TMBD_API_KEY!
+        }
+      });
+
+      stack.addOutputs({
+        SiteUrl: site.url,
+      });
     });
   },
-});
+} satisfies SSTConfig;
