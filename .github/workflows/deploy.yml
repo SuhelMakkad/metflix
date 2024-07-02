@@ -41,6 +41,8 @@
           run: |
             curl -fsSL https://ion.sst.dev/install | bash
 
+        - run: sst install
+
         - name: Installing node packages
           run: pnpm i
 
