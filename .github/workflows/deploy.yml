@@ -37,13 +37,13 @@
             key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
             restore-keys: ${{ runner.os }}-pnpm-store-
 
+        - name: Installing node packages
+          run: pnpm i
+
         - name: Installing SST
           run: |
             curl -fsSL https://ion.sst.dev/install | bash
-        - run: ls -l && sst install
-
-        - name: Installing node packages
-          run: pnpm i
+        - run: sst install
 
         - name: Deploy app
           run: NO_BUN=true sst deploy --stage prod
