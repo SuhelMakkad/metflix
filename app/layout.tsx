@@ -1,3 +1,4 @@
+import { Viewport } from "next";
 import { Open_Sans } from "next/font/google";
 
 import SchemaScripts from "@/components/SchemaScripts";
@@ -16,13 +17,17 @@ const openSans = Open_Sans({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "black",
+  colorScheme: "dark",
+};
+
 export const metadata = {
   ...getMetadata({
     title: "Home",
   }),
   manifest: "/assets/favicon/manifest.json",
   authors: [{ name, url: githubUrl }],
-  colorScheme: "dark",
   creator: name,
   robots: {
     index: false,
