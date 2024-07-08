@@ -25,16 +25,9 @@ export const metadata = {
   colorScheme: "dark",
   creator: name,
   robots: {
-    index: true,
-    follow: true,
-    nocache: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    index: false,
+    follow: false,
+    nocache: false,
   },
 };
 
